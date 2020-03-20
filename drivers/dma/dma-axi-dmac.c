@@ -21,11 +21,14 @@
 #include <linux/platform_device.h>
 #include <linux/regmap.h>
 #include <linux/slab.h>
+#include <linux/time.h>
 
 #include <dt-bindings/dma/axi-dmac.h>
 
 #include "dmaengine.h"
 #include "virt-dma.h"
+
+#include <linux/uaccess.h>
 
 /*
  * The AXI-DMAC is a soft IP core that is used in FPGA designs. The core has
@@ -71,6 +74,9 @@
 #define AXI_DMAC_REG_DBG2		0x444
 #define AXI_DMAC_REG_PARTIAL_XFER_LEN	0x44c
 #define AXI_DMAC_REG_PARTIAL_XFER_ID	0x450
+#define AXI_DMAC_REG_RTIMESTAMP_LSB	0x454 // Read Timestamp Register Address 115 in HW
+#define AXI_DMAC_REG_RTIMESTAMP_MSB	0x458 // Read Timestamp Register Address 116 in HW
+// CAUTION: 0x462 (117) and 0x466 (118) does not work!
 
 #define AXI_DMAC_CTRL_ENABLE		BIT(0)
 #define AXI_DMAC_CTRL_PAUSE		BIT(1)
@@ -88,6 +94,38 @@
 
 /* The maximum ID allocated by the hardware is 31 */
 #define AXI_DMAC_SG_UNUSED 32U
+
+#define GPIO0_DATA0     0x41210000      // Enable signals (4 bits)
+#define GPIO0_DATA1     0x41210008      // Valid signals  (4 bits)
+
+#define GPIO1_DATA0     0x41220000      // tx timestamp lsb
+#define GPIO1_DATA1     0x41220008      // tx timestamp msb
+
+#define GPIO2_DATA0     0x41230000      // tx timestamp lsb
+#define GPIO2_DATA1     0x41230008      // tx timestamp msb
+
+#define GPIO3_DATA0     0x41240000      // tx timestamp lsb
+#define GPIO3_DATA1     0x41240008      // tx timestamp msb
+
+#define GPIO4_DATA0     0x41250000      // tx timestamp lsb
+#define GPIO4_DATA1     0x41250008      // tx timestamp msb
+
+bool tx_transfer_ongoing = false;
+
+unsigned char* pGPIO0_DATA0; // Enable signal
+unsigned char* pGPIO0_DATA1; // Valid signal
+
+unsigned long* pGPIO1_DATA0; // tx timestamp lsb
+unsigned long* pGPIO1_DATA1; // tx timestamp msb
+
+unsigned long* pGPIO2_DATA0; // tx timestamp lsb
+unsigned long* pGPIO2_DATA1; // tx timestamp msb
+
+unsigned long* pGPIO3_DATA0; // tx timestamp lsb
+unsigned long* pGPIO3_DATA1; // tx timestamp msb
+
+unsigned long* pGPIO4_DATA0; // tx timestamp lsb
+unsigned long* pGPIO4_DATA1; // tx timestamp msb
 
 struct axi_dmac_sg {
 	dma_addr_t src_addr;
@@ -151,6 +189,45 @@ struct axi_dmac {
 #endif
 };
 
+uint64_t adc_inter_timestamp0 = 0;
+EXPORT_SYMBOL_GPL(adc_inter_timestamp0);
+
+uint64_t adc_inter_timestamp1 = 0;
+EXPORT_SYMBOL_GPL(adc_inter_timestamp1);
+
+uint64_t adc_inter_timestamp2 = 0;
+EXPORT_SYMBOL_GPL(adc_inter_timestamp2);
+
+uint64_t adc_inter_timestamp3 = 0;
+EXPORT_SYMBOL_GPL(adc_inter_timestamp3);
+
+uint64_t dac_inter_timestamp0 = 0;
+EXPORT_SYMBOL_GPL(dac_inter_timestamp0);
+
+uint64_t dac_inter_timestamp1 = 0;
+EXPORT_SYMBOL_GPL(dac_inter_timestamp1);
+
+uint64_t dac_inter_timestamp2 = 0;
+EXPORT_SYMBOL_GPL(dac_inter_timestamp2);
+
+uint64_t dac_inter_timestamp3 = 0;
+EXPORT_SYMBOL_GPL(dac_inter_timestamp3);
+
+uint64_t dif_inter_timestamp0 = 0;
+EXPORT_SYMBOL_GPL(dif_inter_timestamp0);
+
+uint64_t dif_inter_timestamp1 = 0;
+EXPORT_SYMBOL_GPL(dif_inter_timestamp1);
+
+uint64_t dif_inter_timestamp2 = 0;
+EXPORT_SYMBOL_GPL(dif_inter_timestamp2);
+
+uint64_t dif_inter_timestamp3 = 0;
+EXPORT_SYMBOL_GPL(dif_inter_timestamp3);
+
+int dif_inter_num = 0;
+EXPORT_SYMBOL_GPL(dif_inter_num);
+
 static struct axi_dmac *chan_to_axi_dmac(struct axi_dmac_chan *chan)
 {
 	return container_of(chan->vchan.chan.device, struct axi_dmac,
@@ -212,17 +289,38 @@ static void axi_dmac_start_transfer(struct axi_dmac_chan *chan)
 	struct axi_dmac_sg *sg;
 	unsigned int flags = 0;
 	unsigned int val;
+	uint32_t read_timestamp_lsb;
+	uint32_t read_timestamp_msb;
+	//uint64_t read_timestamp;
+	bool is_cyclic = false;
+	int dev_id;
+	uint8_t regVal = 0;
+	unsigned int transfer_id_eot = 0;
+	struct timespec ts;
+
+	dev_id = dmac->dma_dev.dev_id;
+
+	//ECL debug 1
+	//printk("[DBG][drivers][dma-axi-dmac][axi_dmac_start_transfer][chan][start_counter: %d][dir: %d][cyclic: %d]\n",start_counter,chan->direction,chan->hw_cyclic);
+	//printk("[DBG][drivers][dma-axi-dmac][axi_dmac_start_transfer][chan][hw_partial_xfer: %d][hw_2d: %d]\n",chan->hw_partial_xfer,chan->hw_2d);
 
 	val = axi_dmac_read(dmac, AXI_DMAC_REG_START_TRANSFER);
 	if (val) /* Queue is full, wait for the next SOT IRQ */
+	{
+		//printk("[queue is full]\n");
 		return;
+	}
 
 	desc = chan->next_desc;
+
+	//ECL debug 2
+	//printk("[DBG][drivers][dma-axi-dmac][axi_dmac_start_transfer][desc][num_submitted: %d][num_completed: %d][num_sgs: %d]\n",&desc->num_submitted,&desc->num_completed,&desc->num_sgs);
 
 	if (!desc) {
 		vdesc = vchan_next_desc(&chan->vchan);
 		if (!vdesc)
 			return;
+		
 		list_move_tail(&vdesc->node, &chan->active_descs);
 		desc = to_axi_dmac_desc(vdesc);
 	}
@@ -250,11 +348,13 @@ static void axi_dmac_start_transfer(struct axi_dmac_chan *chan)
 	sg->id = axi_dmac_read(dmac, AXI_DMAC_REG_TRANSFER_ID);
 
 	if (axi_dmac_dest_is_mem(chan)) {
+		// RX	
 		axi_dmac_write(dmac, AXI_DMAC_REG_DEST_ADDRESS, sg->dest_addr);
 		axi_dmac_write(dmac, AXI_DMAC_REG_DEST_STRIDE, sg->dest_stride);
 	}
 
 	if (axi_dmac_src_is_mem(chan)) {
+		// TX
 		axi_dmac_write(dmac, AXI_DMAC_REG_SRC_ADDRESS, sg->src_addr);
 		axi_dmac_write(dmac, AXI_DMAC_REG_SRC_STRIDE, sg->src_stride);
 	}
@@ -266,15 +366,168 @@ static void axi_dmac_start_transfer(struct axi_dmac_chan *chan)
 	 */
 	if (chan->hw_cyclic && desc->cyclic && !desc->vdesc.tx.callback &&
 		desc->num_sgs == 1)
+	{
+		is_cyclic = true;
 		flags |= AXI_DMAC_FLAG_CYCLIC;
+	}
 
 	if (chan->hw_partial_xfer)
+	{
 		flags |= AXI_DMAC_FLAG_PARTIAL_REPORT;
+	}
 
-	axi_dmac_write(dmac, AXI_DMAC_REG_X_LENGTH, sg->x_len - 1);
+	//printk("[DBG][drivers][dma-axi-dmac][axi_dmac_start_transfer][sg->x_len: %d][sg->y_len: %d]\n",sg->x_len-1,sg->y_len-1);
+	//printk("[DBG][drivers][dma-axi-dmac] TX buffer before transmit timestamp:%llu, size:%d \n", dac_inter_timestamp, (int)sg->x_len);
+
+	// If the device is not HDMI and it is TX: TIMING 1) latch low timing controller enable signal, so everything waits
+        if(chan->direction == 1 && (dev_id == 0 || dev_id == 1))
+        {
+		if(sg->id == 0)
+		{
+			// GPIO_0_DATA_0 = 0, set enable: 11111110 = 254
+			regVal = ioread8(pGPIO0_DATA1);
+			regVal = regVal & 254;
+			iowrite8(regVal,pGPIO0_DATA0);
+		}
+		else if(sg->id == 1)
+		{
+			// GPIO_0_DATA_0 = 0, set enable: 11111101 = 253
+			regVal = ioread8(pGPIO0_DATA1);
+			regVal = regVal & 253;
+			iowrite8(regVal,pGPIO0_DATA0);
+		}
+		else if(sg->id == 2)
+		{
+			// GPIO_0_DATA_0 = 0, set enable: 11111011 = 251
+			regVal = ioread8(pGPIO0_DATA1);
+			regVal = regVal & 251;
+			iowrite8(regVal,pGPIO0_DATA0);
+		}
+		else if(sg->id == 3)
+		{
+			// GPIO_0_DATA_0 = 0, set enable: 11110111 = 247
+			regVal = ioread8(pGPIO0_DATA1);
+			regVal = regVal & 247;
+			iowrite8(regVal,pGPIO0_DATA0);
+		}
+        }
+	
+		
+        if(chan->direction == 2 && (dev_id == 0 || dev_id == 1))
+        {
+		//getnstimeofday(&ts);
+		//transfer_id_eot = axi_dmac_read(dmac,AXI_DMAC_REG_ACTIVE_TRANSFER_ID);
+		//printk("rx transfer start, sg-id: %d, transfer_id_eot: %d, time: %ld\n",sg->id,transfer_id_eot,ts.tv_nsec);
+        }
+	
+
+	// If the device is not HDMI, for both RX and TX, request a transfer with 8 bytes or 16 bytes less size. Because we already used them for timestamps
+	if(dev_id==0 || dev_id==1)
+	{
+		//printk("[DBG][drivers][dma-axi-dmac][axi_dmac_start_transfer][dma_dev_id: %d][dir: %d][partial_report: %d][cyclic: %d]\n -----[sg->x_len: %d][sg->dst_addr: %d][sg->src_addr: %d]\n",dmac->dma_dev.dev_id,chan->direction,chan->hw_partial_xfer,is_cyclic,sg->x_len,sg->dest_addr,sg->src_addr);
+		
+		axi_dmac_write(dmac, AXI_DMAC_REG_X_LENGTH, sg->x_len -1 -(8*2)); // 8 for rx_timestamp and 8 for tx_timestamp_dif
+	}
+	else // for hdmi and others
+	{
+		axi_dmac_write(dmac, AXI_DMAC_REG_X_LENGTH, sg->x_len - 1);
+	}
 	axi_dmac_write(dmac, AXI_DMAC_REG_Y_LENGTH, sg->y_len - 1);
 	axi_dmac_write(dmac, AXI_DMAC_REG_FLAGS, flags);
 	axi_dmac_write(dmac, AXI_DMAC_REG_START_TRANSFER, 1);
+
+
+	// If the device is not HDMI and it is TX: TIMING 2) after the descriptor is sent, write the tx counter to the timing controller block and set the valid signal
+	if(chan->direction == 1 && (dev_id == 0 || dev_id == 1))
+        {
+		//transfer_id_eot = axi_dmac_read(dmac,AXI_DMAC_REG_ACTIVE_TRANSFER_ID);
+		
+		if(sg->id == 0)
+		{
+			read_timestamp_lsb = (uint32_t) dac_inter_timestamp0;
+			read_timestamp_msb = dac_inter_timestamp0 >> 32;
+			
+			//getnstimeofday(&ts);
+			//printk("tx transfer start, sg-id: 0, force tx timestamp: %llu, transfer_id_eot: %d, time:%ld\n",dac_inter_timestamp0,transfer_id_eot,ts.tv_nsec);
+			
+			//dac_inter_timestamp0 = 0;
+		
+			// GPIO_1_DATA_0 = read_timestamp_lsb; 
+			// GPIO_1_DATA_1 = read_timestamp_msb;
+			iowrite32(read_timestamp_lsb,pGPIO1_DATA0);
+			iowrite32(read_timestamp_msb,pGPIO1_DATA1);
+		
+			// GPIO_0_DATA_1 = 1; set the valid: 00000001
+			regVal = ioread8(pGPIO0_DATA1);
+			regVal = regVal | 1;
+			iowrite8(regVal,pGPIO0_DATA1);
+		}
+                else if(sg->id ==1)
+		{
+			read_timestamp_lsb = (uint32_t) dac_inter_timestamp1;
+			read_timestamp_msb = dac_inter_timestamp1 >> 32;
+			
+			//getnstimeofday(&ts);
+			//printk("tx transfer start, sg-id: 1, force tx timestamp: %llu, transfer_id_eot: %d, time:%ld\n",dac_inter_timestamp1,transfer_id_eot,ts.tv_nsec);
+			
+			//dac_inter_timestamp1 = 0;
+			
+			// GPIO_2_DATA_0 = read_timestamp_lsb; 
+			// GPIO_2_DATA_1 = read_timestamp_msb;
+			iowrite32(read_timestamp_lsb,pGPIO2_DATA0);
+			iowrite32(read_timestamp_msb,pGPIO2_DATA1);
+			
+			// GPIO_0_DATA_1 = 1; set the valid: 00000010
+			regVal = ioread8(pGPIO0_DATA1);
+			regVal = regVal | 2;
+			iowrite8(regVal,pGPIO0_DATA1);
+		}
+                else if(sg->id == 2)
+		{
+			read_timestamp_lsb = (uint32_t) dac_inter_timestamp2;
+			read_timestamp_msb = dac_inter_timestamp2 >> 32;
+			
+			//getnstimeofday(&ts);
+			//printk("tx transfer start, sg-id: 2, force tx timestamp: %llu, transfer_id_eot: %d, time:%ld\n",dac_inter_timestamp2,transfer_id_eot,ts.tv_nsec);
+			
+			//dac_inter_timestamp2 = 0;
+			
+			// GPIO_3_DATA_0 = read_timestamp_lsb; 
+			// GPIO_3_DATA_1 = read_timestamp_msb;
+			iowrite32(read_timestamp_lsb,pGPIO3_DATA0);
+			iowrite32(read_timestamp_msb,pGPIO3_DATA1);
+			
+			// GPIO_0_DATA_1 = 1; set the valid: 00000100
+			regVal = ioread8(pGPIO0_DATA1);
+			regVal = regVal | 4;
+			iowrite8(regVal,pGPIO0_DATA1);
+		}
+                else if(sg->id == 3)
+		{
+			read_timestamp_lsb = (uint32_t) dac_inter_timestamp3;
+			read_timestamp_msb = dac_inter_timestamp3 >> 32;
+			
+			//getnstimeofday(&ts);
+			//printk("tx transfer start, sg-id: 3, force tx timestamp: %llu, transfer_id_eot: %d, time:%ld\n",dac_inter_timestamp3,transfer_id_eot,ts.tv_nsec);
+			
+			//dac_inter_timestamp3 = 0;
+			
+			// GPIO_4_DATA_0 = read_timestamp_lsb; 
+			// GPIO_4_DATA_1 = read_timestamp_msb;
+			iowrite32(read_timestamp_lsb,pGPIO4_DATA0);
+			iowrite32(read_timestamp_msb,pGPIO4_DATA1);
+			
+			// GPIO_0_DATA_1 = 1; set the valid: 00001000
+			regVal = ioread8(pGPIO0_DATA1);
+			regVal = regVal | 8;
+			iowrite8(regVal,pGPIO0_DATA1);
+		}
+	
+		// Set this so the transfers happen one by one
+		//tx_transfer_ongoing = true;
+		//printk("----------tx transfer start, tx_transfer_ongoing is true\n");
+        }
+
 }
 
 static struct axi_dmac_desc *axi_dmac_active_desc(struct axi_dmac_chan *chan)
@@ -360,20 +613,166 @@ static void axi_dmac_compute_residue(struct axi_dmac_chan *chan,
 	}
 }
 
+
 static bool axi_dmac_transfer_done(struct axi_dmac_chan *chan,
 	unsigned int completed_transfers)
 {
 	struct axi_dmac_desc *active;
+	struct axi_dmac *dmac = chan_to_axi_dmac(chan);
 	struct axi_dmac_sg *sg;
 	bool start_next = false;
+	
+	uint32_t read_rxtimestamp_lsb;
+	uint32_t read_rxtimestamp_msb;
+	uint64_t read_rxtimestamp;
+	
+	uint32_t read_txtimestamp_lsb;
+	uint32_t read_txtimestamp_msb;
+	uint64_t read_txtimestamp;
+	int dev_id;
+	uint8_t regVal = 0;
+	int transfer_id_eot = 0;
+	
+	struct timespec ts;
 
+        dev_id = dmac->dma_dev.dev_id;
+	
 	active = axi_dmac_active_desc(chan);
 	if (!active)
 		return false;
-
+	
 	if (chan->hw_partial_xfer &&
 	    (completed_transfers & AXI_DMAC_FLAG_PARTIAL_XFER_DONE))
 		axi_dmac_dequeue_partial_xfers(chan);
+
+
+        // if it is not hdmi and it is RX: read the rx counter from DMAC and write it to the global variable
+        if(chan->direction == 2 && (dev_id == 0 || dev_id == 1))
+        {
+                sg = &active->sg[active->num_completed];
+
+                read_rxtimestamp_lsb = axi_dmac_read(dmac, AXI_DMAC_REG_RTIMESTAMP_LSB);
+                read_rxtimestamp_msb = axi_dmac_read(dmac, AXI_DMAC_REG_RTIMESTAMP_MSB);
+                read_rxtimestamp = (uint64_t) read_rxtimestamp_msb << 32 | read_rxtimestamp_lsb;      // Combine 2
+
+		//getnstimeofday(&ts);
+		//transfer_id_eot = axi_dmac_read(dmac,AXI_DMAC_REG_ACTIVE_TRANSFER_ID);
+                //printk("[DBG][drivers][dma-axi-dmac-done] RX timestamp: %llu, sg->id: %d, transfer_id_eot: %d, time: %ld\n", read_rxtimestamp,sg->id,transfer_id_eot, ts.tv_nsec);
+
+		if(sg->id == 0)
+			adc_inter_timestamp0 = read_rxtimestamp;
+		else if(sg->id ==1)
+			adc_inter_timestamp1 = read_rxtimestamp;
+		else if(sg->id == 2)
+			adc_inter_timestamp2 = read_rxtimestamp;
+		else if(sg->id == 3)
+			adc_inter_timestamp3 = read_rxtimestamp;
+
+        }
+
+        // if it is not hdmi and it is TX: read diff counter from DMAC and write it to the global variable
+        if(chan->direction == 1 && (dev_id == 0 || dev_id == 1))
+        {
+                sg = &active->sg[active->num_completed];
+
+                read_txtimestamp_lsb = axi_dmac_read(dmac, AXI_DMAC_REG_RTIMESTAMP_LSB);
+                read_txtimestamp_msb = axi_dmac_read(dmac, AXI_DMAC_REG_RTIMESTAMP_MSB);
+                read_txtimestamp = (uint64_t) read_txtimestamp_msb << 32 | read_txtimestamp_lsb;      // Combine 2
+
+		//getnstimeofday(&ts);
+		//transfer_id_eot = axi_dmac_read(dmac,AXI_DMAC_REG_ACTIVE_TRANSFER_ID);
+                //printk("[DBG][drivers][dma-axi-dmac-done] TX timestamp: %llu, sg->id: %d, transfer_id_eot: %d, time:%ld\n", read_txtimestamp,sg->id,transfer_id_eot,ts.tv_nsec);
+
+		if(sg->id == 0)
+		{
+                	dif_inter_timestamp0 = read_txtimestamp;
+			dif_inter_num = 0;
+		}
+		else if(sg->id ==1)
+		{
+                	dif_inter_timestamp1 = read_txtimestamp;
+			dif_inter_num = 1;
+		}
+		else if(sg->id == 2)
+		{
+			dif_inter_timestamp2 = read_txtimestamp;
+			dif_inter_num = 2;
+		}
+		else if(sg->id == 3)
+		{
+			dif_inter_timestamp3 = read_txtimestamp;
+			dif_inter_num = 3;
+        	}
+	}
+
+        //printk("[DBG][drivers][dma-axi-dmac][axi_dmac_transfer_done][end_counter: %d][dir: %d]\n -----[read_timestamp: %llu]\n",start_counter,chan->direction,read_timestamp);
+
+        // if it is not hdmi and it is TX: TIMING 3) revert enable and valid signals for the next transfer
+        if(chan->direction == 1 && (dev_id == 0 || dev_id == 1))
+        {
+		if(sg->id == 0)
+                {
+			// puts fifo_en on the output level 1
+                        // GPIO_0_DATA_0 = 1, set enable: 00000001
+                        regVal = ioread8(pGPIO0_DATA0);
+                        regVal = regVal | 1;
+                        iowrite8(regVal,pGPIO0_DATA0);
+
+			// puts fifo_en on the end
+                	// GPIO_0_DATA_1 = 0, set valid: 11111110 : 254
+			regVal = ioread8(pGPIO0_DATA1);
+			regVal = regVal & 254;
+			iowrite8(regVal,pGPIO0_DATA1);
+                }
+                else if(sg->id == 1)
+                {
+			// puts fifo_en on the output level 1
+                        // GPIO_0_DATA_0 = 1, set enable: 00000010
+                        regVal = ioread8(pGPIO0_DATA0);
+                        regVal = regVal | 2;
+                        iowrite8(regVal,pGPIO0_DATA0);
+
+			// puts fifo_en on the end
+                	// GPIO_0_DATA_1 = 0, set valid: 11111101 : 253
+			regVal = ioread8(pGPIO0_DATA1);
+			regVal = regVal & 253;
+			iowrite8(regVal,pGPIO0_DATA1);
+                }
+                else if(sg->id == 2)
+                {
+			// puts fifo_en on the output level 1
+                        // GPIO_0_DATA_0 = 1, set enable: 00000100
+                        regVal = ioread8(pGPIO0_DATA0);
+                        regVal = regVal | 4;
+                        iowrite8(regVal,pGPIO0_DATA0);
+
+			// puts fifo_en on the end
+                	// GPIO_0_DATA_1 = 0, set valid: 11111011 : 251
+			regVal = ioread8(pGPIO0_DATA1);
+			regVal = regVal & 251;
+			iowrite8(regVal,pGPIO0_DATA1);
+                }
+                else if(sg->id == 3)
+                {
+			// puts fifo_en on the output level 1
+                        // GPIO_0_DATA_0 = 1, set enable: 00001000
+                        regVal = ioread8(pGPIO0_DATA0);
+                        regVal = regVal | 8;
+                        iowrite8(regVal,pGPIO0_DATA0);
+
+			// puts fifo_en on the end
+                	// GPIO_0_DATA_1 = 0, set valid: 11110111 : 247
+			regVal = ioread8(pGPIO0_DATA1);
+			regVal = regVal & 247;
+			iowrite8(regVal,pGPIO0_DATA1);
+                }
+                
+		// announce that the transfer is finished
+                //tx_transfer_ongoing = false;
+                //printk("----------tx transfer done, tx_transfer_ongoing is false\n");
+		
+        }
+
 
 	do {
 		sg = &active->sg[active->num_completed];
@@ -381,6 +780,7 @@ static bool axi_dmac_transfer_done(struct axi_dmac_chan *chan,
 			break;
 		if (!(BIT(sg->id) & completed_transfers))
 			break;
+		
 		active->num_completed++;
 		sg->id = AXI_DMAC_SG_UNUSED;
 		if (sg->schedule_when_free) {
@@ -537,6 +937,8 @@ static struct axi_dmac_sg *axi_dmac_fill_linear_sg(struct axi_dmac_chan *chan,
 	unsigned int segment_size;
 	unsigned int len;
 
+	// IMPORTANT: this period_len is 4 times of the buffer size. since we have 4 RX and 4 TX.
+
 	/* Split into multiple equally sized segments if necessary */
 	num_segments = DIV_ROUND_UP(period_len, chan->max_length);
 	segment_size = DIV_ROUND_UP(period_len, num_segments);
@@ -553,6 +955,7 @@ static struct axi_dmac_sg *axi_dmac_fill_linear_sg(struct axi_dmac_chan *chan,
 				sg->src_addr = addr;
 			sg->x_len = segment_size;
 			sg->y_len = 1;
+			//printk("[DEBUG][AXI-DMAC][fill_linear_sg] %s, sg->x_len: %d, sg->y_len: %d, sg->last: %d, sg->dest_addr: %d, sg->src_addr: %d \n",(direction==DMA_DEV_TO_MEM)?"DEV_TO_MEM":"MEM_TO_DEV",sg->x_len,sg->y_len,(int)sg->last,(int)sg->dest_addr,(int)sg->src_addr);
 			sg++;
 			addr += segment_size;
 			len -= segment_size;
@@ -565,6 +968,7 @@ static struct axi_dmac_sg *axi_dmac_fill_linear_sg(struct axi_dmac_chan *chan,
 		sg->x_len = len;
 		sg->y_len = 1;
 		sg->last = true;
+		//printk("[DEBUG][AXI-DMAC][fill_linear_sg] %s, sg->x_len: %d, sg->y_len: %d, sg->last: %d, sg->dest_addr: %d, sg->src_addr: %d \n",(direction==DMA_DEV_TO_MEM)?"DEV_TO_MEM":"MEM_TO_DEV",sg->x_len,sg->y_len,(int)sg->last,(int)sg->dest_addr,(int)sg->src_addr);
 		sg++;
 		addr += len;
 	}
@@ -919,7 +1323,7 @@ static int axi_dmac_detect_caps(struct axi_dmac *dmac)
 	} else {
 		chan->length_align_mask = chan->address_align_mask;
 	}
-
+	
 	return 0;
 }
 
@@ -1024,6 +1428,24 @@ static int axi_dmac_probe(struct platform_device *pdev)
 	platform_set_drvdata(pdev, dmac);
 
 	devm_regmap_init_mmio(&pdev->dev, dmac->base, &axi_dmac_regmap_config);
+	
+	//ECL
+	printk("[DBG][drivers][dma-axi-dmac][axi_dmac_probe]\n");
+	// Timing IP GPIO AXI signals
+	pGPIO0_DATA0 = ioremap_nocache(GPIO0_DATA0,0x1); // Enable signal
+	pGPIO0_DATA1 = ioremap_nocache(GPIO0_DATA1,0x1); // Valid signal
+
+	pGPIO1_DATA0 = ioremap_nocache(GPIO1_DATA0,0x4); // timestamp lsb
+	pGPIO1_DATA1 = ioremap_nocache(GPIO1_DATA1,0x4); // timestamp msb
+
+	pGPIO2_DATA0 = ioremap_nocache(GPIO2_DATA0,0x4); // timestamp lsb
+	pGPIO2_DATA1 = ioremap_nocache(GPIO2_DATA1,0x4); // timestamp msb
+
+	pGPIO3_DATA0 = ioremap_nocache(GPIO3_DATA0,0x4); // timestamp lsb
+	pGPIO3_DATA1 = ioremap_nocache(GPIO3_DATA1,0x4); // timestamp msb
+
+	pGPIO4_DATA0 = ioremap_nocache(GPIO4_DATA0,0x4); // timestamp lsb
+	pGPIO4_DATA1 = ioremap_nocache(GPIO4_DATA1,0x4); // timestamp msb
 
 #ifdef SPEED_TEST
 	for (i = 0; i < 0x30; i += 4)

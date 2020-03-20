@@ -1503,7 +1503,6 @@ static int iio_push_to_buffer(struct iio_buffer *buffer, const void *data)
 	ret = buffer->access->store_to(buffer, dataout);
 	if (ret)
 		return ret;
-
 	/*
 	 * We can't just test for watermark to decide if we wake the poll queue
 	 * because read may request less samples than the watermark.
@@ -1601,6 +1600,7 @@ static int iio_buffer_query_block(struct iio_buffer *buffer,
 	return 0;
 }
 
+// The modified function for inserting and reading the timestamp from each block
 static int iio_buffer_dequeue_block(struct iio_dev *indio_dev,
 	struct iio_buffer_block __user *user_block, bool non_blocking)
 {

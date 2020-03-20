@@ -24,6 +24,8 @@
 #include <linux/debugfs.h>
 #include <linux/uaccess.h>
 #include <linux/gpio/consumer.h>
+#include <linux/string.h>
+#include <asm/div64.h>
 
 #include <linux/of_device.h>
 #include <linux/of_dma.h>
@@ -812,10 +814,116 @@ static const struct iio_enum cf_axi_dds_scale_available = {
 	.num_items = ARRAY_SIZE(cf_axi_dds_scale),
 };
 
+
+static ssize_t dif_timestamp_read(struct iio_dev *indio_dev, uintptr_t private, const struct iio_chan_spec *chan, char *buf)
+{
+        int ret;
+        int64_t* p_var;
+        int64_t val;
+	int64_t dif_inter_timestamp;
+	uint64_t dif_to_nano_s; // Counter clock frequency = 1e8, Seconds to Nanoseconds = 1e9
+
+	dif_to_nano_s = 10;
+
+        p_var = symbol_get(dif_inter_timestamp);
+        if(p_var)
+        {
+                val = *p_var;
+                // convert from clock cycles to nanoseconds
+                val = val*dif_to_nano_s;
+                //printk(KERN_INFO "master: got pdac_inter_ts '%llu'\n", val);
+                symbol_put(dif_inter_timestamp);
+                ret = sprintf(buf, "%lld\n", val);
+                return ret;
+        }
+        else
+        {
+                //printk(KERN_INFO "master: inter_module_get failed");
+                return -1;
+        }
+}
+
+/*static const struct iio_chan_spec_ext_info cf_axi_dds_ext_info_3[] = {
+	{
+		.name = "dif_timestamp",
+		.read = dif_timestamp_read,
+		.shared = IIO_SHARED_BY_TYPE,
+	},
+	{ },
+};*/
+
+
+/*static ssize_t counter_timestamp_read(struct iio_dev *indio_dev, uintptr_t private, const struct iio_chan_spec *chan, char *buf)
+{
+	int ret;
+    	uint64_t* p_var;
+    	uint64_t val;
+
+    	p_var = symbol_get(dac_inter_timestamp);
+    	if(p_var)
+    	{
+        	val = *p_var;
+		// convert from clock cycles to nanoseconds
+        	val = val*dac_to_nano_s;
+        	//printk(KERN_INFO "master: got pdac_inter_ts '%llu'\n", val);
+        	ret = sprintf(buf, "%llu\n", val);
+        	symbol_put(dac_inter_timestamp);
+        	return ret;
+    	}
+    	else
+    	{
+        	//printk(KERN_INFO "master: inter_module_get failed");
+        	return -1;
+    	}
+}*/
+
+
+static ssize_t counter_timestamp_write(struct iio_dev *indio_dev, uintptr_t private, const struct iio_chan_spec *chan, const char *buf, size_t len)
+{
+	int ret;
+    	uint64_t val;
+    	uint64_t* p_var;
+	uint64_t dac_inter_timestamp;
+	uint64_t dac_to_nano_s; // Counter clock frequency = 1e8, Seconds to Nanoseconds = 1e9
+	
+	dac_to_nano_s = 10;
+	ret = kstrtoull(buf,0,&val);
+	if(ret!=0)
+		return -1;
+	
+    	p_var = symbol_get(dac_inter_timestamp);
+    	if(p_var)
+    	{
+		// convert nanoseconds to clock cycles
+        	do_div(val,dac_to_nano_s);
+        	*p_var = val;
+        	//printk(KERN_INFO "master: got pdac_inter_ts '%llu'\n", val);
+        	symbol_put(dac_inter_timestamp);
+        	return len;
+    	}
+    	else
+    	{
+        	//printk(KERN_INFO "master: inter_module_get failed");
+        	return -1;
+    	}
+}
+
+static const struct iio_chan_spec_ext_info cf_axi_dds_ext_info_2[] = {
+	{
+		.name = "counter_timestamp",
+		//.read = counter_timestamp_read,
+		.read = dif_timestamp_read,
+		.write = counter_timestamp_write,
+		.shared = IIO_SHARED_BY_TYPE,
+	},
+	{ },
+};
+
 static const struct iio_chan_spec_ext_info cf_axi_dds_ext_info[] = {
 	IIO_ENUM_AVAILABLE("scale", &cf_axi_dds_scale_available),
 	{ },
 };
+
 
 static void cf_axi_dds_update_chan_spec(struct cf_axi_dds_state *st,
 			struct iio_chan_spec *channels, unsigned num)
@@ -854,6 +962,7 @@ static void cf_axi_dds_update_chan_spec(struct cf_axi_dds_state *st,
 		BIT(IIO_CHAN_INFO_CALIBPHASE), \
 	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SAMP_FREQ), \
 	.output = 1, \
+	.ext_info = cf_axi_dds_ext_info_2, \
 	.scan_index = _chan, \
 	.scan_type = { \
 		.sign = 's', \

@@ -1,0 +1,1515 @@
+/*
+
+Xilinx Vivado v2018.2 (64-bit) [Major: 2018, Minor: 2]
+SW Build: 2258646 on Thu Jun 14 20:02:38 MDT 2018
+IP Build: 2256618 on Thu Jun 14 22:10:49 MDT 2018
+
+Process ID: 25607
+License: Customer
+
+Current time: 	Fri Nov 29 12:18:00 CET 2019
+Time zone: 	Central European Time (Europe/Stockholm)
+
+OS: Ubuntu
+OS Version: 5.0.0-36-generic
+OS Architecture: amd64
+Available processors (cores): 8
+
+Display: :0
+Screen size: 1920x1200
+Screen resolution (DPI): 96
+Available screens: 1
+Available disk space: 225 GB
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+
+Java version: 	1.8.0_112 64-bit
+Java home: 	/opt/Xilinx/Vivado/2018.2/tps/lnx64/jre
+Java executable location: 	/opt/Xilinx/Vivado/2018.2/tps/lnx64/jre/bin/java
+Java initial memory (-Xms): 	128 MB
+Java maximum memory (-Xmx):	 2 GB
+
+
+User name: 	samie
+User home directory: /home/samie
+User working directory: /home/samie/analog/linux
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI_BASEROOT: /opt/Xilinx/Vivado
+HDI_APPROOT: /opt/Xilinx/Vivado/2018.2
+RDI_DATADIR: /opt/Xilinx/Vivado/2018.2/data
+RDI_BINDIR: /opt/Xilinx/Vivado/2018.2/bin
+
+Vivado preferences file location: /home/samie/.Xilinx/Vivado/2018.2/vivado.xml
+Vivado preferences directory: /home/samie/.Xilinx/Vivado/2018.2/
+Vivado layouts directory: /home/samie/.Xilinx/Vivado/2018.2/layouts
+PlanAhead jar file location: 	/opt/Xilinx/Vivado/2018.2/lib/classes/planAhead.jar
+Vivado log file location: 	/home/samie/analog/linux/vivado.log
+Vivado journal file location: 	/home/samie/analog/linux/vivado.jou
+Engine tmp dir: 	./.Xil/Vivado-25607-warplab4
+
+Xilinx Environment Variables
+----------------------------
+XILINX: /opt/Xilinx/Vivado/2018.2/ids_lite/ISE
+XILINX_DSP: /opt/Xilinx/Vivado/2018.2/ids_lite/ISE
+XILINX_PLANAHEAD: /opt/Xilinx/Vivado/2018.2
+XILINX_SDK: /opt/Xilinx/SDK/2018.2
+XILINX_VIVADO: /opt/Xilinx/Vivado/2018.2
+XILINX_VIVADO_HLS: /opt/Xilinx/Vivado/2018.2
+
+
+GUI allocated memory:	194 MB
+GUI max memory:		3,052 MB
+Engine allocated memory: 879 MB
+
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// [GUI Memory]: 57 MB (+57062kb) [00:00:06]
+// [Engine Memory]: 878 MB (+769350kb) [00:00:06]
+// HMemoryUtils.trashcanNow. Engine heap size: 879 MB. GUI used memory: 35 MB. Current time: 11/29/19 12:18:02 PM CET
+selectMenu(PAResourceItoN.MainMenuMgr_FILE, "File"); // V (q, ck)
+selectMenu(PAResourceItoN.MainMenuMgr_PROJECT, "Project"); // aa (ck)
+selectMenuItem(PAResourceCommand.PACommandNames_OPEN_PROJECT, "Open..."); // ad (ck)
+dismissMenu(PAResourceItoN.MainMenuMgr_FILE, "File"); // V (q, ck)
+// Run Command: PAResourceCommand.PACommandNames_OPEN_PROJECT
+selectComboBox(RDIResource.HJFileChooserRecentListPreview_RECENT_DIRECTORIES, "/home/samie/analog/adi/hdl", 2); // ak (ag, JDialog)
+// Elapsed time: 12 seconds
+setFileChooser("/home/samie/analog/adi/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.xpr");
+// Opening Vivado Project: /home/samie/analog/adi/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.xpr. Version: Vivado v2018.2 
+// bx (ck):  Open Project : addNotify
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// Tcl Message: open_project /home/samie/analog/adi/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.xpr 
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_CURRENT
+// TclEventType: MSGMGR_REFRESH_MSG
+// TclEventType: FILE_SET_CHANGE
+// [GUI Memory]: 61 MB (+1002kb) [00:05:08]
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 934 MB. GUI used memory: 37 MB. Current time: 11/29/19 12:23:02 PM CET
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_NEW
+// [Engine Memory]: 1,038 MB (+121344kb) [00:05:10]
+// [GUI Memory]: 68 MB (+4497kb) [00:05:11]
+// Tcl Message: open_project /home/samie/analog/adi/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.xpr 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/samie/analog/adi/hdl/library'. INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2018.2/data/ip'. 
+// [GUI Memory]: 74 MB (+2785kb) [00:05:13]
+// Project name: adrv9361z7035_ccfmc_lvds; location: /home/samie/analog/adi/hdl/projects/adrv9361z7035/ccfmc_lvds; part: xc7z035ifbg676-2L
+// 'i' command handler elapsed time: 31 seconds
+// Tcl Message: open_project: Time (s): cpu = 00:00:14 ; elapsed = 00:00:10 . Memory (MB): peak = 6206.750 ; gain = 169.578 ; free physical = 227 ; free virtual = 24924 
+// Elapsed time: 10 seconds
+dismissDialog("Open Project"); // bx (ck)
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// [GUI Memory]: 82 MB (+4837kb) [00:05:14]
+// [Engine Memory]: 1,099 MB (+10082kb) [00:05:14]
+// [Engine Memory]: 1,165 MB (+11308kb) [00:05:16]
+// TclEventType: DG_GRAPH_GENERATED
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, IP Integrator, Open Block Design]", 7, false); // u (O, ck)
+// Run Command: PAResourceCommand.PACommandNames_OPEN_BLOCK_DESIGN
+// bx (ck):  Open Block Design : addNotify
+// TclEventType: LOAD_FEATURE
+// Tcl Message: open_bd_design {/home/samie/analog/adi/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd} 
+// TclEventType: RSB_CHANGE_CURRENT_DIAGRAM
+// TclEventType: RSB_PROPERTY_CHANGE
+// TclEventType: LOAD_FEATURE
+// TclEventType: RSB_PROPERTY_CHANGE
+// TclEventType: RSB_OPEN_DIAGRAM
+// [GUI Memory]: 89 MB (+2858kb) [00:05:21]
+// TclEventType: RSB_CONNECTION_CHANGE
+// TclEventType: RSB_LOCK_CHANGE
+// 'bA' command handler elapsed time: 3 seconds
+// [GUI Memory]: 95 MB (+1500kb) [00:05:21]
+dismissDialog("Open Block Design"); // bx (ck)
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// Tcl Message: update_compile_order -fileset sources_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gp_in_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gp_in_0_1 
+selectButton(PAResourceCommand.PACommandNames_ZOOM_IN, "System_zoom_in"); // B (f, ck)
+// Run Command: PAResourceCommand.PACommandNames_ZOOM_IN
+selectButton(PAResourceCommand.PACommandNames_ZOOM_IN, "System_zoom_in"); // B (f, ck)
+// Run Command: PAResourceCommand.PACommandNames_ZOOM_IN
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_adc_data_q0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_adc_data_q0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_valid_2 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_valid_2 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_enable_q0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_enable_q0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_enable_i0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_enable_i0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_dac_upack_dac_data_3 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_dac_upack_dac_data_3 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gp_in_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gp_in_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gp_in_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gp_in_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_dac_upack_dac_data_0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_dac_upack_dac_data_0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_enable_q0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_enable_q0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_valid_3 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_valid_3 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_dout_data_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_rx_p_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_rx_p_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_rst 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_rst 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_adc_data_q0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_adc_data_q0 
+selectButton(PAResourceCommand.PACommandNames_ZOOM_IN, "System_zoom_in"); // B (f, ck)
+// Run Command: PAResourceCommand.PACommandNames_ZOOM_IN
+selectButton(PAResourceCommand.PACommandNames_ZOOM_IN, "System_zoom_in"); // B (f, ck)
+// Run Command: PAResourceCommand.PACommandNames_ZOOM_IN
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_enable_2 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_enable_2 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_valid_2 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_valid_2 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_valid_2 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_valid_2 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_dac_upack_dac_valid_out_2 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_dac_upack_dac_valid_out_2 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_valid_3 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_valid_3 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_dac_upack_dac_valid_out_3 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_dac_upack_dac_valid_out_3 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_valid_i0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_valid_i0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_dac_upack_dac_valid_out_0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_dac_upack_dac_valid_out_0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_valid_q0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_valid_q0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gp_in_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gp_in_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// [GUI Memory]: 100 MB (+69kb) [00:05:58]
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /clk_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /clk_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_enable_q1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_enable_q1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_enable_q1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_enable_q1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_enable_q1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_enable_q1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_enable_q1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_enable_q1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /clk_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /clk_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /clk_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /clk_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gp_in_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gp_in_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gp_in_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gp_in_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_adc_pack_adc_sync 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_adc_pack_adc_sync 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_adc_pack_adc_data 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_adc_pack_adc_data 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_valid_0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_valid_0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_valid_0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_valid_0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_valid_0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_valid_0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_enable_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_enable_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_enable_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_enable_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_enable_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_enable_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_enable_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_enable_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_enable_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_enable_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_enable_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_enable_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_enable_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_din_enable_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_dac_upack_dac_valid_out_0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_dac_upack_dac_valid_out_0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_dma_fifo_rd_dout 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_dma_fifo_rd_dout 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_dma_fifo_rd_dout 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_dma_fifo_rd_dout 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_dac_upack_dac_valid 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_dac_upack_dac_valid 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_dma_fifo_rd_dout 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_dma_fifo_rd_dout 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_dma_fifo_rd_dout 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_dma_fifo_rd_dout 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_dac_upack_dac_data_0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_dac_upack_dac_data_0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_dac_upack_dac_data_2 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_dac_upack_dac_data_2 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_dac_upack_dac_data_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_dac_upack_dac_data_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_adc_dma_irq 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_adc_dma_irq 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_adc_dma_irq 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_adc_dma_irq 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_adc_dma_irq 
+// Run Command: PAResourceCommand.PACommandNames_CUSTOMIZE_RSB_BLOC
+// r (ck): Re-customize IP: addNotify
+// Elapsed time: 396 seconds
+selectCheckBox((HResource) null, "Enable Diagnostics Interface", true); // g (m, r): TRUE
+selectCheckBox((HResource) null, "Enable Diagnostics Interface", false); // g (m, r): FALSE
+// Elapsed time: 18 seconds
+selectCheckBox((HResource) null, "Enable Timestamp Input", false); // g (m, r): FALSE
+// [GUI Memory]: 111 MB (+5923kb) [00:12:40]
+selectCheckBox((HResource) null, "Enable Timestamp Input", true); // g (m, r): TRUE
+// Elapsed time: 35 seconds
+selectButton(RDIResource.BaseDialog_CANCEL, "Cancel"); // a (r)
+dismissDialog("Re-customize IP"); // r (ck)
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// Elapsed time: 26 seconds
+selectButton(PAResourceOtoP.PlanAheadTab_REFRESH_IP_CATALOG, "Refresh IP Catalog"); // h (cM, ck)
+// TclEventType: CREATE_IP_CATALOG
+// TclEventType: IP_LOCK_CHANGE
+// Tcl Message: update_ip_catalog -rebuild -scan_changes 
+// TclEventType: IP_LOCK_CHANGE
+// bx (ck):  Refresh IP Catalog : addNotify
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: BDCELL_LOCK_CHANGE
+// TclEventType: CREATE_IP_CATALOG
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/samie/analog/adi/hdl/library'. 
+// TclEventType: IP_SUMMARY_RESULTS
+// Tcl Message: report_ip_status -name ip_status 
+dismissDialog("Refresh IP Catalog"); // bx (ck)
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// [GUI Memory]: 117 MB (+1329kb) [00:13:46]
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_dac_upack_dac_valid 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_dac_upack_dac_valid 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,168 MB. GUI used memory: 65 MB. Current time: 11/29/19 12:31:42 PM CET
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// Elapsed time: 11 seconds
+selectButton(PAResourceItoN.IPStatusSectionPanel_UPGRADE_SELECTED, "Upgrade Selected"); // a (g, ck)
+// Run Command: PAResourceCommand.PACommandNames_UPGRADE_IP
+// ah (ck): Upgrade IP: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (ah)
+// TclEventType: RSB_OPEN_DIAGRAM
+dismissDialog("Upgrade IP"); // ah (ck)
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: FILE_SET_CHANGE
+// bx (ck):  Upgrade IP : addNotify
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: upgrade_ip [get_ips  {system_axi_ad9361_adc_dma_0 system_axi_ad9361_dac_dma_0 system_axi_hdmi_dma_0}] -log ip_upgrade.log 
+// Tcl Message: Upgrading '/home/samie/analog/adi/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd' 
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: INFO: [IP_Flow 19-1972] Upgraded system_axi_ad9361_adc_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// Tcl Message: INFO: [IP_Flow 19-1972] Upgraded system_axi_ad9361_dac_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0 INFO: [IP_Flow 19-1972] Upgraded system_axi_hdmi_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SAVE_DIAGRAM
+// CommandFailedException: ERROR: [BD 41-45] Cell path not found: /system 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SAVE_DIAGRAM
+// TclEventType: FILESET_UPDATE_IP
+// TclEventType: IP_UPGRADE_COMPLETE
+// Tcl Message: Wrote  : </home/samie/analog/adi/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd>  
+// Tcl Message: INFO: [Coretcl 2-1525] Wrote upgrade log to '/home/samie/analog/adi/hdl/projects/adrv9361z7035/ccfmc_lvds/ip_upgrade.log'. 
+// Tcl Message: export_ip_user_files -of_objects [get_ips {system_axi_ad9361_adc_dma_0 system_axi_ad9361_dac_dma_0 system_axi_hdmi_dma_0}] -no_script -sync -force -quiet 
+// aI (ck): Generate Output Products: addNotify
+selectButton("PAResourceTtoZ.UpgradeIP_IP_UPGRADE_COMPLETED_OK", "OK"); // JButton (A, G)
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// [Engine Memory]: 1,227 MB (+4255kb) [00:14:02]
+// TclEventType: DG_GRAPH_GENERATED
+dismissDialog("Generate Output Products"); // aI (ck)
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_200m_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_adc_pack_adc_sync 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_adc_pack_adc_sync 
+// Elapsed time: 45 seconds
+selectButton(PAResourceOtoP.PlanAheadTab_REFRESH_IP_CATALOG, "Refresh IP Catalog"); // h (cM, ck)
+// TclEventType: CREATE_IP_CATALOG
+// TclEventType: IP_LOCK_CHANGE
+// bx (ck):  Refresh IP Catalog : addNotify
+// TclEventType: IP_LOCK_CHANGE
+// Tcl Message: update_ip_catalog -rebuild -scan_changes 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: BDCELL_LOCK_CHANGE
+// TclEventType: RSB_LOCK_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: BDCELL_LOCK_CHANGE
+// TclEventType: RSB_LOCK_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: BDCELL_LOCK_CHANGE
+// TclEventType: RSB_LOCK_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: BDCELL_LOCK_CHANGE
+// TclEventType: CREATE_IP_CATALOG
+// Tcl Message: INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/samie/analog/adi/hdl/library'. 
+// TclEventType: IP_SUMMARY_RESULTS
+// Tcl Message: report_ip_status -name ip_status 
+dismissDialog("Refresh IP Catalog"); // bx (ck)
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_dma_fifo_rd_dout 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_dma_fifo_rd_dout 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// Elapsed time: 14 seconds
+selectButton(PAResourceItoN.IPStatusSectionPanel_UPGRADE_SELECTED, "Upgrade Selected"); // a (g, ck)
+// Run Command: PAResourceCommand.PACommandNames_UPGRADE_IP
+// ah (ck): Upgrade IP: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (ah)
+// 'Y' command handler elapsed time: 3 seconds
+// TclEventType: RSB_OPEN_DIAGRAM
+dismissDialog("Upgrade IP"); // ah (ck)
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: FILE_SET_CHANGE
+// bx (ck):  Upgrade IP : addNotify
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// Tcl Message: upgrade_ip [get_ips  {system_axi_ad9361_adc_dma_0 system_axi_ad9361_dac_dma_0 system_axi_hdmi_dma_0}] -log ip_upgrade.log 
+// Tcl Message: Upgrading '/home/samie/analog/adi/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd' 
+// Tcl Message: INFO: [IP_Flow 19-1972] Upgraded system_axi_ad9361_adc_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0 INFO: [IP_Flow 19-1972] Upgraded system_axi_ad9361_dac_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0 INFO: [IP_Flow 19-1972] Upgraded system_axi_hdmi_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SAVE_DIAGRAM
+// CommandFailedException: ERROR: [BD 41-45] Cell path not found: /system 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SAVE_DIAGRAM
+// TclEventType: FILESET_UPDATE_IP
+// TclEventType: IP_UPGRADE_COMPLETE
+// Tcl Message: Wrote  : </home/samie/analog/adi/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd>  
+// Tcl Message: INFO: [Coretcl 2-1525] Wrote upgrade log to '/home/samie/analog/adi/hdl/projects/adrv9361z7035/ccfmc_lvds/ip_upgrade.log'. 
+// Tcl Message: export_ip_user_files -of_objects [get_ips {system_axi_ad9361_adc_dma_0 system_axi_ad9361_dac_dma_0 system_axi_hdmi_dma_0}] -no_script -sync -force -quiet 
+// aI (ck): Generate Output Products: addNotify
+selectButton("PAResourceTtoZ.UpgradeIP_IP_UPGRADE_COMPLETED_OK", "OK"); // JButton (A, G)
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// HMemoryUtils.trashcanNow. Engine heap size: 1,212 MB. GUI used memory: 66 MB. Current time: 11/29/19 12:33:12 PM CET
+// Elapsed time: 13 seconds
+selectButton(PAResourceQtoS.SimpleOutputProductDialog_GENERATE_OUTPUT_PRODUCTS_IMMEDIATELY, "Generate"); // a (aI)
+// bx (ck):  Managing Output Products : addNotify
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: REPORT_IP_STATUS_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// Tcl Message: generate_target all [get_files  /home/samie/analog/adi/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd] 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: REPORT_IP_STATUS_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: REPORT_IP_STATUS_STALE
+// TclEventType: FILE_SET_CHANGE

@@ -29,6 +29,7 @@
 #if IS_ENABLED(CONFIG_CF_AXI_ADC)
 #include "cf_axi_adc.h"
 
+
 static void ad9361_set_intf_delay(struct ad9361_rf_phy *phy, bool tx,
 				  unsigned int clock_delay,
 				  unsigned int data_delay, bool clock_changed)
@@ -175,6 +176,35 @@ static ssize_t samples_pps_read(struct iio_dev *indio_dev,
 	return sprintf(buf, "%u\n", val);
 }
 
+uint64_t adc_inter_timestamp;
+uint64_t adc_to_nano_s = 10;     // Counter clock frequency = 1e8, Seconds to Nanoseconds = 1e9
+
+static ssize_t counter_timestamp_read(struct iio_dev *indio_dev,
+				    uintptr_t private,
+				    const struct iio_chan_spec *chan, char *buf)
+{
+	int ret;
+	uint64_t* p_var;
+	uint64_t val;
+	
+        p_var = symbol_get(adc_inter_timestamp);
+    	if(p_var)
+	{
+		val = *p_var;
+		// convert from cycles to nanoseconds
+		val = val*adc_to_nano_s;
+		//printk(KERN_INFO "master: got padc_inter_ts '%llu'\n", val);
+		ret = sprintf(buf, "%llu\n", val);
+        	symbol_put(adc_inter_timestamp);
+		return ret;
+	}
+    	else
+	{
+        	//printk(KERN_INFO "master: inter_module_get failed");
+		return -1;
+	}
+}
+
 /*
  * Returns the number of samples during a 1PPS (Pulse Per Second) interval.
  */
@@ -183,6 +213,11 @@ static struct iio_chan_spec_ext_info axiadc_ext_info[] = {
 	{
 		.name = "samples_pps",
 		.read = samples_pps_read,
+		.shared = IIO_SHARED_BY_TYPE,
+	},
+	{
+		.name = "counter_timestamp",
+		.read = counter_timestamp_read,
 		.shared = IIO_SHARED_BY_TYPE,
 	},
 	{},

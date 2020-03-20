@@ -18,6 +18,7 @@
 #include <linux/iio/buffer-dma.h>
 #include <linux/dma-mapping.h>
 #include <linux/sizes.h>
+#include <linux/delay.h>
 
 /*
  * For DMA buffers the storage is sub-divided into so called blocks. Each block
@@ -91,6 +92,11 @@
  * driver chooses to overload a callback it has to ensure that the generic
  * callback is called from within the custom callback.
  */
+
+static uint64_t rfrx_timestamp0 = 0;
+static uint64_t rfrx_timestamp1 = 0;
+static uint64_t rfrx_timestamp2 = 0;
+static uint64_t rfrx_timestamp3 = 0;
 
 static unsigned int iio_dma_buffer_max_block_size = SZ_16M;
 module_param_named(max_block_size, iio_dma_buffer_max_block_size, uint, 0644);
@@ -292,10 +298,31 @@ static void iio_dma_buffer_fileio_free(struct iio_dma_buffer_queue *queue)
 	queue->fileio.active_block = NULL;
 }
 
+
+
 static void iio_dma_buffer_submit_block(struct iio_dma_buffer_queue *queue,
 	struct iio_dma_buffer_block *block)
 {
 	int ret;
+        
+	// Timestamp variabes
+        uint64_t dac_inter_timestamp0;
+        uint64_t dac_inter_timestamp1;
+        uint64_t dac_inter_timestamp2;
+        uint64_t dac_inter_timestamp3;
+
+        uint64_t flag_val;
+        uint64_t dac_to_nano_s = 10; // Counter clock frequency = 1e8, Seconds to Nanoseconds = 1e9
+        uint64_t timestamp_val;
+        uint32_t virt_addr;
+        uint32_t virt_addr2;
+        uint32_t virt_addr3;
+        uint64_t* volatile pVal;        // writing in the virtual address
+        uint64_t* volatile pVal2;        // writing in the virtual address
+        uint64_t* volatile pVal3;        // writing in the virtual address
+        uint64_t* p_var;
+
+	struct iio_dma_buffer_block *dma_block = block;
 
 	/*
 	 * If the hardware has already been removed we put the block into
@@ -304,6 +331,89 @@ static void iio_dma_buffer_submit_block(struct iio_dma_buffer_queue *queue,
 	 */
 	if (!queue->ops)
 		return;
+
+	// Timestamp management: if the block.bytes_used > 0 then this function
+	// sends a block to the DMA driver for the transmission or reception. ECL Samie
+	// We have to take the timestamp value from the block and save it to
+	// the inter_dac_timestamp variable
+	//if(block->block.bytes_used > 0) // it is TX or RX
+	if(block->block.size > 0) // it is TX or RX
+	{
+		// printk("^^^^^ iio_dma_buffer_submit_block, bytes_used: %d, before TX buffer to DMA, does not wait in the queue ^^^^^\n",block->block.bytes_used);
+		// Writing the timestamp into the dma buffer TX
+		// Find if it is TX. I insert a flag in [-12 to -8]
+        	virt_addr3 = ((unsigned int)block->vaddr)+((unsigned int)(block->block.size)-24);
+	        pVal3 = (uint64_t*) virt_addr3;
+                flag_val = *pVal3;
+		if(flag_val == 1234512345) // it is TX because of the flag
+		{
+			// Writing the timestamp into the dma buffer TX
+			// copy user_buffer[last-4_to_last] to timestamp_val
+			virt_addr = ((unsigned int)dma_block->vaddr)+((unsigned int)(dma_block->block.bytes_used)-8);
+			pVal = (uint64_t*) virt_addr;
+			timestamp_val = *pVal;
+
+			// write timestamp_val to the inter driver register
+			if(dma_block->block.id == 0)
+				p_var = symbol_get(dac_inter_timestamp0);
+			else if(dma_block->block.id == 1)
+				p_var = symbol_get(dac_inter_timestamp1);
+			else if(dma_block->block.id == 2)
+				p_var = symbol_get(dac_inter_timestamp2);
+			else if(dma_block->block.id == 3)
+				p_var = symbol_get(dac_inter_timestamp3);
+			else
+				p_var = symbol_get(dac_inter_timestamp0);
+
+
+			if(p_var)
+			{
+				// convert nanoseconds to clock cycles
+				do_div(timestamp_val,dac_to_nano_s);
+				*p_var = timestamp_val;
+
+				// put back the p_var
+				if(dma_block->block.id == 0)
+					symbol_put(dac_inter_timestamp0);
+				else if(dma_block->block.id == 1)
+					symbol_put(dac_inter_timestamp1);
+				else if(dma_block->block.id == 2)
+					symbol_put(dac_inter_timestamp2);
+				else if(dma_block->block.id == 3)
+					symbol_put(dac_inter_timestamp3);
+				else
+					symbol_put(dac_inter_timestamp0);
+
+			}
+			else
+				printk(KERN_INFO "[IIO/industrialio-dma-buf][write_buf] inter_module_get failed");
+
+			//printk("[DEBUG][iio_dma_block] phys_addr: %u, virtual_addr: %u, bytes_used: %d, timestamp: %llu\n",(unsigned int)dma_block->phys_addr,(unsigned int)dma_block->vaddr,(int)dma_block->block.bytes_used,timestamp_val);
+			// Writing the timestamp is done
+				
+			// copy user_buffer[last-8_to_last-4] to rfrx_timestamp variables
+			timestamp_val = 0;
+			virt_addr2 = ((unsigned int)dma_block->vaddr)+((unsigned int)(dma_block->block.bytes_used)-16);
+			pVal2 = (uint64_t*) virt_addr2;
+			timestamp_val = *pVal2;
+
+			// write timestamp_val to the inter driver register
+			if(dma_block->block.id == 0)
+				rfrx_timestamp0 = timestamp_val;
+			else if(dma_block->block.id == 1)
+				rfrx_timestamp1 = timestamp_val;
+			else if(dma_block->block.id == 2)
+				rfrx_timestamp2 = timestamp_val;
+			else if(dma_block->block.id == 3)
+				rfrx_timestamp3 = timestamp_val;
+			else
+				rfrx_timestamp0 = timestamp_val;
+
+			//printk("submitting a TX block, TX id: %d, rfrx timestamp: %llu\n",dma_block->block.id, timestamp_val);
+			//printk("[DBG][iio_dma_buffer_submit_block][TX] id: %d, bytes_used: %d, timestamp: %llu \n",block->block.id,block->block.bytes_used,timestamp_val);
+			
+		}
+	}
 
 	block->state = IIO_BLOCK_STATE_ACTIVE;
 	iio_buffer_block_get(block);
@@ -400,6 +510,7 @@ static void iio_dma_buffer_enqueue(struct iio_dma_buffer_queue *queue,
 	}
 }
 
+// This function gets called for every big block
 static struct iio_dma_buffer_block *iio_dma_buffer_dequeue(
 	struct iio_dma_buffer_queue *queue)
 {
@@ -426,6 +537,7 @@ static struct iio_dma_buffer_block *iio_dma_buffer_dequeue(
  * Should be used as the read_first_n callback for iio_buffer_access_ops
  * struct for DMA buffers.
  */
+
 int iio_dma_buffer_read(struct iio_buffer *buffer, size_t n,
 	char __user *user_buffer)
 {
@@ -455,7 +567,7 @@ int iio_dma_buffer_read(struct iio_buffer *buffer, size_t n,
 	}
 
 	block = queue->fileio.active_block;
-
+        
 	n = rounddown(n, buffer->bytes_per_datum);
 	if (n > block->block.bytes_used - queue->fileio.pos)
 		n = block->block.bytes_used - queue->fileio.pos;
@@ -478,6 +590,7 @@ out_unlock:
 	return ret;
 }
 EXPORT_SYMBOL_GPL(iio_dma_buffer_read);
+
 
 int iio_dma_buffer_write(struct iio_buffer *buf, size_t n,
 	const char __user *user_buffer)
@@ -508,7 +621,7 @@ int iio_dma_buffer_write(struct iio_buffer *buf, size_t n,
 	}
 
 	block = queue->fileio.active_block;
-
+	
 	n = ALIGN(n, buf->bytes_per_datum);
 	if (n > block->block.size - queue->fileio.pos)
 		n = block->block.size - queue->fileio.pos;
@@ -517,6 +630,7 @@ int iio_dma_buffer_write(struct iio_buffer *buf, size_t n,
 		ret = -EFAULT;
 		goto out_unlock;
 	}
+
 
 	queue->fileio.pos += n;
 
@@ -697,6 +811,13 @@ out_unlock:
 }
 EXPORT_SYMBOL_GPL(iio_dma_buffer_query_block);
 
+
+// Samie - Edge Computing Lab @ KTH
+// Here the data is being copied from the user space buffer to the dma queue
+// I add my timestamp which is already read from the dma-axi-dmac.c driver and inserted in the
+// adc_inter_timestamp and dac_inter_timestamp shared variable.
+// In order to do that, 4 last bytes of the buffer is considered to be the timestamp
+// either in the read or write.
 int iio_dma_buffer_enqueue_block(struct iio_buffer *buffer,
 	struct iio_buffer_block *block)
 {
@@ -738,9 +859,46 @@ out_unlock:
 }
 EXPORT_SYMBOL_GPL(iio_dma_buffer_enqueue_block);
 
+// Samie - Edge Computing Lab @ KTH
+// Here the data is being copied from the dma queue to the user space buffer
+// I add my timestamp which is alread read from the dma-axi-dmac.c driver and inserted in the
+// adc_inter_timestamp and dac_inter_timestamp shared variable.
+// In order to do that, 4 last bytes of the buffer is considered to be the timestamp
+// either in the read or write.
 int iio_dma_buffer_dequeue_block(struct iio_buffer *buffer,
 	struct iio_buffer_block *block)
 {
+	// Timestamp variables
+	uint64_t adc_inter_timestamp0;
+	uint64_t adc_inter_timestamp1;
+	uint64_t adc_inter_timestamp2;
+	uint64_t adc_inter_timestamp3;
+	// Timestamp variables
+	uint64_t dif_inter_timestamp0;
+	uint64_t dif_inter_timestamp1;
+	uint64_t dif_inter_timestamp2;
+	uint64_t dif_inter_timestamp3;
+	int dif_inter_num;
+
+        uint64_t adc_to_nano_s = 10;      // Counter clock frequency = 1e8, Seconds to Nanoseconds = 1e9
+        uint64_t* p_var;
+        uint64_t timestamp_val;
+        uint32_t virt_addr;
+        uint32_t virt_addr2;
+        uint32_t virt_addr3;
+        uint64_t* volatile pVal;        // writing in the virtual address
+        uint64_t* volatile pVal3;        // writing in the virtual address
+        uint64_t old_val;
+
+	uint64_t* p_vard;
+        uint64_t timestamp_vald;
+        uint64_t* volatile pVald;        // writing in the virtual address
+        uint64_t* volatile pVald2;        // writing in the virtual address
+        uint64_t old_vald;
+	
+	int* p_vari;
+	int id_vali;
+        
 	struct iio_dma_buffer_queue *queue = iio_buffer_to_queue(buffer);
 	struct iio_dma_buffer_block *dma_block;
 	int ret = 0;
@@ -752,6 +910,134 @@ int iio_dma_buffer_dequeue_block(struct iio_buffer *buffer,
 		ret = -EAGAIN;
 		goto out_unlock;
 	}
+
+	// Check if it is really RX (the TX flag is not there)
+        virt_addr3 = ((unsigned int)dma_block->vaddr)+((unsigned int)(dma_block->block.bytes_used)-24);
+        pVal3 = (uint64_t*) virt_addr3;
+
+        // Reading the rx_timestamp to insert into the user buffer RX
+	if(((int)dma_block->block.bytes_used > 0) && (*pVal3 != (uint64_t)1234512345)) // This is RX
+        {
+                timestamp_val = 0;
+                
+		// Reading the timestamp to insert into the user buffer
+		if(dma_block->block.id == 0)
+                	p_var = symbol_get(adc_inter_timestamp0);
+                else if(dma_block->block.id == 1)
+                	p_var = symbol_get(adc_inter_timestamp1);
+                else if(dma_block->block.id == 2)
+                	p_var = symbol_get(adc_inter_timestamp2);
+                else if(dma_block->block.id == 3)
+	                p_var = symbol_get(adc_inter_timestamp3);
+		else
+	                p_var = symbol_get(adc_inter_timestamp0);
+
+
+                if(p_var)
+                {
+                        timestamp_val = *p_var;
+                        // convert from cycles to nanoseconds
+                        timestamp_val = timestamp_val*adc_to_nano_s;
+
+			// put back the p_var
+			if(dma_block->block.id == 0)
+                		symbol_put(adc_inter_timestamp0);
+	                else if(dma_block->block.id == 1)
+                		symbol_put(adc_inter_timestamp1);
+                	else if(dma_block->block.id == 2)
+                		symbol_put(adc_inter_timestamp2);
+        	        else if(dma_block->block.id == 3)
+                		symbol_put(adc_inter_timestamp3);
+			else
+                		symbol_put(adc_inter_timestamp0);
+	        }
+                else
+                        printk(KERN_INFO "[IIO/industrialio-dma-buf][read_buf] inter_module_get timestamp failed");
+
+		// copy timestamp_val to user_buffer[last-4_to_last]
+                virt_addr = ((unsigned int)dma_block->vaddr)+((unsigned int)(dma_block->block.bytes_used)-8);
+                pVal = (uint64_t*) virt_addr;
+                old_val = *pVal;
+                *pVal = timestamp_val;
+
+                // Reading the timestamp is done
+
+		///////// Reporting the previous TX info
+		// Get the ready tx block id
+		p_vari = symbol_get(dif_inter_num);
+		if(p_vari)
+		{
+			id_vali = *p_vari;
+			symbol_put(dif_inter_num);
+		}
+		else
+		{
+			id_vali = 0;
+        		printk(KERN_INFO "[IIO/industrialio-dma-buf][read_buf] inter_module_get id failed");
+		}
+		
+		// Reading the timestamp to insert into the user buffer
+                timestamp_vald = 0;
+		if(id_vali == 0)
+                	p_vard = symbol_get(dif_inter_timestamp0);
+		else if(id_vali == 1)
+			p_vard = symbol_get(dif_inter_timestamp1);
+		else if(id_vali == 2)
+			p_vard = symbol_get(dif_inter_timestamp2);
+		else if(id_vali == 3)
+			p_vard = symbol_get(dif_inter_timestamp3);
+		else
+			p_vard = symbol_get(dif_inter_timestamp0);
+
+
+                if(p_vard)
+                {
+                        timestamp_vald = *p_vard;
+                        // convert from cycles to nanoseconds
+                        timestamp_vald = timestamp_vald*adc_to_nano_s;
+			
+			// put back the p_var
+			if(id_vali == 0)
+                		symbol_put(dif_inter_timestamp0);
+			else if(id_vali == 1)
+                		symbol_put(dif_inter_timestamp1);
+			else if(id_vali == 2)
+				symbol_put(dif_inter_timestamp2);
+			else if(id_vali == 3)
+				symbol_put(dif_inter_timestamp3);
+			else
+				symbol_put(dif_inter_timestamp0);
+                }
+                else
+                        printk(KERN_INFO "[IIO/industrialio-dma-buf][read_buf] inter_module_get timestamp failed");
+
+		// copy timestamp_val to user_buffer[last-8_to_last-4]
+                virt_addr = ((unsigned int)dma_block->vaddr)+((unsigned int)(dma_block->block.bytes_used)-16);
+                pVald = (uint64_t*) virt_addr;
+                old_vald = *pVald;
+                *pVald = timestamp_vald;
+		
+		// copy timestamp_val to user_buffer[last-12_to_last-8]
+                virt_addr2 = ((unsigned int)dma_block->vaddr)+((unsigned int)(dma_block->block.bytes_used)-24);
+                pVald2 = (uint64_t*) virt_addr2;
+                old_vald = *pVald2;
+		if(id_vali == 0)
+                	*pVald2 = rfrx_timestamp0;
+		else if(id_vali == 1)
+                	*pVald2 = rfrx_timestamp1;
+		else if(id_vali == 2)
+                	*pVald2 = rfrx_timestamp2;
+		else if(id_vali == 3)
+                	*pVald2 = rfrx_timestamp3;
+		else
+                	*pVald2 = rfrx_timestamp0;
+
+		//printk("dequeing an RX block, RX id: %d, TX report id: %d, rfrx timestamp: %llu\n",dma_block->block.id,id_vali,*pVald2);
+                // Reading the timestamp is done
+                //printk("[DEBUG][iio_dma_block] phys_addr: %u, virtual_addr: %u, bytes_used: %d, old_val_dif: %llu, tx_timestamp_dif: %llu\n",(unsigned int)dma_block->phys_addr,(unsigned int)dma_block->vaddr,(int)dma_block->block.bytes_used,old_vald,timestamp_vald);
+        }
+        // tx_timestamp_dif is inserted
+
 
 	*block = dma_block->block;
 
@@ -804,7 +1090,7 @@ int iio_dma_buffer_mmap(struct iio_buffer *buffer,
 		return -EINVAL;
 
 	vma->vm_pgoff = 0;
-
+	
 	vma->vm_flags |= VM_DONTEXPAND | VM_DONTDUMP;
 	vma->vm_ops = &iio_dma_buffer_vm_ops;
 	vma->vm_private_data = block;

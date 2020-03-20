@@ -374,3 +374,14 @@
 		firmware = "pzsdr-fmc-ad9517.stp";
 	};
 };
+
+/{
+	axi_timer@42800000 {
+    		compatible = "axitimer_driver";
+    		reg = <0x42800000 0x1000>; 
+    		/* 
+     		* reg = address of device and size 
+     		* (Minimum is System's Pagesize = 0x1000 Byte in my case
+     		*/
+	};
+};

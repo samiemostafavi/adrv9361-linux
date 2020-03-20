@@ -63,7 +63,7 @@ int iio_dmaengine_buffer_submit_block(struct iio_dma_buffer_queue *queue,
 	struct dmaengine_buffer *dmaengine_buffer;
 	struct dma_async_tx_descriptor *desc;
 	dma_cookie_t cookie;
-
+	
 	dmaengine_buffer = iio_buffer_to_dmaengine_buffer(&block->queue->buffer);
 
 	if (direction == DMA_DEV_TO_MEM)
