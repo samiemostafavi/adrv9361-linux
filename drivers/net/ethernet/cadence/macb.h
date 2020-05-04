@@ -95,6 +95,7 @@
 #define GEM_SA4B		0x00A0 /* Specific4 Bottom */
 #define GEM_SA4T		0x00A4 /* Specific4 Top */
 #define GEM_WOL			0x00B8 /* Wake on LAN */
+#define GEM_TXPFCPAUSE     0x00C4
 #define GEM_RXPTPUNI		0x00D4 /* PTP RX Unicast address */
 #define GEM_TXPTPUNI		0x00D8 /* PTP TX Unicast address */
 #define GEM_EFTSH		0x00e8 /* PTP Event Frame Transmitted Seconds Register 47:32 */

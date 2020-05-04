@@ -48,9 +48,6 @@
 // Convert clock frequency in hertz to period in nano seconds
 #define HZ_TO_NS(Hz)		ROUND_DIV(1000000000, Hz)
 
-// JUST FOR TEST REMOVE LATER
-#define GPIO0_DATA0     0x41210000      // Enable signal
-
 //unsigned long *pSYSCALL_Virtual;	// base address
 static int Device_Open = 0;		// device status
 
@@ -64,9 +61,6 @@ unsigned long *pTIMER_TCR0;		// pointer to timer 0 counter register
 unsigned long *pTIMER_TCSR1;		// pointer to timer 0 control and status register
 unsigned long *pTIMER_TLR1;		// pointer to timer 0 load register
 unsigned long *pTIMER_TCR1;		// pointer to timer 0 counter register
-
-// JUST FOR TEST REMOVE LATER
-unsigned char* ptGPIO0_DATA0; // Enable signal
 
 int majorNum;
 dev_t devNo;  // Major and Minor device numbers combined into 32 bits
@@ -84,9 +78,6 @@ ssize_t axitimer_write(struct file *flip, const char *buf, size_t length, loff_t
 	//printk("[DBG][drivers][timer][axi_timer][axitimer_write][inp: %s]",msg);
 	return ret;
 }
-
-// JUST FOR TEST REMOVE LATER
-bool tmp = true;
 
 // read routine (called when read() is used in user-space)
 ssize_t axitimer_read(struct file *flip, char *buf, size_t length, loff_t *offset)
@@ -110,19 +101,6 @@ ssize_t axitimer_read(struct file *flip, char *buf, size_t length, loff_t *offse
 	//printk("[DBG][drivers][timer][axi_timer][axitimer_read][upper cycles: %u]",upper_val);
 	//printk("[DBG][drivers][timer][axi_timer][axitimer_read][lower cycles: %u]",lower_val);
 	
-	// JUST FOR TEST REMOVE LATER		
-	if(tmp)
-	{
-		iowrite32(0x0,ptGPIO0_DATA0); // disable everything
-		tmp = !tmp;
-	}
-	else
-	{
-		iowrite32(0xf,ptGPIO0_DATA0); // disable everything
-		tmp = !tmp;
-	}
-		
-
 	/*ssize_t ret = snprintf (msg, BUF_LEN, "%llu", timerval);
 	if (copy_to_user(buf, &msg, length) != 0)		// send counter value
 		return -EFAULT;
@@ -182,9 +160,6 @@ static int __init mod_init(void)
 	pTIMER_TLR1 = ioremap_nocache(TIMER_TLR1,0x4);		// map timer 1 load register
 	pTIMER_TCR1 = ioremap_nocache(TIMER_TCR1,0x4);		// map timer 1 count register
 	
-	// JUST FOR TEST REMOVE LATER
-	ptGPIO0_DATA0 = ioremap_nocache(GPIO0_DATA0,0x1); // Enable signal
-
 	// Register character device
   	majorNum = register_chrdev(0,DEVICE_NAME, &axitimer_fops);
   	if (majorNum < 0) {

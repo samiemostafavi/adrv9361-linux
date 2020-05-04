@@ -78,7 +78,8 @@
  */
 #define MACB_HALT_TIMEOUT	1230
 #define MACB_PM_TIMEOUT  100 /* ms */
-
+#define MACB_PAUSE_QUANTA  10
+#define USE_PAUSE 1
 /* DMA buffer descriptor might be different size
  * depends on hardware configuration:
  *
@@ -1376,7 +1377,7 @@ static irqreturn_t macb_interrupt(int irq, void *dev_id)
 	struct macb_queue *queue = dev_id;
 	struct macb *bp = queue->bp;
 	struct net_device *dev = bp->dev;
-	u32 status, ctrl;
+	u32 status, ctrl, cfg;
 
 	status = queue_readl(queue, ISR);
 
@@ -1463,6 +1464,12 @@ static irqreturn_t macb_interrupt(int irq, void *dev_id)
 
 			if (bp->caps & MACB_CAPS_ISR_CLEAR_ON_WRITE)
 				queue_writel(queue, ISR, MACB_BIT(ISR_ROVR));
+#ifdef USE_PAUSE
+         macb_writel(bp, PFR, MACB_PAUSE_QUANTA);
+         cfg  = macb_readl(bp, NCR);
+         cfg |= MACB_BIT(NCR_TPF);
+         macb_writel(bp, NCR, cfg);
+#endif
 		}
 
 		if (status & MACB_BIT(HRESP)) {
@@ -2266,7 +2273,7 @@ static void macb_init_hw(struct macb *bp)
 	    (bp->caps & MACB_CAPS_PCS))
 		gem_writel(bp, PCSCNTRL,
 			   gem_readl(bp, PCSCNTRL) | GEM_BIT(PCSAUTONEG));
-
+   gem_writel(bp, TXPFCPAUSE, 0x0);
 	/* Enable TX and RX */
 	macb_writel(bp, NCR, MACB_BIT(RE) | MACB_BIT(TE) | MACB_BIT(MPE) |
 		    MACB_BIT(PTPUNI));
