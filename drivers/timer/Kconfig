@@ -1,6 +1,0 @@
-config AXITIMER
-	tristate "AxiTimer Module"
-	depends on ARM
-	default y if ARM
-	help
-		Axitimer Module

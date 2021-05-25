@@ -93,11 +93,6 @@
  * callback is called from within the custom callback.
  */
 
-static uint64_t rfrx_timestamp0 = 0;
-static uint64_t rfrx_timestamp1 = 0;
-static uint64_t rfrx_timestamp2 = 0;
-static uint64_t rfrx_timestamp3 = 0;
-
 static unsigned int iio_dma_buffer_max_block_size = SZ_16M;
 module_param_named(max_block_size, iio_dma_buffer_max_block_size, uint, 0644);
 
@@ -298,34 +293,37 @@ static void iio_dma_buffer_fileio_free(struct iio_dma_buffer_queue *queue)
 	queue->fileio.active_block = NULL;
 }
 
+// Samie - Edge Computing Lab @ KTH
+// Here the data is copied from the user space buffer to the dma queue
+// TX metadata is taken out of block data and copied into shared variable
+// In order to do that, 6 last bytes of the buffer is considered to be the meta data
+struct tx_transfer_cmd {
+        uint64_t timestamp;
+        uint64_t duration;
+        uint16_t driver_id;
+        uint16_t size_less;
+};
+
 static void iio_dma_buffer_submit_block(struct iio_dma_buffer_queue *queue,
 	struct iio_dma_buffer_block *block)
 {
 	int ret;
         
-	// Timestamp variabes
-        uint64_t dac_inter_timestamp0;
-        uint64_t dac_inter_timestamp1;
-        uint64_t dac_inter_timestamp2;
-        uint64_t dac_inter_timestamp3;
-        
-	uint32_t txid_inter_timestamp0;
-        uint32_t txid_inter_timestamp1;
-        uint32_t txid_inter_timestamp2;
-        uint32_t txid_inter_timestamp3;
+	struct tx_transfer_cmd tx_cmds[4];	
+	struct tx_transfer_cmd (*p_tx_cmds)[4];
 
-        uint64_t timestamp_val;
         uint32_t virt_addr;
         uint32_t virt_addr2;
+        uint32_t virt_addr3;
         uint64_t* volatile pVal;        // writing in the virtual address
         uint64_t* volatile pVal2;        // writing in the virtual address
-        uint64_t* p_var;
-        uint32_t* p_txidv;
-
-        uint32_t virt_addr3;
 	uint32_t* volatile pVal3;        // writing in the virtual address
-        uint32_t flag_val;
-	uint32_t txid_val;
+
+        uint32_t tx_flag = 0;
+	uint16_t tx_id = 0;
+	uint16_t tx_size = 0;
+        uint64_t tx_timestamp = 0;
+        uint64_t tx_duration = 0;
 
 	struct iio_dma_buffer_block *dma_block = block;
 
@@ -350,102 +348,35 @@ static void iio_dma_buffer_submit_block(struct iio_dma_buffer_queue *queue,
 		// Find if it is TX. I insert a flag in [-12 to -8]
         	virt_addr3 = ((unsigned int)block->vaddr)+((unsigned int)(block->block.size)-24);
 	        pVal3 = (uint32_t*) virt_addr3;
-                flag_val = *pVal3;
-		txid_val = *(pVal3+1);
+                tx_flag = *pVal3; 			// First 32 bits is flag
+		tx_id = *((uint16_t*)(pVal3+1)); 	// Next 16 bits is id
+		tx_size = *(((uint16_t*)(pVal3+1))+1); 	// Next 16 bits is size
 		
-
-		if(flag_val == 1234512345) // it is TX because of the flag
+		if(tx_flag == 1234512345) // it is TX because of the flag
 		{
 			// Writing the timestamp into the dma buffer TX
 			// copy user_buffer[last-4_to_last] to timestamp_val
 			virt_addr = ((unsigned int)dma_block->vaddr)+((unsigned int)(dma_block->block.bytes_used)-8);
 			pVal = (uint64_t*) virt_addr;
-			timestamp_val = *pVal;
-
-			// write timestamp_val to the inter driver register
-			if(dma_block->block.id == 0)
-			{
-				p_var = symbol_get(dac_inter_timestamp0);
-				p_txidv = symbol_get(txid_inter_timestamp0);
-			}
-			else if(dma_block->block.id == 1)
-			{
-				p_var = symbol_get(dac_inter_timestamp1);
-				p_txidv = symbol_get(txid_inter_timestamp1);
-			}
-			else if(dma_block->block.id == 2)
-			{
-				p_var = symbol_get(dac_inter_timestamp2);
-				p_txidv = symbol_get(txid_inter_timestamp2);
-			}
-			else if(dma_block->block.id == 3)
-			{
-				p_var = symbol_get(dac_inter_timestamp3);
-				p_txidv = symbol_get(txid_inter_timestamp3);
-			}
-			else
-			{
-				p_var = symbol_get(dac_inter_timestamp0);
-				p_txidv = symbol_get(txid_inter_timestamp0);
-			}
-
-
-			if(p_var && p_txidv)
-			{
-				*p_var = timestamp_val;
-				*p_txidv = txid_val;
-
-				// put back the p_var
-				if(dma_block->block.id == 0)
-				{
-					symbol_put(dac_inter_timestamp0);
-					symbol_put(txid_inter_timestamp0);
-				}
-				else if(dma_block->block.id == 1)
-				{
-					symbol_put(dac_inter_timestamp1);
-					symbol_put(txid_inter_timestamp1);
-				}
-				else if(dma_block->block.id == 2)
-				{
-					symbol_put(dac_inter_timestamp2);
-					symbol_put(txid_inter_timestamp2);
-				}
-				else if(dma_block->block.id == 3)
-				{
-					symbol_put(dac_inter_timestamp3);
-					symbol_put(txid_inter_timestamp3);
-				}
-				else
-				{
-					symbol_put(dac_inter_timestamp0);
-					symbol_put(txid_inter_timestamp0);
-				}
-
-			}
-			else
-				printk(KERN_INFO "[IIO/industrialio-dma-buf][write_buf] inter_module_get failed");
-
-			//printk("[DEBUG][iio_dma_block] phys_addr: %u, virtual_addr: %u, bytes_used: %d, timestamp: %llu\n",(unsigned int)dma_block->phys_addr,(unsigned int)dma_block->vaddr,(int)dma_block->block.bytes_used,timestamp_val);
-			// Writing the timestamp is done
-				
-			// copy user_buffer[last-8_to_last-4] to rfrx_timestamp variables
-			timestamp_val = 0;
+			tx_timestamp = *pVal; 		// Next 64 bits is timestamp
+			
+			// copy user_buffer[last-8_to_last-4] to duration variable
 			virt_addr2 = ((unsigned int)dma_block->vaddr)+((unsigned int)(dma_block->block.bytes_used)-16);
-			pVal2 = (uint64_t*) virt_addr2;
-			timestamp_val = *pVal2;
+			pVal2 = (uint64_t*) virt_addr2; // Next 64 bits is duration
+			tx_duration = *pVal2;
 
-			// write timestamp_val to the inter driver register
-			if(dma_block->block.id == 0)
-				rfrx_timestamp0 = timestamp_val;
-			else if(dma_block->block.id == 1)
-				rfrx_timestamp1 = timestamp_val;
-			else if(dma_block->block.id == 2)
-				rfrx_timestamp2 = timestamp_val;
-			else if(dma_block->block.id == 3)
-				rfrx_timestamp3 = timestamp_val;
+			p_tx_cmds = symbol_get(tx_cmds);
+			if(p_tx_cmds)
+			{
+				p_tx_cmds[0][dma_block->block.id].timestamp = tx_timestamp; 
+				p_tx_cmds[0][dma_block->block.id].driver_id = tx_id;
+				p_tx_cmds[0][dma_block->block.id].size_less = tx_size;
+				p_tx_cmds[0][dma_block->block.id].duration = tx_duration;
+
+				symbol_put(tx_cmds);
+			}
 			else
-				rfrx_timestamp0 = timestamp_val;
+				printk(KERN_INFO "[IIO/industrialio-dma-buf][write_buf] inter_module_get tx_cmds failed");
 
 			// printk("submitting a TX block, TX id: %d, rfrx timestamp: %llu, TX timestamp: %llu\n",dma_block->block.id, timestamp_val, *pVal);
 			//printk("[DBG][iio_dma_buffer_submit_block][TX] id: %d, bytes_used: %d, timestamp: %llu \n",block->block.id,block->block.bytes_used,timestamp_val);
@@ -850,12 +781,6 @@ out_unlock:
 EXPORT_SYMBOL_GPL(iio_dma_buffer_query_block);
 
 
-// Samie - Edge Computing Lab @ KTH
-// Here the data is being copied from the user space buffer to the dma queue
-// I add my timestamp which is already read from the dma-axi-dmac.c driver and inserted in the
-// adc_inter_timestamp and dac_inter_timestamp shared variable.
-// In order to do that, 4 last bytes of the buffer is considered to be the timestamp
-// either in the read or write.
 int iio_dma_buffer_enqueue_block(struct iio_buffer *buffer,
 	struct iio_buffer_block *block)
 {
@@ -901,47 +826,47 @@ EXPORT_SYMBOL_GPL(iio_dma_buffer_enqueue_block);
 
 // Samie - Edge Computing Lab @ KTH
 // Here the data is being copied from the dma queue to the user space buffer
-// I add my timestamp which is alread read from the dma-axi-dmac.c driver and inserted in the
-// adc_inter_timestamp and dac_inter_timestamp shared variable.
-// In order to do that, 4 last bytes of the buffer is considered to be the timestamp
-// either in the read or write.
+// dma-axi-dmac.c driver has inserted the data in the shared variables
+// 6 last bytes of the buffer is considered to be the meta data including the timestamp
+struct tx_transfer_stat {
+        uint16_t idcounter;
+        uint16_t lates;
+        uint16_t earlies;
+        uint16_t drops;
+	int32_t sot_cmd;
+};
+
 int iio_dma_buffer_dequeue_block(struct iio_buffer *buffer,
 	struct iio_buffer_block *block)
 {
-	// Timestamp variables
-	uint64_t adc_inter_timestamp0;
-	uint64_t adc_inter_timestamp1;
-	uint64_t adc_inter_timestamp2;
-	uint64_t adc_inter_timestamp3;
-	// Timestamp variables
-	uint64_t dif_inter_timestamp0;
-	uint64_t dif_inter_timestamp1;
-	uint64_t dif_inter_timestamp2;
-	uint64_t dif_inter_timestamp3;
-	int dif_inter_num;
+	uint64_t rx_timestamps[4];
+	uint64_t (*p_rx_timestamps)[4];
+        uint64_t rxtimestamp;
+	
+	uint32_t rxidcounters[4];
+	uint32_t (*p_rxidcounters)[4];
+        uint32_t rxidcounter;
+	uint32_t tx_sot_cmd;
+	 
+	
+	struct tx_transfer_stat tx_stat;
+	struct tx_transfer_stat *p_tx_stat;
+	uint64_t txstatnum;
+	uint16_t* p_txstatnum = (uint16_t*) &txstatnum;
 
-        uint64_t* p_var;
-        uint64_t timestamp_val;
         uint32_t virt_addr;
         uint32_t virt_addr2;
-        uint64_t* volatile pVal;        // writing in the virtual address
-        uint64_t old_val;
-
-	uint64_t* p_vard;
-        uint64_t timestamp_vald;
-        uint64_t* volatile pVald;        // writing in the virtual address
-        uint64_t* volatile pVald2;        // writing in the virtual address
-        uint64_t old_vald;
+        uint32_t virt_addr3;
+        uint64_t* volatile pVal;
+        uint64_t* volatile pVald;
+        uint32_t* volatile pVald2;
+        uint32_t* volatile pVald3;
+	uint32_t* volatile pVal3;
 	
-	int* p_vari;
-	int id_vali;
-        
 	struct iio_dma_buffer_queue *queue = iio_buffer_to_queue(buffer);
 	struct iio_dma_buffer_block *dma_block;
 	int ret = 0;
         
-        uint32_t virt_addr3;
-	uint32_t* volatile pVal3;        // writing in the virtual address
 
 	mutex_lock(&queue->lock);
 
@@ -958,121 +883,72 @@ int iio_dma_buffer_dequeue_block(struct iio_buffer *buffer,
         // Reading the rx_timestamp to insert into the user buffer RX
 	if(((int)dma_block->block.bytes_used > 0) && (*pVal3 != (uint32_t)1234512345)) // This is RX
         {
-                timestamp_val = 0;
-                
-		// Reading the timestamp to insert into the user buffer
-		if(dma_block->block.id == 0)
-                	p_var = symbol_get(adc_inter_timestamp0);
-                else if(dma_block->block.id == 1)
-                	p_var = symbol_get(adc_inter_timestamp1);
-                else if(dma_block->block.id == 2)
-                	p_var = symbol_get(adc_inter_timestamp2);
-                else if(dma_block->block.id == 3)
-	                p_var = symbol_get(adc_inter_timestamp3);
-		else
-	                p_var = symbol_get(adc_inter_timestamp0);
-
-
-                if(p_var)
-                {
-                        timestamp_val = *p_var;
-
-			// put back the p_var
-			if(dma_block->block.id == 0)
-                		symbol_put(adc_inter_timestamp0);
-	                else if(dma_block->block.id == 1)
-                		symbol_put(adc_inter_timestamp1);
-                	else if(dma_block->block.id == 2)
-                		symbol_put(adc_inter_timestamp2);
-        	        else if(dma_block->block.id == 3)
-                		symbol_put(adc_inter_timestamp3);
-			else
-                		symbol_put(adc_inter_timestamp0);
-	        }
+		// bring rx timestamp from global variable
+                rxtimestamp = 0;
+		p_rx_timestamps = symbol_get(rx_timestamps);
+		if(p_rx_timestamps)
+		{
+			rxtimestamp = p_rx_timestamps[0][dma_block->block.id];
+			symbol_put(rx_timestamps);
+		}
                 else
-                        printk(KERN_INFO "[IIO/industrialio-dma-buf][read_buf] inter_module_get timestamp failed");
-
-		// copy timestamp_val to user_buffer[last-4_to_last]
+                        printk(KERN_INFO "[IIO/industrialio-dma-buf][read_buf] inter_module_get rxtimestamp failed");
+		
+		// put rxtimestamp to user_buffer[last-4_to_last]
                 virt_addr = ((unsigned int)dma_block->vaddr)+((unsigned int)(dma_block->block.bytes_used)-8);
                 pVal = (uint64_t*) virt_addr;
-                old_val = *pVal;
-                *pVal = timestamp_val;
+                *pVal = rxtimestamp;
 
-                // Reading the timestamp is done
-
-		///////// Reporting the previous TX info
-		// Get the ready tx block id
-		p_vari = symbol_get(dif_inter_num);
-		if(p_vari)
+		// reporting TX stat
+		txstatnum = 0;
+		p_tx_stat = symbol_get(tx_stat);
+		if(p_tx_stat)
 		{
-			id_vali = *p_vari;
-			symbol_put(dif_inter_num);
+			*p_txstatnum = p_tx_stat->drops;
+			*(p_txstatnum+1) = p_tx_stat->lates;
+			*(p_txstatnum+2) = p_tx_stat->earlies;
+			*(p_txstatnum+3) = p_tx_stat->idcounter;
+			tx_sot_cmd = p_tx_stat->sot_cmd; 
+
+			symbol_put(tx_stat);
 		}
 		else
-		{
-			id_vali = 0;
-        		printk(KERN_INFO "[IIO/industrialio-dma-buf][read_buf] inter_module_get id failed");
-		}
-		
-		// Reading the timestamp to insert into the user buffer
-                timestamp_vald = 0;
-		if(id_vali == 0)
-                	p_vard = symbol_get(dif_inter_timestamp0);
-		else if(id_vali == 1)
-			p_vard = symbol_get(dif_inter_timestamp1);
-		else if(id_vali == 2)
-			p_vard = symbol_get(dif_inter_timestamp2);
-		else if(id_vali == 3)
-			p_vard = symbol_get(dif_inter_timestamp3);
-		else
-			p_vard = symbol_get(dif_inter_timestamp0);
+        		printk(KERN_INFO "[IIO/industrialio-dma-buf][read_buf] inter_module_get txstat failed");
 
-
-                if(p_vard)
-                {
-                        timestamp_vald = *p_vard;
-			
-			// put back the p_var
-			if(id_vali == 0)
-                		symbol_put(dif_inter_timestamp0);
-			else if(id_vali == 1)
-                		symbol_put(dif_inter_timestamp1);
-			else if(id_vali == 2)
-				symbol_put(dif_inter_timestamp2);
-			else if(id_vali == 3)
-				symbol_put(dif_inter_timestamp3);
-			else
-				symbol_put(dif_inter_timestamp0);
-                }
-                else
-                        printk(KERN_INFO "[IIO/industrialio-dma-buf][read_buf] inter_module_get timestamp failed");
-
-		// copy timestamp_val to user_buffer[last-8_to_last-4]
+		// copy TX stat to user_buffer[last-8_to_last-4]
                 virt_addr = ((unsigned int)dma_block->vaddr)+((unsigned int)(dma_block->block.bytes_used)-16);
                 pVald = (uint64_t*) virt_addr;
-                old_vald = *pVald;
-                *pVald = timestamp_vald;
+                *pVald = txstatnum;
 		
-		// copy timestamp_val to user_buffer[last-12_to_last-8]
-                virt_addr2 = ((unsigned int)dma_block->vaddr)+((unsigned int)(dma_block->block.bytes_used)-24);
-                pVald2 = (uint64_t*) virt_addr2;
-                old_vald = *pVald2;
-		if(id_vali == 0)
-                	*pVald2 = rfrx_timestamp0;
-		else if(id_vali == 1)
-                	*pVald2 = rfrx_timestamp1;
-		else if(id_vali == 2)
-                	*pVald2 = rfrx_timestamp2;
-		else if(id_vali == 3)
-                	*pVald2 = rfrx_timestamp3;
+		// Read rxidcounter
+                rxidcounter = 0;
+                p_rxidcounters = symbol_get(rxidcounters);
+                if(p_rxidcounters)
+                {
+                        rxidcounter = p_rxidcounters[0][dma_block->block.id];
+                        // put back the p_rxid
+                        symbol_put(rxidcounters);
+		}
 		else
-                	*pVald2 = rfrx_timestamp0;
+		{
+			rxidcounter = 0;
+        		printk(KERN_INFO "[IIO/industrialio-dma-buf][read_buf] inter_module_get rxid failed");
+		}
 
-		// printk("dequeing an RX block, RX id: %d, TX report id: %d, rfrx timestamp: %llu, TX timestamp: %llu, RX timestamp: %llu\n",dma_block->block.id,id_vali, *pVald2, timestamp_vald, timestamp_val);
-                // Reading the timestamp is done
+		// copy rxidcounter to user_buffer[last-12_to_last-8]
+                virt_addr2 = ((unsigned int)dma_block->vaddr)+((unsigned int)(dma_block->block.bytes_used)-24);
+                pVald2 = (uint32_t*) virt_addr2;
+		*pVald2 = rxidcounter;
+
+		// copy tx_sot_cmd to user buffer
+		pVald3 = pVald2 + 1;
+		*pVald3 = tx_sot_cmd; 
+
+
+		//printk("dequeing an RX block, dma_id: %d, RX id: %llu, TX report id: %llu, RX timestamp: %llu, dma_block->block.bytes_used: %d\n",dma_block->block.id,*pVald2, *pVald, *pVal,dma_block->block.bytes_used);
                 //printk("[DEBUG][iio_dma_block] phys_addr: %u, virtual_addr: %u, bytes_used: %d, old_val_dif: %llu, tx_timestamp_dif: %llu\n",(unsigned int)dma_block->phys_addr,(unsigned int)dma_block->vaddr,(int)dma_block->block.bytes_used,old_vald,timestamp_vald);
         }
-        // tx_timestamp_dif is inserted
+        // rxtimestamp and tx_stat are inserted
 
 
 	*block = dma_block->block;

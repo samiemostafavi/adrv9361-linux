@@ -8,7 +8,7 @@
 		ad9517_ref_clk: clock@3 {
 				#clock-cells = <0>;
 				compatible = "fixed-clock";
-				clock-frequency = <25000000>;
+				clock-frequency = <125000000>; 		// Modified by Samie: Support SFP GT Clock It was 25 MHz before
 				clock-output-names = "ad9517_refclk";
 		};
 
@@ -375,10 +375,10 @@
 	};
 };
 
-/{
-	axi_timer@42800000 {
-    		compatible = "axitimer_driver";
-    		reg = <0x42800000 0x1000>; 
+/ {
+	txtiming@0x43c00000 {
+    		compatible = "txtiming";
+    		reg = <0x43c00000 0x10000>;
     		/* 
      		* reg = address of device and size 
      		* (Minimum is System's Pagesize = 0x1000 Byte in my case

@@ -1,0 +1,720 @@
+/*
+
+Xilinx Vivado v2018.2 (64-bit) [Major: 2018, Minor: 2]
+SW Build: 2258646 on Thu Jun 14 20:02:38 MDT 2018
+IP Build: 2256618 on Thu Jun 14 22:10:49 MDT 2018
+
+Process ID: 20352
+License: Customer
+
+Current time: 	Mon Aug 03 23:48:22 CEST 2020
+Time zone: 	Central European Time (Europe/Stockholm)
+
+OS: Ubuntu
+OS Version: 5.3.0-62-generic
+OS Architecture: amd64
+Available processors (cores): 4
+
+Display: :0
+Screen size: 1920x1080
+Screen resolution (DPI): 96
+Available screens: 1
+Available disk space: 89 GB
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+
+Java version: 	1.8.0_112 64-bit
+Java home: 	/opt/Xilinx/Vivado/2018.2/tps/lnx64/jre
+Java executable location: 	/opt/Xilinx/Vivado/2018.2/tps/lnx64/jre/bin/java
+Java initial memory (-Xms): 	128 MB
+Java maximum memory (-Xmx):	 2 GB
+
+
+User name: 	warpadmin
+User home directory: /home/warpadmin
+User working directory: /home/warpadmin/BoardSetup/adrv9361-linux/drivers/iio/buffer
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI_BASEROOT: /opt/Xilinx/Vivado
+HDI_APPROOT: /opt/Xilinx/Vivado/2018.2
+RDI_DATADIR: /opt/Xilinx/Vivado/2018.2/data
+RDI_BINDIR: /opt/Xilinx/Vivado/2018.2/bin
+
+Vivado preferences file location: /home/warpadmin/.Xilinx/Vivado/2018.2/vivado.xml
+Vivado preferences directory: /home/warpadmin/.Xilinx/Vivado/2018.2/
+Vivado layouts directory: /home/warpadmin/.Xilinx/Vivado/2018.2/layouts
+PlanAhead jar file location: 	/opt/Xilinx/Vivado/2018.2/lib/classes/planAhead.jar
+Vivado log file location: 	/home/warpadmin/BoardSetup/adrv9361-linux/drivers/iio/buffer/vivado.log
+Vivado journal file location: 	/home/warpadmin/BoardSetup/adrv9361-linux/drivers/iio/buffer/vivado.jou
+Engine tmp dir: 	./.Xil/Vivado-20352-warpadmin-NUC8
+
+Xilinx Environment Variables
+----------------------------
+XILINX: /opt/Xilinx/Vivado/2018.2/ids_lite/ISE
+XILINX_DSP: /opt/Xilinx/Vivado/2018.2/ids_lite/ISE
+XILINX_PLANAHEAD: /opt/Xilinx/Vivado/2018.2
+XILINX_SDK: /opt/Xilinx/SDK/2018.2
+XILINX_VIVADO: /opt/Xilinx/Vivado/2018.2
+XILINX_VIVADO_HLS: /opt/Xilinx/Vivado/2018.2
+
+
+GUI allocated memory:	197 MB
+GUI max memory:		3,052 MB
+Engine allocated memory: 838 MB
+
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// [GUI Memory]: 81 MB (+82761kb) [00:00:05]
+// [Engine Memory]: 836 MB (+724867kb) [00:00:05]
+selectList(PAResourceQtoS.SyntheticaGettingStartedView_RECENT_PROJECTS, "/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.xpr", 0); // q (O, ck)
+// bx (ck):  Open Project : addNotify
+// Opening Vivado Project: /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.xpr. Version: Vivado v2018.2 
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// Tcl Message: open_project /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.xpr 
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_FAILED
+// TclEventType: RUN_CURRENT
+// TclEventType: MSGMGR_REFRESH_MSG
+// HMemoryUtils.trashcanNow. Engine heap size: 927 MB. GUI used memory: 36 MB. Current time: 8/3/20 11:48:24 PM CEST
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_NEW
+// [Engine Memory]: 1,039 MB (+169300kb) [00:00:11]
+// Tcl Message: open_project /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.xpr 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/tx_timing_1.0'. 
+// Tcl Message: INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/library'. INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2018.2/data/ip'. 
+// Project name: adrv9361z7035_ccfmc_lvds; location: /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds; part: xc7z035ifbg676-2L
+// Tcl Message: open_project: Time (s): cpu = 00:00:10 ; elapsed = 00:00:06 . Memory (MB): peak = 6195.555 ; gain = 207.883 ; free physical = 19488 ; free virtual = 29636 
+dismissDialog("Open Project"); // bx (ck)
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// [Engine Memory]: 1,108 MB (+17814kb) [00:00:15]
+// Tcl Message: update_compile_order -fileset sources_1 
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Generate Bitstream]", 20, false); // u (O, ck)
+// Run Command: PAResourceCommand.PACommandNames_RUN_BITGEN
+// A (ck): No Implementation Results Available: addNotify
+selectButton(RDIResource.BaseDialog_YES, "Yes"); // a (A)
+// bx (ck):  Resetting Runs : addNotify
+dismissDialog("No Implementation Results Available"); // A (ck)
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// f (ck): Launch Runs: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (f)
+dismissDialog("Launch Runs"); // f (ck)
+// TclEventType: LOAD_FEATURE
+// TclEventType: RSB_CHANGE_CURRENT_DIAGRAM
+// TclEventType: LOAD_FEATURE
+// TclEventType: FILE_SET_CHANGE
+// bx (ck):  Generate Bitstream : addNotify
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: launch_runs impl_2 -to_step write_bitstream -jobs 4 
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: INFO: [xilinx.com:ip:ila:6.2-6] /ila_0: Xilinx recommends using the System ILA IP in IP Integrator. The System ILA IP is functionally equivalent to an ILA and offers additional benefits in debugging interfaces both within IP Integrator and the Hardware Manager. Consult the Programming and Debug User Guide UG908 for further details. 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_LOCK_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: REPORT_IP_STATUS_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: REPORT_IP_STATUS_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: REPORT_IP_STATUS_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 1,228 MB. GUI used memory: 42 MB. Current time: 8/3/20 11:48:44 PM CEST
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_CLOSE_DIAGRAM
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// Tcl Message: Wrote  : </home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd>  VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/synth/system.v VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/sim/system.v VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hdl/system_wrapper.v 
+// Tcl Message: INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_adc_dma . INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_dac_fifo . INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_dac_upack . 
+// Tcl Message: INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_dac_dma . INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rgmii . INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rgmii_rstgen . INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_clkgen . INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_core . 
+// Tcl Message: INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_cpu_interconnect/s00_couplers/auto_pc . 
+// Tcl Message: Exporting to file /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hw_handoff/system.hwh Generated Block Design Tcl file /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hw_handoff/system_bd.tcl Generated Hardware Definition File /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/synth/system.hwdef 
+// [Engine Memory]: 1,270 MB (+111925kb) [00:00:29]
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: RUN_LAUNCH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: [Mon Aug  3 23:48:46 2020] Launched synth_1... Run output will be captured here: /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.runs/synth_1/runme.log [Mon Aug  3 23:48:46 2020] Launched impl_2... Run output will be captured here: /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.runs/impl_2/runme.log 
+// Tcl Message: launch_runs: Time (s): cpu = 00:00:17 ; elapsed = 00:00:08 . Memory (MB): peak = 6725.906 ; gain = 111.148 ; free physical = 19342 ; free virtual = 29490 
+dismissDialog("Generate Bitstream"); // bx (ck)
+// TclEventType: RUN_FAILED
+// WARNING: HTimer (ActiveMsgMonitor Process Messages Timer) is taking 218ms to process. Increasing delay to 2000 ms.
+// ah (ck): Synthesis Failed: addNotify
+// Elapsed time: 158 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (ah)
+// Run Command: PAResourceCommand.PACommandNames_MESSAGE_WINDOW
+dismissDialog("Synthesis Failed"); // ah (ck)
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, IP Integrator, Open Block Design]", 7, false); // u (O, ck)
+// Run Command: PAResourceCommand.PACommandNames_OPEN_BLOCK_DESIGN
+// bx (ck):  Open Block Design : addNotify
+// TclEventType: RSB_CHANGE_CURRENT_DIAGRAM
+// TclEventType: RSB_PROPERTY_CHANGE
+// TclEventType: RSB_OPEN_DIAGRAM
+// Tcl Message: open_bd_design {/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd} 
+// Tcl Message: INFO: [xilinx.com:ip:ila:6.2-6] /ila_0: Xilinx recommends using the System ILA IP in IP Integrator. The System ILA IP is functionally equivalent to an ILA and offers additional benefits in debugging interfaces both within IP Integrator and the Hardware Manager. Consult the Programming and Debug User Guide UG908 for further details. 
+// Tcl Message: Adding cell -- xilinx.com:ip:axi_crossbar:2.1 - xbar Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc Successfully read diagram <system> from BD file </home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd> 
+// TclEventType: RSB_OPEN_DIAGRAM
+// [GUI Memory]: 86 MB (+837kb) [00:03:18]
+// TclEventType: RSB_CONNECTION_CHANGE
+// TclEventType: RSB_LOCK_CHANGE
+dismissDialog("Open Block Design"); // bx (ck)
+// Elapsed time: 41 seconds
+selectButton(PAResourceOtoP.PlanAheadTab_REFRESH_IP_CATALOG, "Refresh IP Catalog"); // h (cM, ck)
+// TclEventType: CREATE_IP_CATALOG
+// TclEventType: IP_LOCK_CHANGE
+// bx (ck):  Refresh IP Catalog : addNotify
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: BDCELL_LOCK_CHANGE
+// TclEventType: RSB_LOCK_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: BDCELL_LOCK_CHANGE
+// TclEventType: RSB_LOCK_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// Tcl Message: update_ip_catalog -rebuild -scan_changes 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/tx_timing_1.0'. 
+// Tcl Message: INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/library'. 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: BDCELL_LOCK_CHANGE
+// TclEventType: RSB_LOCK_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: BDCELL_LOCK_CHANGE
+// TclEventType: CREATE_IP_CATALOG
+// TclEventType: IP_SUMMARY_RESULTS
+// Tcl Message: report_ip_status -name ip_status 
+dismissDialog("Refresh IP Catalog"); // bx (ck)
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_logic_inv_Res 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_logic_inv_Res 
+selectButton(PAResourceItoN.IPStatusSectionPanel_UPGRADE_SELECTED, "Upgrade Selected"); // a (g, ck)
+// Run Command: PAResourceCommand.PACommandNames_UPGRADE_IP
+// ah (ck): Upgrade IP: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (ah)
+// TclEventType: RSB_OPEN_DIAGRAM
+dismissDialog("Upgrade IP"); // ah (ck)
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_REMOVE_OBJECT
+// bx (ck):  Upgrade IP : addNotify
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// Tcl Message: upgrade_ip [get_ips  {system_axi_ad9361_adc_dma_0 system_axi_ad9361_dac_dma_0 system_axi_hdmi_dma_0}] -log ip_upgrade.log 
+// Tcl Message: Upgrading '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd' 
+// Tcl Message: INFO: [IP_Flow 19-1972] Upgraded system_axi_ad9361_adc_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0 INFO: [IP_Flow 19-1972] Upgraded system_axi_ad9361_dac_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0 INFO: [IP_Flow 19-1972] Upgraded system_axi_hdmi_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SAVE_DIAGRAM
+// CommandFailedException: ERROR: [BD 41-45] Cell path not found: /system 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SAVE_DIAGRAM
+// TclEventType: FILESET_UPDATE_IP
+// TclEventType: IP_UPGRADE_COMPLETE
+// Tcl Message: Wrote  : </home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd>  
+// Tcl Message: INFO: [Coretcl 2-1525] Wrote upgrade log to '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/ip_upgrade.log'. 
+// Tcl Message: export_ip_user_files -of_objects [get_ips {system_axi_ad9361_adc_dma_0 system_axi_ad9361_dac_dma_0 system_axi_hdmi_dma_0}] -no_script -sync -force -quiet 
+// aI (ck): Generate Output Products: addNotify
+selectButton("PAResourceTtoZ.UpgradeIP_IP_UPGRADE_COMPLETED_OK", "OK"); // JButton (A, G)
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// HMemoryUtils.trashcanNow. Engine heap size: 1,345 MB. GUI used memory: 79 MB. Current time: 8/3/20 11:52:24 PM CEST
+selectButton(PAResourceQtoS.SimpleOutputProductDialog_CLOSE_DIALOG_UNSAVED_CHANGES_WILL, "Skip"); // a (aI)
+// [Engine Memory]: 1,345 MB (+11934kb) [00:04:08]
+dismissDialog("Generate Output Products"); // aI (ck)
+// TclEventType: DG_GRAPH_GENERATED
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_07_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_07_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_02_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_02_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Generate Bitstream]", 20, false); // u (O, ck)
+// Run Command: PAResourceCommand.PACommandNames_RUN_BITGEN
+// A (ck): No Implementation Results Available: addNotify
+selectButton(RDIResource.BaseDialog_YES, "Yes"); // a (A)
+// bx (ck):  Resetting Runs : addNotify
+dismissDialog("No Implementation Results Available"); // A (ck)
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// f (ck): Launch Runs: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (f)
+// TclEventType: RSB_SCRIPT_TASK
+dismissDialog("Launch Runs"); // f (ck)
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: REPORT_IP_STATUS_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: FILE_SET_CHANGE
+// bx (ck):  Generate Bitstream : addNotify
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: launch_runs impl_2 -to_step write_bitstream -jobs 4 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: REPORT_IP_STATUS_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: REPORT_IP_STATUS_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_SAVE_DIAGRAM
+// CommandFailedException: ERROR: [BD 41-45] Cell path not found: /system 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SAVE_DIAGRAM
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SAVE_DIAGRAM
+// CommandFailedException: ERROR: [BD 41-45] Cell path not found: /system 
+// TclEventType: RSB_SAVE_DIAGRAM
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// Tcl Message: Wrote  : </home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd>  VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/synth/system.v VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/sim/system.v VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hdl/system_wrapper.v 
+// Tcl Message: INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_adc_dma . INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_dac_fifo . INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_dac_upack . 
+// Tcl Message: INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_dac_dma . INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rgmii . INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rgmii_rstgen . INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_clkgen . INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_core . 
+// Tcl Message: INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_cpu_interconnect/s00_couplers/auto_pc . 
+// Tcl Message: Exporting to file /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hw_handoff/system.hwh Generated Block Design Tcl file /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hw_handoff/system_bd.tcl Generated Hardware Definition File /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/synth/system.hwdef 
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: RUN_LAUNCH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: [Mon Aug  3 23:52:35 2020] Launched synth_1... Run output will be captured here: /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.runs/synth_1/runme.log [Mon Aug  3 23:52:35 2020] Launched impl_2... Run output will be captured here: /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.runs/impl_2/runme.log 
+// Tcl Message: launch_runs: Time (s): cpu = 00:00:07 ; elapsed = 00:00:06 . Memory (MB): peak = 6795.895 ; gain = 0.000 ; free physical = 19247 ; free virtual = 29397 
+dismissDialog("Generate Bitstream"); // bx (ck)
+// [GUI Memory]: 92 MB (+1103kb) [00:04:19]
+// [GUI Memory]: 96 MB (+167kb) [00:10:19]
+// TclEventType: RUN_COMPLETED
+// WARNING: HTimer (ActiveMsgMonitor Process Messages Timer) is taking 491ms to process. Increasing delay to 2000 ms.
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gp_in_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gp_in_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /clk_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /clk_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_reset_peripheral_reset 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_reset_peripheral_reset 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_enable_i1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_enable_i1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_dac_upack_dac_valid_out_2 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_dac_upack_dac_valid_out_2 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_dac_upack_dac_data_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_dac_upack_dac_data_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_dac_upack_dac_data_3 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_dac_upack_dac_data_3 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_dac_upack_dac_data_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_dac_upack_dac_data_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_adc_dma_fifo_wr_overflow 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_adc_dma_fifo_wr_overflow 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_adc_fifo_dout_data_2 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_adc_fifo_dout_data_2 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_adc_fifo_dout_data_0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_adc_fifo_dout_data_0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_enable_i0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_enable_i0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /rx_frame_in_p_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /rx_frame_in_p_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_adc_data_i1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_adc_data_i1 
+// Elapsed time: 391 seconds
+selectButton(PAResourceQtoS.SyntheticaStateMonitor_CANCEL, "Cancel"); // h (Q, ck)
+// aS (ck): Cancel Implementation: addNotify
+selectButton(PAResourceQtoS.StateMonitor_RESET_RUN, "Reset Run"); // a (aS)
+// bx (ck):  Resetting Runs : addNotify
+// TclEventType: RUN_MODIFY
+dismissDialog("Cancel Implementation"); // aS (ck)
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run impl_2 
+dismissDialog("Resetting Runs"); // bx (ck)
+// Elapsed time: 407 seconds
+selectButton(PAResourceOtoP.PlanAheadTab_REFRESH_IP_CATALOG, "Refresh IP Catalog"); // h (cM, ck)
+// TclEventType: CREATE_IP_CATALOG
+// TclEventType: IP_LOCK_CHANGE
+// bx (ck):  Refresh IP Catalog : addNotify
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: BDCELL_LOCK_CHANGE
+// TclEventType: RSB_LOCK_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: BDCELL_LOCK_CHANGE
+// TclEventType: RSB_LOCK_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: BDCELL_LOCK_CHANGE
+// TclEventType: RSB_LOCK_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: BDCELL_LOCK_CHANGE
+// TclEventType: CREATE_IP_CATALOG
+// Tcl Message: update_ip_catalog -rebuild -scan_changes 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/tx_timing_1.0'. 
+// Tcl Message: INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/library'. 
+// TclEventType: IP_SUMMARY_RESULTS
+// Tcl Message: report_ip_status -name ip_status 
+dismissDialog("Refresh IP Catalog"); // bx (ck)
+// HMemoryUtils.trashcanNow. Engine heap size: 1,360 MB. GUI used memory: 51 MB. Current time: 8/4/20 12:05:59 AM CEST
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gp_in_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gp_in_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_resetn 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /c_counter_binary_0_Q 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_00_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_00_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_05_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_05_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_08_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_08_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /spi0_clk_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /spi0_clk_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /spi0_sdi_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /spi0_sdi_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /eth1_intn_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /eth1_intn_1 
+selectButton(PAResourceItoN.IPStatusSectionPanel_UPGRADE_SELECTED, "Upgrade Selected"); // a (g, ck)
+// Run Command: PAResourceCommand.PACommandNames_UPGRADE_IP
+// ah (ck): Upgrade IP: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (ah)
+// TclEventType: RSB_OPEN_DIAGRAM
+dismissDialog("Upgrade IP"); // ah (ck)
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: FILE_SET_CHANGE
+// bx (ck):  Upgrade IP : addNotify
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// Tcl Message: upgrade_ip [get_ips  {system_axi_ad9361_adc_dma_0 system_axi_ad9361_dac_dma_0 system_axi_hdmi_dma_0}] -log ip_upgrade.log 
+// Tcl Message: Upgrading '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd' 
+// Tcl Message: INFO: [IP_Flow 19-1972] Upgraded system_axi_ad9361_adc_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0 INFO: [IP_Flow 19-1972] Upgraded system_axi_ad9361_dac_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0 INFO: [IP_Flow 19-1972] Upgraded system_axi_hdmi_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SAVE_DIAGRAM
+// CommandFailedException: ERROR: [BD 41-45] Cell path not found: /system 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SAVE_DIAGRAM
+// TclEventType: FILESET_UPDATE_IP
+// TclEventType: IP_UPGRADE_COMPLETE
+// Tcl Message: Wrote  : </home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd>  
+// Tcl Message: INFO: [Coretcl 2-1525] Wrote upgrade log to '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/ip_upgrade.log'. 
+// Tcl Message: export_ip_user_files -of_objects [get_ips {system_axi_ad9361_adc_dma_0 system_axi_ad9361_dac_dma_0 system_axi_hdmi_dma_0}] -no_script -sync -force -quiet 
+// aI (ck): Generate Output Products: addNotify
+selectButton("PAResourceTtoZ.UpgradeIP_IP_UPGRADE_COMPLETED_OK", "OK"); // JButton (A, G)
+selectButton(PAResourceQtoS.SimpleOutputProductDialog_CLOSE_DIALOG_UNSAVED_CHANGES_WILL, "Skip"); // a (aI)
+// TclEventType: DG_ANALYSIS_MSG_RESET
+dismissDialog("Generate Output Products"); // aI (ck)
+// TclEventType: DG_GRAPH_GENERATED
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Generate Bitstream]", 20, false); // u (O, ck)
+// Run Command: PAResourceCommand.PACommandNames_RUN_BITGEN
+// A (ck): Synthesis is Out-of-date: addNotify
+selectButton(RDIResource.BaseDialog_YES, "Yes"); // a (A)
+// bx (ck):  Resetting Runs : addNotify
+dismissDialog("Synthesis is Out-of-date"); // A (ck)
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// f (ck): Launch Runs: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (f)
+// 'cv' command handler elapsed time: 5 seconds
+// TclEventType: RSB_SCRIPT_TASK
+dismissDialog("Launch Runs"); // f (ck)
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: REPORT_IP_STATUS_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: FILE_SET_CHANGE
+// bx (ck):  Generate Bitstream : addNotify
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: launch_runs impl_2 -to_step write_bitstream -jobs 4 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: REPORT_IP_STATUS_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: REPORT_IP_STATUS_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_SAVE_DIAGRAM
+// CommandFailedException: ERROR: [BD 41-45] Cell path not found: /system 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SAVE_DIAGRAM
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SAVE_DIAGRAM
+// CommandFailedException: ERROR: [BD 41-45] Cell path not found: /system 
+// TclEventType: RSB_SAVE_DIAGRAM
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// Tcl Message: Wrote  : </home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd>  VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/synth/system.v VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/sim/system.v VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hdl/system_wrapper.v 
+// Tcl Message: INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_adc_dma . INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_dac_fifo . INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_dac_upack . 
+// Tcl Message: INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_dac_dma . INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rgmii . INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rgmii_rstgen . INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_clkgen . INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_core . 
+// Tcl Message: INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_cpu_interconnect/s00_couplers/auto_pc . 
+// Tcl Message: Exporting to file /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hw_handoff/system.hwh Generated Block Design Tcl file /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hw_handoff/system_bd.tcl Generated Hardware Definition File /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/synth/system.hwdef 
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: RUN_LAUNCH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// [Engine Memory]: 1,418 MB (+5680kb) [00:18:01]
+// Tcl Message: [Tue Aug  4 00:06:18 2020] Launched synth_1... Run output will be captured here: /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.runs/synth_1/runme.log [Tue Aug  4 00:06:18 2020] Launched impl_2... Run output will be captured here: /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.runs/impl_2/runme.log 
+// Tcl Message: launch_runs: Time (s): cpu = 00:00:06 ; elapsed = 00:00:05 . Memory (MB): peak = 6868.082 ; gain = 12.117 ; free physical = 19116 ; free virtual = 29279 
+dismissDialog("Generate Bitstream"); // bx (ck)
+// HMemoryUtils.trashcanNow. Engine heap size: 1,410 MB. GUI used memory: 47 MB. Current time: 8/4/20 12:06:19 AM CEST
+// TclEventType: RUN_COMPLETED
+// WARNING: HTimer (ActiveMsgMonitor Process Messages Timer) is taking 213ms to process. Increasing delay to 2000 ms.
+// TclEventType: RUN_STEP_COMPLETED
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_l_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_l_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /rx_data_in_n_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /rx_data_in_n_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_dout_data_0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_dout_data_0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_adc_valid_q0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_adc_valid_q0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_adc_fifo_dout_valid_0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_adc_fifo_dout_valid_0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_r1_mode 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_r1_mode 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_adc_fifo_dout_data_3 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_enable_i1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_enable_i1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_valid_i0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_valid_i0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_l_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_l_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_adc_r1_mode 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_adc_r1_mode 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_0_1 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,419 MB. GUI used memory: 49 MB. Current time: 8/4/20 12:36:19 AM CEST
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /spi0_clk_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /spi0_clk_i_1 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,419 MB. GUI used memory: 47 MB. Current time: 8/4/20 1:06:19 AM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,434 MB. GUI used memory: 47 MB. Current time: 8/4/20 1:35:44 AM CEST
+// TclEventType: RUN_COMPLETED
+// ah (ck): Bitstream Generation Completed: addNotify
+// [GUI Memory]: 102 MB (+861kb) [01:52:42]
+// HMemoryUtils.trashcanNow. Engine heap size: 1,434 MB. GUI used memory: 48 MB. Current time: 8/4/20 2:05:44 AM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,434 MB. GUI used memory: 48 MB. Current time: 8/4/20 2:35:44 AM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,450 MB. GUI used memory: 48 MB. Current time: 8/4/20 3:05:44 AM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,450 MB. GUI used memory: 48 MB. Current time: 8/4/20 3:35:44 AM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,450 MB. GUI used memory: 48 MB. Current time: 8/4/20 4:05:44 AM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,450 MB. GUI used memory: 48 MB. Current time: 8/4/20 4:35:45 AM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,450 MB. GUI used memory: 48 MB. Current time: 8/4/20 5:05:45 AM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,450 MB. GUI used memory: 48 MB. Current time: 8/4/20 5:35:45 AM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,482 MB. GUI used memory: 48 MB. Current time: 8/4/20 6:00:05 AM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,482 MB. GUI used memory: 49 MB. Current time: 8/4/20 6:30:05 AM CEST
+// [GUI Memory]: 107 MB (+96kb) [06:50:26]
+// HMemoryUtils.trashcanNow. Engine heap size: 1,482 MB. GUI used memory: 48 MB. Current time: 8/4/20 7:00:05 AM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,482 MB. GUI used memory: 48 MB. Current time: 8/4/20 7:30:05 AM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,482 MB. GUI used memory: 48 MB. Current time: 8/4/20 8:00:05 AM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,482 MB. GUI used memory: 48 MB. Current time: 8/4/20 8:30:05 AM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,482 MB. GUI used memory: 48 MB. Current time: 8/4/20 9:00:05 AM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,482 MB. GUI used memory: 48 MB. Current time: 8/4/20 9:30:05 AM CEST
+// Elapsed time: 34487 seconds
+selectRadioButton(PAResourceCommand.PACommandNames_REPORTS_WINDOW, "View Reports"); // a (Q, ah)
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (ah)
+// Run Command: PAResourceCommand.PACommandNames_REPORTS_WINDOW
+dismissDialog("Bitstream Generation Completed"); // ah (ck)
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_02_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_02_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_03_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_03_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_04_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_04_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_06_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_06_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_08_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_08_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_09_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_09_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_09_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_09_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_09_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_09_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_08_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_08_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_08_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_08_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_08_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_08_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_08_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_08_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_08_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_08_1 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,483 MB. GUI used memory: 48 MB. Current time: 8/4/20 10:00:06 AM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,483 MB. GUI used memory: 48 MB. Current time: 8/4/20 10:30:06 AM CEST
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /rx_clk_in_p_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /rx_clk_in_p_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /rx_frame_in_n_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /rx_frame_in_n_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gps_pps_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gps_pps_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /up_txnrx_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /up_txnrx_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /up_txnrx_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /up_txnrx_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /up_txnrx_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /up_txnrx_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /up_txnrx_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /up_txnrx_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /up_txnrx_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /up_txnrx_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /up_txnrx_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /up_txnrx_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /tdd_sync_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /tdd_sync_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /rx_data_in_n_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /rx_data_in_n_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /rx_frame_in_p_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /rx_frame_in_p_1 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,483 MB. GUI used memory: 48 MB. Current time: 8/4/20 11:00:06 AM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,483 MB. GUI used memory: 48 MB. Current time: 8/4/20 11:30:06 AM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,483 MB. GUI used memory: 47 MB. Current time: 8/4/20 12:00:06 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,547 MB. GUI used memory: 48 MB. Current time: 8/4/20 12:12:31 PM CEST
+// [Engine Memory]: 1,547 MB (+61035kb) [12:24:17]
+// HMemoryUtils.trashcanNow. Engine heap size: 1,547 MB. GUI used memory: 47 MB. Current time: 8/4/20 12:42:31 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,547 MB. GUI used memory: 47 MB. Current time: 8/4/20 1:12:31 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,547 MB. GUI used memory: 47 MB. Current time: 8/4/20 1:42:31 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,547 MB. GUI used memory: 48 MB. Current time: 8/4/20 2:12:31 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,547 MB. GUI used memory: 47 MB. Current time: 8/4/20 2:42:31 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,547 MB. GUI used memory: 47 MB. Current time: 8/4/20 3:12:31 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,547 MB. GUI used memory: 47 MB. Current time: 8/4/20 3:42:32 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,547 MB. GUI used memory: 47 MB. Current time: 8/4/20 4:12:32 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,547 MB. GUI used memory: 47 MB. Current time: 8/4/20 4:42:32 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,547 MB. GUI used memory: 48 MB. Current time: 8/4/20 5:12:32 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,547 MB. GUI used memory: 47 MB. Current time: 8/4/20 5:42:32 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,547 MB. GUI used memory: 48 MB. Current time: 8/4/20 6:12:32 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,547 MB. GUI used memory: 47 MB. Current time: 8/4/20 6:42:32 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,547 MB. GUI used memory: 48 MB. Current time: 8/4/20 7:12:32 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,547 MB. GUI used memory: 47 MB. Current time: 8/4/20 7:42:32 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,547 MB. GUI used memory: 47 MB. Current time: 8/4/20 8:12:32 PM CEST

@@ -182,4 +182,4 @@ obj-$(CONFIG_FPGA)		+= fpga/
 obj-$(CONFIG_FSI)		+= fsi/
 obj-$(CONFIG_TEE)		+= tee/
 obj-$(CONFIG_MULTIPLEXER)	+= mux/
-obj-$(CONFIG_AXITIMER) 		+= timer/
+obj-$(CONFIG_TXTIMING) 		+= txtiming/

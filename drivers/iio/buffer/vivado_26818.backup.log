@@ -1,0 +1,937 @@
+#-----------------------------------------------------------
+# Vivado v2018.2 (64-bit)
+# SW Build 2258646 on Thu Jun 14 20:02:38 MDT 2018
+# IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+# Start of session at: Mon Aug  3 14:42:14 2020
+# Process ID: 26818
+# Current directory: /home/warpadmin/BoardSetup/adrv9361-linux/drivers/iio/buffer
+# Command line: vivado
+# Log file: /home/warpadmin/BoardSetup/adrv9361-linux/drivers/iio/buffer/vivado.log
+# Journal file: /home/warpadmin/BoardSetup/adrv9361-linux/drivers/iio/buffer/vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.xpr
+Scanning sources...
+Finished scanning sources
+WARNING: [filemgmt 56-3] IP Repository Path: Could not find the directory '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0'.
+WARNING: [filemgmt 56-3] IP Repository Path: Could not find the directory '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0'.
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/tx_timing_1.0'.
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+WARNING: [IP_Flow 19-2207] Repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0' already exists; ignoring attempt to add it again.
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/library'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2018.2/data/ip'.
+open_project: Time (s): cpu = 00:00:09 ; elapsed = 00:00:06 . Memory (MB): peak = 6191.148 ; gain = 199.598 ; free physical = 21565 ; free virtual = 30568
+update_compile_order -fileset sources_1
+open_bd_design {/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd}
+Adding cell -- xilinx.com:ip:processing_system7:5.5 - sys_ps7
+Adding cell -- xilinx.com:ip:axi_iic:2.0 - axi_iic_main
+Adding cell -- xilinx.com:ip:xlconcat:2.1 - sys_concat_intc
+Adding cell -- xilinx.com:ip:proc_sys_reset:5.0 - sys_rstgen
+Adding cell -- xilinx.com:ip:util_vector_logic:2.0 - sys_logic_inv
+Adding cell -- xilinx.com:ip:xlconcat:2.1 - util_ad9361_divclk_sel_concat
+Adding cell -- xilinx.com:ip:util_reduced_logic:2.0 - util_ad9361_divclk_sel
+Adding cell -- xilinx.com:ip:proc_sys_reset:5.0 - util_ad9361_divclk_reset
+Adding cell -- xilinx.com:ip:gmii_to_rgmii:4.0 - sys_rgmii
+Adding cell -- xilinx.com:ip:proc_sys_reset:5.0 - sys_rgmii_rstgen
+Adding cell -- xilinx.com:ip:clk_wiz:6.0 - sys_audio_clkgen
+Adding cell -- analog.com:user:axi_ad9361:1.0 - axi_ad9361
+Adding cell -- analog.com:user:util_rfifo:1.0 - axi_ad9361_dac_fifo
+Adding cell -- analog.com:user:axi_gpreg:1.0 - axi_gpreg
+Adding cell -- analog.com:user:axi_clkgen:1.0 - axi_hdmi_clkgen
+Adding cell -- analog.com:user:axi_hdmi_tx:1.0 - axi_hdmi_core
+Adding cell -- analog.com:user:axi_i2s_adi:1.0 - axi_i2s_adi
+Adding cell -- analog.com:user:axi_xcvrlb:1.0 - axi_pz_xcvrlb
+Adding cell -- analog.com:user:axi_spdif_tx:1.0 - axi_spdif_tx_core
+Adding cell -- analog.com:user:util_wfifo:1.0 - util_ad9361_adc_fifo
+Adding cell -- analog.com:user:util_cpack:1.0 - util_ad9361_adc_pack
+Adding cell -- analog.com:user:util_upack:1.0 - util_ad9361_dac_upack
+Adding cell -- analog.com:user:util_clkdiv:1.0 - util_ad9361_divclk
+Adding cell -- analog.com:user:util_tdd_sync:1.0 - util_ad9361_tdd_sync
+Adding cell -- xilinx.com:ip:c_counter_binary:12.0 - c_counter_binary_0
+Adding cell -- xilinx.com:ip:ila:6.2 - ila_0
+INFO: [xilinx.com:ip:ila:6.2-6] /ila_0: Xilinx recommends using the System ILA IP in IP Integrator. The System ILA IP is functionally equivalent to an ILA and offers additional benefits in debugging interfaces both within IP Integrator and the Hardware Manager. Consult the Programming and Debug User Guide UG908 for further details.
+Adding cell -- user.org:user:tx_timing:1.0 - tx_timing_0
+Adding cell -- analog.com:user:axi_dmac:1.0 - axi_ad9361_adc_dma
+Adding cell -- analog.com:user:axi_dmac:1.0 - axi_ad9361_dac_dma
+Adding cell -- analog.com:user:axi_dmac:1.0 - axi_hdmi_dma
+WARNING: [BD 41-1731] Type mismatch between connected pins: /util_ad9361_divclk/clk_out(clk) and /tx_timing_0/clk_rf(undef)
+Adding cell -- xilinx.com:ip:axi_crossbar:2.1 - xbar
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Successfully read diagram <system> from BD file </home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd>
+launch_runs impl_2 -to_step write_bitstream -jobs 4
+INFO: [BD 41-1662] The design 'system.bd' is already validated. Therefore parameter propagation will not be re-run.
+Wrote  : </home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/ui/bd_c954508f.ui> 
+VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/synth/system.v
+VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/sim/system.v
+VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hdl/system_wrapper.v
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_ps7 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_iic_main .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_concat_intc .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rstgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_logic_inv .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_tdd_sync .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk_sel_concat .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk_sel .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk_reset .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_adc_fifo .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_adc_pack .
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagebehavioralsimulation", cannot add it again.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_adc_dma .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_dac_fifo .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_dac_upack .
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagebehavioralsimulation", cannot add it again.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_dac_dma .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rgmii .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rgmii_rstgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_clkgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_core .
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagebehavioralsimulation", cannot add it again.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_dma .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_audio_clkgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_spdif_tx_core .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_i2s_adi .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_pz_xcvrlb .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_gpreg .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_cpu_interconnect/xbar .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block c_counter_binary_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block tx_timing_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ila_0 .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/ip/system_auto_pc_0/system_auto_pc_0_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_cpu_interconnect/s00_couplers/auto_pc .
+Exporting to file /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hw_handoff/system.hwh
+Generated Block Design Tcl file /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hw_handoff/system_bd.tcl
+Generated Hardware Definition File /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/synth/system.hwdef
+[Mon Aug  3 14:44:06 2020] Launched synth_1...
+Run output will be captured here: /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.runs/synth_1/runme.log
+[Mon Aug  3 14:44:06 2020] Launched impl_2...
+Run output will be captured here: /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.runs/impl_2/runme.log
+WARNING: [IP_Flow 19-4318] IP-XACT file does not exist: /home/warpadmin/BoardSetup/adi-hw/hdl/library/axi_dmac/component.xml. It will be created.
+update_ip_catalog -rebuild -scan_changes
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/tx_timing_1.0'.
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+WARNING: [IP_Flow 19-2207] Repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0' already exists; ignoring attempt to add it again.
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/library'.
+report_ip_status -name ip_status
+upgrade_ip [get_ips  {system_axi_ad9361_adc_dma_0 system_axi_ad9361_dac_dma_0 system_axi_hdmi_dma_0}] -log ip_upgrade.log
+Upgrading '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd'
+INFO: [IP_Flow 19-1972] Upgraded system_axi_ad9361_adc_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0
+INFO: [IP_Flow 19-1972] Upgraded system_axi_ad9361_dac_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0
+INFO: [IP_Flow 19-1972] Upgraded system_axi_hdmi_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0
+Wrote  : </home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd> 
+Wrote  : </home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/ui/bd_c954508f.ui> 
+INFO: [Coretcl 2-1525] Wrote upgrade log to '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/ip_upgrade.log'.
+export_ip_user_files -of_objects [get_ips {system_axi_ad9361_adc_dma_0 system_axi_ad9361_dac_dma_0 system_axi_hdmi_dma_0}] -no_script -sync -force -quiet
+report_ip_status -name ip_status 
+reset_run synth_1
+launch_runs impl_2 -to_step write_bitstream -jobs 4
+WARNING: [#UNDEF] When using EMIO pins for SPI_0 tie SSIN High in the PL bitstream
+WARNING: [#UNDEF] When using EMIO pins for SPI_1 tie SSIN High in the PL bitstream
+WARNING: [BD 41-927] Following properties on pin /axi_ad9361/delay_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_sys_ps7_0_FCLK_CLK1 
+WARNING: [BD 41-927] Following properties on pin /axi_ad9361/l_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_axi_ad9361_0_l_clk 
+WARNING: [BD 41-927] Following properties on pin /axi_ad9361/clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_axi_ad9361_0_l_clk 
+WARNING: [BD 41-927] Following properties on pin /axi_ad9361/s_axi_aclk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_sys_ps7_0_FCLK_CLK0 
+WARNING: [BD 41-927] Following properties on pin /axi_ad9361_dac_fifo/din_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_util_ad9361_divclk_0_clk_out 
+WARNING: [BD 41-927] Following properties on pin /axi_ad9361_dac_fifo/dout_rst have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	POLARITY=ACTIVE_HIGH 
+WARNING: [BD 41-927] Following properties on pin /axi_ad9361_dac_fifo/dout_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_axi_ad9361_0_l_clk 
+WARNING: [BD 41-927] Following properties on pin /axi_gpreg/s_axi_aclk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_sys_ps7_0_FCLK_CLK0 
+WARNING: [BD 41-927] Following properties on pin /axi_hdmi_core/hdmi_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_axi_hdmi_clkgen_0_clk_0 
+WARNING: [BD 41-927] Following properties on pin /axi_hdmi_core/hdmi_out_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_axi_hdmi_core_0_hdmi_out_clk 
+WARNING: [BD 41-927] Following properties on pin /axi_hdmi_core/vdma_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_sys_ps7_0_FCLK_CLK0 
+WARNING: [BD 41-927] Following properties on pin /axi_hdmi_core/s_axi_aclk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_sys_ps7_0_FCLK_CLK0 
+WARNING: [BD 41-927] Following properties on pin /axi_i2s_adi/data_clk_i have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_sys_audio_clkgen_0_clk_out1 
+WARNING: [BD 41-927] Following properties on pin /axi_i2s_adi/dma_req_tx_aclk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_sys_ps7_0_FCLK_CLK0 
+WARNING: [BD 41-927] Following properties on pin /axi_i2s_adi/dma_req_rx_aclk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_sys_ps7_0_FCLK_CLK0 
+WARNING: [BD 41-927] Following properties on pin /axi_i2s_adi/s_axi_aclk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_sys_ps7_0_FCLK_CLK0 
+WARNING: [BD 41-927] Following properties on pin /axi_pz_xcvrlb/s_axi_aclk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_sys_ps7_0_FCLK_CLK0 
+WARNING: [BD 41-927] Following properties on pin /axi_spdif_tx_core/spdif_data_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_sys_audio_clkgen_0_clk_out1 
+WARNING: [BD 41-927] Following properties on pin /axi_spdif_tx_core/s_axi_aclk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_sys_ps7_0_FCLK_CLK0 
+WARNING: [BD 41-927] Following properties on pin /axi_spdif_tx_core/dma_req_aclk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_sys_ps7_0_FCLK_CLK0 
+WARNING: [BD 41-927] Following properties on pin /util_ad9361_adc_fifo/din_rst have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	POLARITY=ACTIVE_HIGH 
+WARNING: [BD 41-927] Following properties on pin /util_ad9361_adc_fifo/din_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_axi_ad9361_0_l_clk 
+WARNING: [BD 41-927] Following properties on pin /util_ad9361_adc_fifo/dout_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_util_ad9361_divclk_0_clk_out 
+WARNING: [BD 41-927] Following properties on pin /util_ad9361_adc_pack/adc_rst have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	POLARITY=ACTIVE_HIGH 
+WARNING: [BD 41-927] Following properties on pin /util_ad9361_adc_pack/adc_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_util_ad9361_divclk_0_clk_out 
+WARNING: [BD 41-927] Following properties on pin /util_ad9361_dac_upack/dac_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_util_ad9361_divclk_0_clk_out 
+WARNING: [BD 41-927] Following properties on pin /util_ad9361_divclk/clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_axi_ad9361_0_l_clk 
+WARNING: [BD 41-927] Following properties on pin /util_ad9361_divclk/clk_out have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_util_ad9361_divclk_0_clk_out 
+WARNING: [BD 41-927] Following properties on pin /util_ad9361_tdd_sync/clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_sys_ps7_0_FCLK_CLK0 
+Wrote  : </home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd> 
+VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/synth/system.v
+VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/sim/system.v
+VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hdl/system_wrapper.v
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_ps7 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_iic_main .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_concat_intc .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rstgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_logic_inv .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_tdd_sync .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk_sel_concat .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk_sel .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk_reset .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_adc_fifo .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_adc_pack .
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagebehavioralsimulation", cannot add it again.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_adc_dma .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_dac_fifo .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_dac_upack .
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagebehavioralsimulation", cannot add it again.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_dac_dma .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rgmii .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rgmii_rstgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_clkgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_core .
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagebehavioralsimulation", cannot add it again.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_dma .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_audio_clkgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_spdif_tx_core .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_i2s_adi .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_pz_xcvrlb .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_gpreg .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_cpu_interconnect/xbar .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block c_counter_binary_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block tx_timing_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ila_0 .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/ip/system_auto_pc_0/system_auto_pc_0_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_cpu_interconnect/s00_couplers/auto_pc .
+Exporting to file /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hw_handoff/system.hwh
+Generated Block Design Tcl file /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hw_handoff/system_bd.tcl
+Generated Hardware Definition File /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/synth/system.hwdef
+[Mon Aug  3 14:48:34 2020] Launched synth_1...
+Run output will be captured here: /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.runs/synth_1/runme.log
+[Mon Aug  3 14:48:34 2020] Launched impl_2...
+Run output will be captured here: /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.runs/impl_2/runme.log
+launch_runs: Time (s): cpu = 00:00:07 ; elapsed = 00:00:06 . Memory (MB): peak = 6795.379 ; gain = 44.266 ; free physical = 21306 ; free virtual = 30351
+report_ip_status -name ip_status 
+WARNING: [IP_Flow 19-4318] IP-XACT file does not exist: /home/warpadmin/BoardSetup/adi-hw/hdl/library/axi_dmac/component.xml. It will be created.
+report_ip_status -name ip_status 
+update_ip_catalog -rebuild -scan_changes
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/tx_timing_1.0'.
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+WARNING: [IP_Flow 19-2207] Repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0' already exists; ignoring attempt to add it again.
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/library'.
+report_ip_status -name ip_status
+upgrade_ip [get_ips  {system_axi_ad9361_adc_dma_0 system_axi_ad9361_dac_dma_0 system_axi_hdmi_dma_0}] -log ip_upgrade.log
+Upgrading '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd'
+INFO: [IP_Flow 19-1972] Upgraded system_axi_ad9361_adc_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0
+INFO: [IP_Flow 19-1972] Upgraded system_axi_ad9361_dac_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0
+INFO: [IP_Flow 19-1972] Upgraded system_axi_hdmi_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0
+Wrote  : </home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd> 
+INFO: [Coretcl 2-1525] Wrote upgrade log to '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/ip_upgrade.log'.
+export_ip_user_files -of_objects [get_ips {system_axi_ad9361_adc_dma_0 system_axi_ad9361_dac_dma_0 system_axi_hdmi_dma_0}] -no_script -sync -force -quiet
+report_ip_status -name ip_status 
+report_ip_status -name ip_status 
+reset_run synth_1
+launch_runs impl_2 -to_step write_bitstream -jobs 4
+WARNING: [#UNDEF] When using EMIO pins for SPI_0 tie SSIN High in the PL bitstream
+WARNING: [#UNDEF] When using EMIO pins for SPI_1 tie SSIN High in the PL bitstream
+WARNING: [BD 41-927] Following properties on pin /axi_ad9361/delay_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_sys_ps7_0_FCLK_CLK1 
+WARNING: [BD 41-927] Following properties on pin /axi_ad9361/l_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_axi_ad9361_0_l_clk 
+WARNING: [BD 41-927] Following properties on pin /axi_ad9361/clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_axi_ad9361_0_l_clk 
+WARNING: [BD 41-927] Following properties on pin /axi_ad9361/s_axi_aclk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_sys_ps7_0_FCLK_CLK0 
+WARNING: [BD 41-927] Following properties on pin /axi_ad9361_dac_fifo/din_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_util_ad9361_divclk_0_clk_out 
+WARNING: [BD 41-927] Following properties on pin /axi_ad9361_dac_fifo/dout_rst have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	POLARITY=ACTIVE_HIGH 
+WARNING: [BD 41-927] Following properties on pin /axi_ad9361_dac_fifo/dout_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_axi_ad9361_0_l_clk 
+WARNING: [BD 41-927] Following properties on pin /axi_gpreg/s_axi_aclk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_sys_ps7_0_FCLK_CLK0 
+WARNING: [BD 41-927] Following properties on pin /axi_hdmi_core/hdmi_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_axi_hdmi_clkgen_0_clk_0 
+WARNING: [BD 41-927] Following properties on pin /axi_hdmi_core/hdmi_out_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_axi_hdmi_core_0_hdmi_out_clk 
+WARNING: [BD 41-927] Following properties on pin /axi_hdmi_core/vdma_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_sys_ps7_0_FCLK_CLK0 
+WARNING: [BD 41-927] Following properties on pin /axi_hdmi_core/s_axi_aclk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_sys_ps7_0_FCLK_CLK0 
+WARNING: [BD 41-927] Following properties on pin /axi_i2s_adi/data_clk_i have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_sys_audio_clkgen_0_clk_out1 
+WARNING: [BD 41-927] Following properties on pin /axi_i2s_adi/dma_req_tx_aclk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_sys_ps7_0_FCLK_CLK0 
+WARNING: [BD 41-927] Following properties on pin /axi_i2s_adi/dma_req_rx_aclk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_sys_ps7_0_FCLK_CLK0 
+WARNING: [BD 41-927] Following properties on pin /axi_i2s_adi/s_axi_aclk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_sys_ps7_0_FCLK_CLK0 
+WARNING: [BD 41-927] Following properties on pin /axi_pz_xcvrlb/s_axi_aclk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_sys_ps7_0_FCLK_CLK0 
+WARNING: [BD 41-927] Following properties on pin /axi_spdif_tx_core/spdif_data_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_sys_audio_clkgen_0_clk_out1 
+WARNING: [BD 41-927] Following properties on pin /axi_spdif_tx_core/s_axi_aclk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_sys_ps7_0_FCLK_CLK0 
+WARNING: [BD 41-927] Following properties on pin /axi_spdif_tx_core/dma_req_aclk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_sys_ps7_0_FCLK_CLK0 
+WARNING: [BD 41-927] Following properties on pin /util_ad9361_adc_fifo/din_rst have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	POLARITY=ACTIVE_HIGH 
+WARNING: [BD 41-927] Following properties on pin /util_ad9361_adc_fifo/din_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_axi_ad9361_0_l_clk 
+WARNING: [BD 41-927] Following properties on pin /util_ad9361_adc_fifo/dout_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_util_ad9361_divclk_0_clk_out 
+WARNING: [BD 41-927] Following properties on pin /util_ad9361_adc_pack/adc_rst have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	POLARITY=ACTIVE_HIGH 
+WARNING: [BD 41-927] Following properties on pin /util_ad9361_adc_pack/adc_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_util_ad9361_divclk_0_clk_out 
+WARNING: [BD 41-927] Following properties on pin /util_ad9361_dac_upack/dac_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_util_ad9361_divclk_0_clk_out 
+WARNING: [BD 41-927] Following properties on pin /util_ad9361_divclk/clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_axi_ad9361_0_l_clk 
+WARNING: [BD 41-927] Following properties on pin /util_ad9361_divclk/clk_out have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_util_ad9361_divclk_0_clk_out 
+WARNING: [BD 41-927] Following properties on pin /util_ad9361_tdd_sync/clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_sys_ps7_0_FCLK_CLK0 
+Wrote  : </home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd> 
+VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/synth/system.v
+VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/sim/system.v
+VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hdl/system_wrapper.v
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_ps7 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_iic_main .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_concat_intc .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rstgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_logic_inv .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_tdd_sync .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk_sel_concat .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk_sel .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk_reset .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_adc_fifo .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_adc_pack .
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagebehavioralsimulation", cannot add it again.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_adc_dma .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_dac_fifo .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_dac_upack .
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagebehavioralsimulation", cannot add it again.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_dac_dma .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rgmii .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rgmii_rstgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_clkgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_core .
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagebehavioralsimulation", cannot add it again.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_dma .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_audio_clkgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_spdif_tx_core .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_i2s_adi .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_pz_xcvrlb .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_gpreg .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_cpu_interconnect/xbar .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block c_counter_binary_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block tx_timing_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ila_0 .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/ip/system_auto_pc_0/system_auto_pc_0_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_cpu_interconnect/s00_couplers/auto_pc .
+Exporting to file /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hw_handoff/system.hwh
+Generated Block Design Tcl file /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hw_handoff/system_bd.tcl
+Generated Hardware Definition File /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/synth/system.hwdef
+[Mon Aug  3 14:58:46 2020] Launched synth_1...
+Run output will be captured here: /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.runs/synth_1/runme.log
+[Mon Aug  3 14:58:46 2020] Launched impl_2...
+Run output will be captured here: /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.runs/impl_2/runme.log
+launch_runs: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 7195.184 ; gain = 0.000 ; free physical = 21028 ; free virtual = 30129
+WARNING: [IP_Flow 19-4318] IP-XACT file does not exist: /home/warpadmin/BoardSetup/adi-hw/hdl/library/util_rfifo/component.xml. It will be created.
+WARNING: [IP_Flow 19-4318] IP-XACT file does not exist: /home/warpadmin/BoardSetup/adi-hw/hdl/library/util_clkdiv/component.xml. It will be created.
+WARNING: [IP_Flow 19-4318] IP-XACT file does not exist: /home/warpadmin/BoardSetup/adi-hw/hdl/library/util_cpack/component.xml. It will be created.
+WARNING: [IP_Flow 19-4318] IP-XACT file does not exist: /home/warpadmin/BoardSetup/adi-hw/hdl/library/axi_clkgen/component.xml. It will be created.
+WARNING: [IP_Flow 19-4318] IP-XACT file does not exist: /home/warpadmin/BoardSetup/adi-hw/hdl/library/axi_spdif_tx/component.xml. It will be created.
+WARNING: [IP_Flow 19-4318] IP-XACT file does not exist: /home/warpadmin/BoardSetup/adi-hw/hdl/library/axi_dmac/component.xml. It will be created.
+WARNING: [IP_Flow 19-4318] IP-XACT file does not exist: /home/warpadmin/BoardSetup/adi-hw/hdl/library/axi_gpreg/component.xml. It will be created.
+WARNING: [IP_Flow 19-4318] IP-XACT file does not exist: /home/warpadmin/BoardSetup/adi-hw/hdl/library/util_wfifo/component.xml. It will be created.
+WARNING: [IP_Flow 19-4318] IP-XACT file does not exist: /home/warpadmin/BoardSetup/adi-hw/hdl/library/xilinx/axi_xcvrlb/component.xml. It will be created.
+WARNING: [IP_Flow 19-4318] IP-XACT file does not exist: /home/warpadmin/BoardSetup/adi-hw/hdl/library/axi_hdmi_tx/component.xml. It will be created.
+WARNING: [IP_Flow 19-4318] IP-XACT file does not exist: /home/warpadmin/BoardSetup/adi-hw/hdl/library/util_upack/component.xml. It will be created.
+WARNING: [IP_Flow 19-4318] IP-XACT file does not exist: /home/warpadmin/BoardSetup/adi-hw/hdl/library/axi_i2s_adi/component.xml. It will be created.
+WARNING: [IP_Flow 19-4318] IP-XACT file does not exist: /home/warpadmin/BoardSetup/adi-hw/hdl/library/axi_ad9361/component.xml. It will be created.
+WARNING: [IP_Flow 19-4318] IP-XACT file does not exist: /home/warpadmin/BoardSetup/adi-hw/hdl/library/util_tdd_sync/component.xml. It will be created.
+update_ip_catalog -rebuild -scan_changes
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/tx_timing_1.0'.
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+WARNING: [IP_Flow 19-2207] Repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0' already exists; ignoring attempt to add it again.
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/library'.
+report_ip_status -name ip_status
+upgrade_ip [get_ips  {system_axi_ad9361_adc_dma_0 system_axi_hdmi_clkgen_0 system_axi_hdmi_core_0 system_axi_i2s_adi_0 system_util_ad9361_adc_pack_0 system_util_ad9361_divclk_0 system_axi_gpreg_0 system_util_ad9361_tdd_sync_0 system_axi_ad9361_dac_fifo_0 system_util_ad9361_dac_upack_0 system_axi_ad9361_dac_dma_0 system_axi_spdif_tx_core_0 system_axi_pz_xcvrlb_0 system_util_ad9361_adc_fifo_0 system_axi_hdmi_dma_0 system_axi_ad9361_0}] -log ip_upgrade.log
+Upgrading '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd'
+INFO: [IP_Flow 19-1972] Upgraded system_axi_ad9361_0 from axi_ad9361_v1_0 1.0 to axi_ad9361_v1_0 1.0
+INFO: [IP_Flow 19-1972] Upgraded system_axi_ad9361_adc_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0
+INFO: [IP_Flow 19-1972] Upgraded system_axi_ad9361_dac_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0
+INFO: [IP_Flow 19-1972] Upgraded system_axi_ad9361_dac_fifo_0 from util_rfifo_v1_0 1.0 to util_rfifo_v1_0 1.0
+INFO: [IP_Flow 19-1972] Upgraded system_axi_gpreg_0 from axi_gpreg_v1_0 1.0 to axi_gpreg_v1_0 1.0
+INFO: [IP_Flow 19-1972] Upgraded system_axi_hdmi_clkgen_0 from axi_clkgen_v1_0 1.0 to axi_clkgen_v1_0 1.0
+INFO: [IP_Flow 19-1972] Upgraded system_axi_hdmi_core_0 from axi_hdmi_tx_v1_0 1.0 to axi_hdmi_tx_v1_0 1.0
+INFO: [IP_Flow 19-1972] Upgraded system_axi_hdmi_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0
+INFO: [IP_Flow 19-1972] Upgraded system_axi_i2s_adi_0 from axi_i2s_adi_v1_0 1.0 to axi_i2s_adi_v1_0 1.0
+INFO: [IP_Flow 19-1972] Upgraded system_axi_pz_xcvrlb_0 from axi_xcvrlb_v1_0 1.0 to axi_xcvrlb_v1_0 1.0
+INFO: [IP_Flow 19-1972] Upgraded system_axi_spdif_tx_core_0 from axi_spdif_tx_v1_0 1.0 to axi_spdif_tx_v1_0 1.0
+INFO: [IP_Flow 19-1972] Upgraded system_util_ad9361_adc_fifo_0 from util_wfifo_v1_0 1.0 to util_wfifo_v1_0 1.0
+INFO: [IP_Flow 19-1972] Upgraded system_util_ad9361_adc_pack_0 from util_cpack_v1_0 1.0 to util_cpack_v1_0 1.0
+INFO: [IP_Flow 19-1972] Upgraded system_util_ad9361_dac_upack_0 from util_upack_v1_0 1.0 to util_upack_v1_0 1.0
+INFO: [IP_Flow 19-1972] Upgraded system_util_ad9361_divclk_0 from util_clkdiv_v1_0 1.0 to util_clkdiv_v1_0 1.0
+WARNING: [BD 41-1731] Type mismatch between connected pins: /tx_timing_0/clk_rf(undef) and /util_ad9361_divclk_upgraded_ipi/clk_out(clk)
+INFO: [IP_Flow 19-1972] Upgraded system_util_ad9361_tdd_sync_0 from util_tdd_sync_v1_0 1.0 to util_tdd_sync_v1_0 1.0
+Wrote  : </home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd> 
+Wrote  : </home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/ui/bd_c954508f.ui> 
+INFO: [Coretcl 2-1525] Wrote upgrade log to '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/ip_upgrade.log'.
+export_ip_user_files -of_objects [get_ips {system_axi_ad9361_adc_dma_0 system_axi_hdmi_clkgen_0 system_axi_hdmi_core_0 system_axi_i2s_adi_0 system_util_ad9361_adc_pack_0 system_util_ad9361_divclk_0 system_axi_gpreg_0 system_util_ad9361_tdd_sync_0 system_axi_ad9361_dac_fifo_0 system_util_ad9361_dac_upack_0 system_axi_ad9361_dac_dma_0 system_axi_spdif_tx_core_0 system_axi_pz_xcvrlb_0 system_util_ad9361_adc_fifo_0 system_axi_hdmi_dma_0 system_axi_ad9361_0}] -no_script -sync -force -quiet
+reset_run synth_1
+launch_runs impl_2 -to_step write_bitstream -jobs 4
+WARNING: [#UNDEF] When using EMIO pins for SPI_0 tie SSIN High in the PL bitstream
+WARNING: [#UNDEF] When using EMIO pins for SPI_1 tie SSIN High in the PL bitstream
+WARNING: [BD 41-927] Following properties on pin /axi_ad9361/l_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_axi_ad9361_0_l_clk 
+WARNING: [BD 41-927] Following properties on pin /axi_hdmi_core/hdmi_out_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_axi_hdmi_core_0_hdmi_out_clk 
+WARNING: [BD 41-927] Following properties on pin /util_ad9361_divclk/clk_out have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_util_ad9361_divclk_0_clk_out 
+Wrote  : </home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd> 
+VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/synth/system.v
+VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/sim/system.v
+VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hdl/system_wrapper.v
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_ps7 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_iic_main .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_concat_intc .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rstgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_logic_inv .
+WARNING: [IP_Flow 19-1971] File named "../xilinx/common/up_xfer_cntrl_constr.xdc" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../xilinx/common/ad_rst_constr.xdc" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../xilinx/common/up_xfer_status_constr.xdc" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../xilinx/common/up_clock_mon_constr.xdc" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_tdd_sync .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk_sel_concat .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk_sel .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk_reset .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_adc_fifo .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_adc_pack .
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagebehavioralsimulation", cannot add it again.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_adc_dma .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_dac_fifo .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_dac_upack .
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagebehavioralsimulation", cannot add it again.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_dac_dma .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rgmii .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rgmii_rstgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_clkgen .
+WARNING: [IP_Flow 19-1971] File named "../xilinx/common/up_xfer_cntrl_constr.xdc" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../xilinx/common/ad_rst_constr.xdc" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../xilinx/common/up_xfer_status_constr.xdc" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../xilinx/common/up_clock_mon_constr.xdc" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_core .
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagebehavioralsimulation", cannot add it again.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_dma .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_audio_clkgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_spdif_tx_core .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_i2s_adi .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_pz_xcvrlb .
+WARNING: [IP_Flow 19-1971] File named "../xilinx/common/ad_rst_constr.xdc" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_gpreg .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_cpu_interconnect/xbar .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block c_counter_binary_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block tx_timing_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ila_0 .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/ip/system_auto_pc_0/system_auto_pc_0_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_cpu_interconnect/s00_couplers/auto_pc .
+Exporting to file /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hw_handoff/system.hwh
+Generated Block Design Tcl file /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hw_handoff/system_bd.tcl
+Generated Hardware Definition File /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/synth/system.hwdef
+[Mon Aug  3 15:26:25 2020] Launched synth_1...
+Run output will be captured here: /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.runs/synth_1/runme.log
+[Mon Aug  3 15:26:25 2020] Launched impl_2...
+Run output will be captured here: /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.runs/impl_2/runme.log
+launch_runs: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 7195.184 ; gain = 0.000 ; free physical = 20834 ; free virtual = 29992
+report_ip_status -name ip_status 
+WARNING: [IP_Flow 19-4318] IP-XACT file does not exist: /home/warpadmin/BoardSetup/adi-hw/hdl/library/axi_dmac/component.xml. It will be created.
+update_ip_catalog -rebuild -scan_changes
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/tx_timing_1.0'.
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+WARNING: [IP_Flow 19-2207] Repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0' already exists; ignoring attempt to add it again.
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/library'.
+report_ip_status -name ip_status
+upgrade_ip [get_ips  {system_axi_ad9361_adc_dma_0 system_axi_ad9361_dac_dma_0 system_axi_hdmi_dma_0}] -log ip_upgrade.log
+Upgrading '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd'
+INFO: [IP_Flow 19-1972] Upgraded system_axi_ad9361_adc_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0
+INFO: [IP_Flow 19-1972] Upgraded system_axi_ad9361_dac_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0
+INFO: [IP_Flow 19-1972] Upgraded system_axi_hdmi_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0
+Wrote  : </home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd> 
+INFO: [Coretcl 2-1525] Wrote upgrade log to '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/ip_upgrade.log'.
+export_ip_user_files -of_objects [get_ips {system_axi_ad9361_adc_dma_0 system_axi_ad9361_dac_dma_0 system_axi_hdmi_dma_0}] -no_script -sync -force -quiet
+report_ip_status -name ip_status 
+report_ip_status -name ip_status 
+report_ip_status -name ip_status 
+reset_run synth_1
+launch_runs impl_2 -to_step write_bitstream -jobs 4
+WARNING: [#UNDEF] When using EMIO pins for SPI_0 tie SSIN High in the PL bitstream
+WARNING: [#UNDEF] When using EMIO pins for SPI_1 tie SSIN High in the PL bitstream
+WARNING: [BD 41-927] Following properties on pin /axi_ad9361/l_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_axi_ad9361_0_l_clk 
+WARNING: [BD 41-927] Following properties on pin /axi_hdmi_core/hdmi_out_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_axi_hdmi_core_0_hdmi_out_clk 
+WARNING: [BD 41-927] Following properties on pin /util_ad9361_divclk/clk_out have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_util_ad9361_divclk_0_clk_out 
+Wrote  : </home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd> 
+VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/synth/system.v
+VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/sim/system.v
+VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hdl/system_wrapper.v
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_ps7 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_iic_main .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_concat_intc .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rstgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_logic_inv .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_tdd_sync .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk_sel_concat .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk_sel .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk_reset .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_adc_fifo .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_adc_pack .
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagebehavioralsimulation", cannot add it again.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_adc_dma .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_dac_fifo .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_dac_upack .
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagebehavioralsimulation", cannot add it again.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_dac_dma .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rgmii .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rgmii_rstgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_clkgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_core .
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagebehavioralsimulation", cannot add it again.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_dma .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_audio_clkgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_spdif_tx_core .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_i2s_adi .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_pz_xcvrlb .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_gpreg .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_cpu_interconnect/xbar .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block c_counter_binary_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block tx_timing_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ila_0 .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/ip/system_auto_pc_0/system_auto_pc_0_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_cpu_interconnect/s00_couplers/auto_pc .
+Exporting to file /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hw_handoff/system.hwh
+Generated Block Design Tcl file /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hw_handoff/system_bd.tcl
+Generated Hardware Definition File /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/synth/system.hwdef
+[Mon Aug  3 16:41:38 2020] Launched synth_1...
+Run output will be captured here: /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.runs/synth_1/runme.log
+[Mon Aug  3 16:41:38 2020] Launched impl_2...
+Run output will be captured here: /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.runs/impl_2/runme.log
+launch_runs: Time (s): cpu = 00:00:07 ; elapsed = 00:00:06 . Memory (MB): peak = 7195.184 ; gain = 0.000 ; free physical = 19435 ; free virtual = 29339
+WARNING: [IP_Flow 19-3899] Cannot get the environment domain name variable for the component vendor name. Setting the vendor name to 'user.org'.
+WARNING: [IP_Flow 19-4318] IP-XACT file does not exist: /home/warpadmin/BoardSetup/adi-hw/hdl/library/axi_dmac/component.xml. It will be created.
+update_ip_catalog -rebuild -scan_changes
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/tx_timing_1.0'.
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+WARNING: [IP_Flow 19-2207] Repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0' already exists; ignoring attempt to add it again.
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/library'.
+WARNING: [IP_Flow 19-3899] Cannot get the environment domain name variable for the component vendor name. Setting the vendor name to 'user.org'.
+report_ip_status -name ip_status
+report_ip_status -name ip_status 
+upgrade_ip [get_ips  {system_axi_ad9361_adc_dma_0 system_axi_ad9361_dac_dma_0 system_axi_hdmi_dma_0}] -log ip_upgrade.log
+Upgrading '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd'
+INFO: [IP_Flow 19-1972] Upgraded system_axi_ad9361_adc_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0
+INFO: [IP_Flow 19-1972] Upgraded system_axi_ad9361_dac_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0
+INFO: [IP_Flow 19-1972] Upgraded system_axi_hdmi_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0
+Wrote  : </home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd> 
+INFO: [Coretcl 2-1525] Wrote upgrade log to '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/ip_upgrade.log'.
+export_ip_user_files -of_objects [get_ips {system_axi_ad9361_adc_dma_0 system_axi_ad9361_dac_dma_0 system_axi_hdmi_dma_0}] -no_script -sync -force -quiet
+reset_run synth_1
+launch_runs impl_2 -to_step write_bitstream -jobs 4
+WARNING: [#UNDEF] When using EMIO pins for SPI_0 tie SSIN High in the PL bitstream
+WARNING: [#UNDEF] When using EMIO pins for SPI_1 tie SSIN High in the PL bitstream
+WARNING: [BD 41-927] Following properties on pin /axi_ad9361/l_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_axi_ad9361_0_l_clk 
+WARNING: [BD 41-927] Following properties on pin /axi_hdmi_core/hdmi_out_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_axi_hdmi_core_0_hdmi_out_clk 
+WARNING: [BD 41-927] Following properties on pin /util_ad9361_divclk/clk_out have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_util_ad9361_divclk_0_clk_out 
+Wrote  : </home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd> 
+VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/synth/system.v
+VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/sim/system.v
+VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hdl/system_wrapper.v
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_ps7 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_iic_main .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_concat_intc .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rstgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_logic_inv .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_tdd_sync .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk_sel_concat .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk_sel .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk_reset .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_adc_fifo .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_adc_pack .
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagebehavioralsimulation", cannot add it again.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_adc_dma .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_dac_fifo .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_dac_upack .
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagebehavioralsimulation", cannot add it again.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_dac_dma .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rgmii .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rgmii_rstgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_clkgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_core .
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagebehavioralsimulation", cannot add it again.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_dma .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_audio_clkgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_spdif_tx_core .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_i2s_adi .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_pz_xcvrlb .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_gpreg .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_cpu_interconnect/xbar .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block c_counter_binary_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block tx_timing_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ila_0 .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/ip/system_auto_pc_0/system_auto_pc_0_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_cpu_interconnect/s00_couplers/auto_pc .
+Exporting to file /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hw_handoff/system.hwh
+Generated Block Design Tcl file /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hw_handoff/system_bd.tcl
+Generated Hardware Definition File /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/synth/system.hwdef
+[Mon Aug  3 23:05:37 2020] Launched synth_1...
+Run output will be captured here: /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.runs/synth_1/runme.log
+[Mon Aug  3 23:05:37 2020] Launched impl_2...
+Run output will be captured here: /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.runs/impl_2/runme.log
+launch_runs: Time (s): cpu = 00:00:07 ; elapsed = 00:00:06 . Memory (MB): peak = 7195.184 ; gain = 0.000 ; free physical = 18936 ; free virtual = 29040
+WARNING: [IP_Flow 19-4318] IP-XACT file does not exist: /home/warpadmin/BoardSetup/adi-hw/hdl/library/axi_dmac/component.xml. It will be created.
+update_ip_catalog -rebuild -scan_changes
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/tx_timing_1.0'.
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+WARNING: [IP_Flow 19-2207] Repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0' already exists; ignoring attempt to add it again.
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/library'.
+WARNING: [IP_Flow 19-3899] Cannot get the environment domain name variable for the component vendor name. Setting the vendor name to 'user.org'.
+report_ip_status -name ip_status
+upgrade_ip [get_ips  {system_axi_ad9361_adc_dma_0 system_axi_ad9361_dac_dma_0 system_axi_hdmi_dma_0}] -log ip_upgrade.log
+Upgrading '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd'
+INFO: [IP_Flow 19-1972] Upgraded system_axi_ad9361_adc_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0
+INFO: [IP_Flow 19-1972] Upgraded system_axi_ad9361_dac_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0
+INFO: [IP_Flow 19-1972] Upgraded system_axi_hdmi_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0
+Wrote  : </home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd> 
+INFO: [Coretcl 2-1525] Wrote upgrade log to '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/ip_upgrade.log'.
+export_ip_user_files -of_objects [get_ips {system_axi_ad9361_adc_dma_0 system_axi_ad9361_dac_dma_0 system_axi_hdmi_dma_0}] -no_script -sync -force -quiet
+report_ip_status -name ip_status 
+reset_run synth_1
+launch_runs impl_2 -to_step write_bitstream -jobs 4
+WARNING: [#UNDEF] When using EMIO pins for SPI_0 tie SSIN High in the PL bitstream
+WARNING: [#UNDEF] When using EMIO pins for SPI_1 tie SSIN High in the PL bitstream
+WARNING: [BD 41-927] Following properties on pin /axi_ad9361/l_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_axi_ad9361_0_l_clk 
+WARNING: [BD 41-927] Following properties on pin /axi_hdmi_core/hdmi_out_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_axi_hdmi_core_0_hdmi_out_clk 
+WARNING: [BD 41-927] Following properties on pin /util_ad9361_divclk/clk_out have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_util_ad9361_divclk_0_clk_out 
+Wrote  : </home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd> 
+VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/synth/system.v
+VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/sim/system.v
+VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hdl/system_wrapper.v
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_ps7 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_iic_main .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_concat_intc .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rstgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_logic_inv .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_tdd_sync .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk_sel_concat .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk_sel .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk_reset .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_adc_fifo .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_adc_pack .
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagebehavioralsimulation", cannot add it again.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_adc_dma .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_dac_fifo .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_dac_upack .
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagebehavioralsimulation", cannot add it again.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_dac_dma .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rgmii .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rgmii_rstgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_clkgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_core .
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagebehavioralsimulation", cannot add it again.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_dma .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_audio_clkgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_spdif_tx_core .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_i2s_adi .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_pz_xcvrlb .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_gpreg .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_cpu_interconnect/xbar .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block c_counter_binary_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block tx_timing_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ila_0 .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/ip/system_auto_pc_0/system_auto_pc_0_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_cpu_interconnect/s00_couplers/auto_pc .
+Exporting to file /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hw_handoff/system.hwh
+Generated Block Design Tcl file /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hw_handoff/system_bd.tcl
+Generated Hardware Definition File /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/synth/system.hwdef
+[Mon Aug  3 23:16:06 2020] Launched synth_1...
+Run output will be captured here: /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.runs/synth_1/runme.log
+[Mon Aug  3 23:16:06 2020] Launched impl_2...
+Run output will be captured here: /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.runs/impl_2/runme.log
+launch_runs: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 7230.070 ; gain = 0.000 ; free physical = 18972 ; free virtual = 29050
+WARNING: [IP_Flow 19-4318] IP-XACT file does not exist: /home/warpadmin/BoardSetup/adi-hw/hdl/library/axi_dmac/component.xml. It will be created.
+update_ip_catalog -rebuild -scan_changes
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/tx_timing_1.0'.
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+WARNING: [IP_Flow 19-2207] Repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0' already exists; ignoring attempt to add it again.
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/library'.
+WARNING: [IP_Flow 19-3899] Cannot get the environment domain name variable for the component vendor name. Setting the vendor name to 'user.org'.
+report_ip_status -name ip_status
+upgrade_ip [get_ips  {system_axi_ad9361_adc_dma_0 system_axi_ad9361_dac_dma_0 system_axi_hdmi_dma_0}] -log ip_upgrade.log
+Upgrading '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd'
+INFO: [IP_Flow 19-1972] Upgraded system_axi_ad9361_adc_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0
+INFO: [IP_Flow 19-1972] Upgraded system_axi_ad9361_dac_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0
+INFO: [IP_Flow 19-1972] Upgraded system_axi_hdmi_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0
+Wrote  : </home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd> 
+INFO: [Coretcl 2-1525] Wrote upgrade log to '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/ip_upgrade.log'.
+export_ip_user_files -of_objects [get_ips {system_axi_ad9361_adc_dma_0 system_axi_ad9361_dac_dma_0 system_axi_hdmi_dma_0}] -no_script -sync -force -quiet
+report_ip_status -name ip_status 
+reset_run synth_1
+launch_runs impl_2 -to_step write_bitstream -jobs 4
+WARNING: [#UNDEF] When using EMIO pins for SPI_0 tie SSIN High in the PL bitstream
+WARNING: [#UNDEF] When using EMIO pins for SPI_1 tie SSIN High in the PL bitstream
+WARNING: [BD 41-927] Following properties on pin /axi_ad9361/l_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_axi_ad9361_0_l_clk 
+WARNING: [BD 41-927] Following properties on pin /axi_hdmi_core/hdmi_out_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_axi_hdmi_core_0_hdmi_out_clk 
+WARNING: [BD 41-927] Following properties on pin /util_ad9361_divclk/clk_out have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_util_ad9361_divclk_0_clk_out 
+Wrote  : </home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd> 
+VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/synth/system.v
+VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/sim/system.v
+VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hdl/system_wrapper.v
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_ps7 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_iic_main .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_concat_intc .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rstgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_logic_inv .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_tdd_sync .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk_sel_concat .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk_sel .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk_reset .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_adc_fifo .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_adc_pack .
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagebehavioralsimulation", cannot add it again.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_adc_dma .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_dac_fifo .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_dac_upack .
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagebehavioralsimulation", cannot add it again.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_dac_dma .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rgmii .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rgmii_rstgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_clkgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_core .
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagebehavioralsimulation", cannot add it again.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_dma .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_audio_clkgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_spdif_tx_core .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_i2s_adi .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_pz_xcvrlb .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_gpreg .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_cpu_interconnect/xbar .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block c_counter_binary_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block tx_timing_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ila_0 .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/ip/system_auto_pc_0/system_auto_pc_0_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_cpu_interconnect/s00_couplers/auto_pc .
+Exporting to file /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hw_handoff/system.hwh
+Generated Block Design Tcl file /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hw_handoff/system_bd.tcl
+Generated Hardware Definition File /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/synth/system.hwdef
+[Mon Aug  3 23:22:51 2020] Launched synth_1...
+Run output will be captured here: /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.runs/synth_1/runme.log
+[Mon Aug  3 23:22:51 2020] Launched impl_2...
+Run output will be captured here: /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.runs/impl_2/runme.log
+launch_runs: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 7296.059 ; gain = 12.461 ; free physical = 18885 ; free virtual = 28966
+reset_run impl_2
+WARNING: [IP_Flow 19-4318] IP-XACT file does not exist: /home/warpadmin/BoardSetup/adi-hw/hdl/library/axi_dmac/component.xml. It will be created.
+update_ip_catalog -rebuild -scan_changes
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/tx_timing_1.0'.
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+WARNING: [IP_Flow 19-2207] Repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0' already exists; ignoring attempt to add it again.
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/library'.
+WARNING: [IP_Flow 19-3899] Cannot get the environment domain name variable for the component vendor name. Setting the vendor name to 'user.org'.
+report_ip_status -name ip_status
+upgrade_ip [get_ips  {system_axi_ad9361_adc_dma_0 system_axi_ad9361_dac_dma_0 system_axi_hdmi_dma_0}] -log ip_upgrade.log
+Upgrading '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd'
+INFO: [IP_Flow 19-1972] Upgraded system_axi_ad9361_adc_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0
+INFO: [IP_Flow 19-1972] Upgraded system_axi_ad9361_dac_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0
+INFO: [IP_Flow 19-1972] Upgraded system_axi_hdmi_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0
+Wrote  : </home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd> 
+INFO: [Coretcl 2-1525] Wrote upgrade log to '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/ip_upgrade.log'.
+export_ip_user_files -of_objects [get_ips {system_axi_ad9361_adc_dma_0 system_axi_ad9361_dac_dma_0 system_axi_hdmi_dma_0}] -no_script -sync -force -quiet
+report_ip_status -name ip_status 
+reset_run synth_1
+launch_runs impl_2 -to_step write_bitstream -jobs 4
+WARNING: [#UNDEF] When using EMIO pins for SPI_0 tie SSIN High in the PL bitstream
+WARNING: [#UNDEF] When using EMIO pins for SPI_1 tie SSIN High in the PL bitstream
+WARNING: [BD 41-927] Following properties on pin /axi_ad9361/l_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_axi_ad9361_0_l_clk 
+WARNING: [BD 41-927] Following properties on pin /axi_hdmi_core/hdmi_out_clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_axi_hdmi_core_0_hdmi_out_clk 
+WARNING: [BD 41-927] Following properties on pin /util_ad9361_divclk/clk_out have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_util_ad9361_divclk_0_clk_out 
+Wrote  : </home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd> 
+VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/synth/system.v
+VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/sim/system.v
+VHDL Output written to : /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hdl/system_wrapper.v
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_ps7 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_iic_main .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_concat_intc .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rstgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_logic_inv .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_tdd_sync .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk_sel_concat .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk_sel .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_divclk_reset .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_adc_fifo .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_adc_pack .
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagebehavioralsimulation", cannot add it again.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_adc_dma .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_dac_fifo .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block util_ad9361_dac_upack .
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagebehavioralsimulation", cannot add it again.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ad9361_dac_dma .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rgmii .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_rgmii_rstgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_clkgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_core .
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagesynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "../../ipshared/common/ad_mem.v" already exists in file group "xilinx_anylanguagebehavioralsimulation", cannot add it again.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_hdmi_dma .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sys_audio_clkgen .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_spdif_tx_core .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_i2s_adi .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_pz_xcvrlb .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_gpreg .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_cpu_interconnect/xbar .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block c_counter_binary_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block tx_timing_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ila_0 .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/ip/system_auto_pc_0/system_auto_pc_0_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_cpu_interconnect/s00_couplers/auto_pc .
+Exporting to file /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hw_handoff/system.hwh
+Generated Block Design Tcl file /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/hw_handoff/system_bd.tcl
+Generated Hardware Definition File /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/synth/system.hwdef
+[Mon Aug  3 23:33:50 2020] Launched synth_1...
+Run output will be captured here: /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.runs/synth_1/runme.log
+[Mon Aug  3 23:33:50 2020] Launched impl_2...
+Run output will be captured here: /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.runs/impl_2/runme.log
+launch_runs: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 7357.949 ; gain = 0.000 ; free physical = 18783 ; free virtual = 28920
+WARNING: [IP_Flow 19-4318] IP-XACT file does not exist: /home/warpadmin/BoardSetup/adi-hw/hdl/library/axi_dmac/component.xml. It will be created.
+update_ip_catalog -rebuild -scan_changes
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/tx_timing_1.0'.
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+WARNING: [IP_Flow 19-2207] Repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0' already exists; ignoring attempt to add it again.
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/txtiming_1.0'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/library'.
+WARNING: [IP_Flow 19-3899] Cannot get the environment domain name variable for the component vendor name. Setting the vendor name to 'user.org'.
+report_ip_status -name ip_status
+upgrade_ip [get_ips  {system_axi_ad9361_adc_dma_0 system_axi_ad9361_dac_dma_0 system_axi_hdmi_dma_0}] -log ip_upgrade.log
+Upgrading '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd'
+INFO: [IP_Flow 19-1972] Upgraded system_axi_ad9361_adc_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0
+INFO: [IP_Flow 19-1972] Upgraded system_axi_ad9361_dac_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0
+INFO: [IP_Flow 19-1972] Upgraded system_axi_hdmi_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0
+Wrote  : </home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd> 
+INFO: [Coretcl 2-1525] Wrote upgrade log to '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/ip_upgrade.log'.
+export_ip_user_files -of_objects [get_ips {system_axi_ad9361_adc_dma_0 system_axi_ad9361_dac_dma_0 system_axi_hdmi_dma_0}] -no_script -sync -force -quiet

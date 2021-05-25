@@ -29,6 +29,9 @@
  */
 #define VLAN_ETH_DATA_LEN	1500	/* Max. octets in payload	 */
 #define VLAN_ETH_FRAME_LEN	1518	/* Max. octets in frame sans FCS */
+//
+//#define VLAN_ETH_DATA_LEN	9000	/* Samie Max. octets in payload	 */
+//#define VLAN_ETH_FRAME_LEN	9018	/* Samie Max. octets in frame sans FCS */
 
 /*
  * 	struct vlan_hdr - vlan header

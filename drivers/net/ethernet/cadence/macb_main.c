@@ -3543,7 +3543,7 @@ static const struct macb_config at91sam9260_config = {
 	.clk_init = macb_clk_init,
 	.init = macb_init,
 };
-
+	
 static const struct macb_config pc302gem_config = {
 	.caps = MACB_CAPS_SG_DISABLED | MACB_CAPS_GIGABIT_MODE_AVAILABLE,
 	.dma_burst_length = 16,
@@ -3580,7 +3580,7 @@ static const struct macb_config emac_config = {
 };
 
 static const struct macb_config np4_config = {
-	.caps = MACB_CAPS_USRIO_DISABLED,
+	.caps = MACB_CAPS_USRIO_DISABLED, 
 	.clk_init = macb_clk_init,
 	.init = macb_init,
 };
@@ -3600,6 +3600,7 @@ static const struct macb_config zynq_config = {
 	.dma_burst_length = 16,
 	.clk_init = macb_clk_init,
 	.init = macb_init,
+	.jumbo_max_len = 10240,
 };
 
 static const struct of_device_id macb_dt_ids[] = {
@@ -3729,10 +3730,15 @@ static int macb_probe(struct platform_device *pdev)
 
 	/* MTU range: 68 - 1500 or 10240 */
 	dev->min_mtu = GEM_MTU_MIN_SIZE;
+	// Samie
 	if (bp->caps & MACB_CAPS_JUMBO)
+	{
 		dev->max_mtu = gem_readl(bp, JML) - ETH_HLEN - ETH_FCS_LEN;
+	}
 	else
+	{
 		dev->max_mtu = ETH_DATA_LEN;
+	}
 
 	mac = of_get_mac_address(np);
 	if (mac)

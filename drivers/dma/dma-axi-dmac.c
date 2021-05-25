@@ -70,13 +70,30 @@
 #define AXI_DMAC_REG_CURRENT_SRC_ADDR	0x434
 #define AXI_DMAC_REG_CURRENT_DEST_ADDR	0x438
 #define AXI_DMAC_REG_DBG0		0x43c
-#define AXI_DMAC_REG_DBG1		0x440
-#define AXI_DMAC_REG_DBG2		0x444
-#define AXI_DMAC_REG_PARTIAL_XFER_LEN	0x44c
-#define AXI_DMAC_REG_PARTIAL_XFER_ID	0x450
-#define AXI_DMAC_REG_RTIMESTAMP_LSB	0x454 // Read Timestamp Register Address 115 in HW
-#define AXI_DMAC_REG_RTIMESTAMP_MSB	0x458 // Read Timestamp Register Address 116 in HW
-// CAUTION: 0x462 (117) and 0x466 (118) does not work!
+#define AXI_DMAC_REG_DBG1		0x440 // 110
+#define AXI_DMAC_REG_DBG2		0x444 // 111
+//#define AXI_DMAC_REG_DBG3		0x448 // up_measured_transfer_length 112
+#define AXI_DMAC_REG_PARTIAL_XFER_LEN	0x44c // Len 113
+#define AXI_DMAC_REG_PARTIAL_XFER_ID	0x450 // ID 114
+
+#define AXI_DMAC_REG_TIMESTAMPA0_LSB	0x454 // Read Timestamp Register Address 115 in HW
+#define AXI_DMAC_REG_TIMESTAMPA0_MSB	0x458 // Read Timestamp Register Address 116 in HW
+#define AXI_DMAC_REG_TIMESTAMPA1_LSB	0x45c // Read Timestamp Register Address 117 in HW
+#define AXI_DMAC_REG_TIMESTAMPA1_MSB	0x460 // Read Timestamp Register Address 118 in HW
+#define AXI_DMAC_REG_TIMESTAMPA2_LSB	0x464 // Read Timestamp Register Address 119 in HW
+#define AXI_DMAC_REG_TIMESTAMPA2_MSB	0x468 // Read Timestamp Register Address 11a in HW
+#define AXI_DMAC_REG_TIMESTAMPA3_LSB	0x46c // Read Timestamp Register Address 11b in HW
+#define AXI_DMAC_REG_TIMESTAMPA3_MSB	0x470 // Read Timestamp Register Address 11c in HW
+
+#define AXI_DMAC_REG_TIMESTAMPB0_LSB	0x474 // Read Timestamp Register Address 11d in HW
+#define AXI_DMAC_REG_TIMESTAMPB0_MSB	0x478 // Read Timestamp Register Address 11e in HW
+#define AXI_DMAC_REG_TIMESTAMPB1_LSB	0x47c // Read Timestamp Register Address 11f in HW
+#define AXI_DMAC_REG_TIMESTAMPB1_MSB	0x480 // Read Timestamp Register Address 120 in HW
+#define AXI_DMAC_REG_TIMESTAMPB2_LSB	0x484 // Read Timestamp Register Address 121 in HW
+#define AXI_DMAC_REG_TIMESTAMPB2_MSB	0x488 // Read Timestamp Register Address 122 in HW
+#define AXI_DMAC_REG_TIMESTAMPB3_LSB	0x48c // Read Timestamp Register Address 123 in HW
+#define AXI_DMAC_REG_TIMESTAMPB3_MSB	0x490 // Read Timestamp Register Address 124 in HW
+
 
 #define AXI_DMAC_CTRL_ENABLE		BIT(0)
 #define AXI_DMAC_CTRL_PAUSE		BIT(1)
@@ -95,28 +112,28 @@
 /* The maximum ID allocated by the hardware is 31 */
 #define AXI_DMAC_SG_UNUSED 32U
 
-#define GPIO0_DATA0     0x41210000      // Enable signals (4 bits)
-#define GPIO0_DATA1     0x41210008      // Valid signals  (4 bits)
+#define GPIO_BASEADDR   0x43c00000
 
-#define GPIO1_DATA0     0x41220000      // tx timestamp lsb
-#define GPIO1_DATA1     0x41220008      // tx timestamp msb
+#define GPIO0_DATA0     0x43c00000      // Enable signals
+#define GPIO0_DATA1     0x43c00004      // Valid signals
 
-#define GPIO2_DATA0     0x41230000      // tx timestamp lsb
-#define GPIO2_DATA1     0x41230008      // tx timestamp msb
+#define GPIO1_DATA0     0x43c00008      // tx timestamp lsb
+#define GPIO1_DATA1     0x43c0000c      // tx timestamp msb
 
-#define GPIO3_DATA0     0x41240000      // tx timestamp lsb
-#define GPIO3_DATA1     0x41240008      // tx timestamp msb
+#define GPIO2_DATA0     0x43c00010      // tx timestamp lsb
+#define GPIO2_DATA1     0x43c00014      // tx timestamp msb
 
-#define GPIO4_DATA0     0x41250000      // tx timestamp lsb
-#define GPIO4_DATA1     0x41250008      // tx timestamp msb
+#define GPIO3_DATA0     0x43c00018      // tx timestamp lsb
+#define GPIO3_DATA1     0x43c0001c      // tx timestamp msb
 
-#define aTIMER_TCR0     0x41260000      // address of timer 0's counter register
-#define aTIMER_TCR1     0x41260008      // address of timer 1's counter register
+#define GPIO4_DATA0     0x43c00020      // tx timestamp lsb
+#define GPIO4_DATA1     0x43c00024      // tx timestamp msb
 
-bool tx_transfer_ongoing = false;
+#define aTIMER_TCR0     0x43c00028      // address of timer 0's counter register
+#define aTIMER_TCR1     0x43c0002c      // address of timer 1's counter register
 
-unsigned char* pGPIO0_DATA0; // Enable signal
-unsigned char* pGPIO0_DATA1; // Valid signal
+unsigned long* pGPIO0_DATA0; // Enable signal
+unsigned long* pGPIO0_DATA1; // Valid signal
 
 unsigned long* pGPIO1_DATA0; // tx timestamp lsb
 unsigned long* pGPIO1_DATA1; // tx timestamp msb
@@ -195,66 +212,52 @@ struct axi_dmac {
 #endif
 };
 
-uint64_t adc_inter_timestamp0 = 0;
-EXPORT_SYMBOL_GPL(adc_inter_timestamp0);
+#define TRANSFER_DELAY_TS 500 	// 5 us
+#define LATE_DURATION_TS 3000 	// 30 us
+#define TRNSF_DURATION_TS 10000 // 100 us it was 500
 
-uint64_t adc_inter_timestamp1 = 0;
-EXPORT_SYMBOL_GPL(adc_inter_timestamp1);
+enum tx_transfer_type {
+	notimestamp, 
+	late,
+	early,
+	good
+};
 
-uint64_t adc_inter_timestamp2 = 0;
-EXPORT_SYMBOL_GPL(adc_inter_timestamp2);
+struct tx_transfer_cmd {
+	uint64_t timestamp;
+	uint64_t duration;
+	uint16_t driver_id;
+        uint16_t size_less;
+} tx_cmds[4];
+EXPORT_SYMBOL_GPL(tx_cmds);
 
-uint64_t adc_inter_timestamp3 = 0;
-EXPORT_SYMBOL_GPL(adc_inter_timestamp3);
+struct tx_transfer_res {
+	enum tx_transfer_type type;
+	uint64_t est_finish_time;
+} tx_ress[4];
 
-uint64_t dac_inter_timestamp0 = 0;
-EXPORT_SYMBOL_GPL(dac_inter_timestamp0);
+struct tx_transfer_stat {
+	uint16_t idcounter;
+	uint16_t lates;
+	uint16_t earlies;
+	uint16_t drops;
+	int32_t sot_cmd;
+} tx_stat;
+EXPORT_SYMBOL_GPL(tx_stat);
 
-uint64_t dac_inter_timestamp1 = 0;
-EXPORT_SYMBOL_GPL(dac_inter_timestamp1);
+uint64_t rx_timestamps[4];
+EXPORT_SYMBOL_GPL(rx_timestamps);
 
-uint64_t dac_inter_timestamp2 = 0;
-EXPORT_SYMBOL_GPL(dac_inter_timestamp2);
+uint32_t rxidcounters[4];
+EXPORT_SYMBOL_GPL(rxidcounters);
 
-uint64_t dac_inter_timestamp3 = 0;
-EXPORT_SYMBOL_GPL(dac_inter_timestamp3);
+static uint32_t rxidcounter = 0;
+static uint16_t txidcounter = 0;
+static uint16_t acclates = 0;
+static uint16_t accearlies = 0;
+static uint16_t accdrops = 0;
+uint64_t timehwPrev = 0;
 
-uint64_t dif_inter_timestamp0 = 0;
-EXPORT_SYMBOL_GPL(dif_inter_timestamp0);
-
-uint64_t dif_inter_timestamp1 = 0;
-EXPORT_SYMBOL_GPL(dif_inter_timestamp1);
-
-uint64_t dif_inter_timestamp2 = 0;
-EXPORT_SYMBOL_GPL(dif_inter_timestamp2);
-
-uint64_t dif_inter_timestamp3 = 0;
-EXPORT_SYMBOL_GPL(dif_inter_timestamp3);
-
-int dif_inter_num = 0;
-EXPORT_SYMBOL_GPL(dif_inter_num);
-
-uint32_t txid_inter_timestamp0 = 0;
-EXPORT_SYMBOL_GPL(txid_inter_timestamp0);
-
-uint32_t txid_inter_timestamp1 = 0;
-EXPORT_SYMBOL_GPL(txid_inter_timestamp1);
-
-uint32_t txid_inter_timestamp2 = 0;
-EXPORT_SYMBOL_GPL(txid_inter_timestamp2);
-
-uint32_t txid_inter_timestamp3 = 0;
-EXPORT_SYMBOL_GPL(txid_inter_timestamp3);
-
-static bool dif_tx_late0 = false;
-static bool dif_tx_late1 = false;
-static bool dif_tx_late2 = false;
-static bool dif_tx_late3 = false;
-
-static bool dif_tx_early0 = false;
-static bool dif_tx_early1 = false;
-static bool dif_tx_early2 = false;
-static bool dif_tx_early3 = false;
 
 static struct axi_dmac *chan_to_axi_dmac(struct axi_dmac_chan *chan)
 {
@@ -330,12 +333,44 @@ static uint64_t axi_dmac_axitimer_read(void)
         return timerval;
 }
 
-static uint16_t idcounter = 0;
-static int acclates = 0;
-static int accearlies = 0;
-static int accdrops = 0;
-uint64_t timehwPrev = 0;
+static struct axi_dmac_desc *axi_dmac_active_desc(struct axi_dmac_chan *chan)
+{
+	return list_first_entry_or_null(&chan->active_descs,
+		struct axi_dmac_desc, vdesc.node);
+}
 
+
+// Caution: using this function needs a special condition: 
+// NO FRONT BLOCK
+static void artificial_transfer_done(struct axi_dmac_chan *chan)
+{
+	struct axi_dmac_desc *active;
+        struct axi_dmac *dmac = chan_to_axi_dmac(chan);
+        struct axi_dmac_sg *sg;
+
+        active = axi_dmac_active_desc(chan);
+        if (!active)
+        {
+		printk("[axi dmac] no active artificial transfer done\n");
+	}
+
+        sg = &active->sg[active->num_completed];
+
+        active->num_completed++;
+        sg->id = AXI_DMAC_SG_UNUSED;
+        if (sg->schedule_when_free) 
+        	sg->schedule_when_free = false;
+
+        if (active->num_completed == active->num_sgs) 
+	{
+                list_del(&active->vdesc.node);
+                vchan_cookie_complete(&active->vdesc);
+        }
+}
+
+
+
+static int acc_overlapping_samples = 0;
 static void axi_dmac_start_transfer(struct axi_dmac_chan *chan)
 {
 	struct axi_dmac *dmac = chan_to_axi_dmac(chan);
@@ -351,21 +386,21 @@ static void axi_dmac_start_transfer(struct axi_dmac_chan *chan)
 	int dev_id;
 	uint8_t regVal = 0;
 	unsigned int transfer_id_eot = 0;
-	uint64_t timenow = 0;
-	uint16_t txid = 0;
-	uint16_t txsize = 0;
-	bool tx_late = false;
-	bool tx_early = false;
-	int rem_trs = 0;
-	int samples_num = 0;
-	int block_clk_num = 0;
+	int blck_front_id = 0;
 	struct timeval tv;
 	unsigned long ts_micro = 0;
-	char stat[5];
+	char stat[10];
+	int repsize = 0;
+	uint64_t timenow = 0;
+
+	// TX transfer metadata
+	uint64_t txtimestamp = 0;
+	uint16_t txid = 0;
+	uint16_t txsize = 0;
+	uint64_t txduration = 0;
 
 	dev_id = dmac->dma_dev.dev_id;
 
-	//ECL debug 1
 	//printk("[DBG][drivers][dma-axi-dmac][axi_dmac_start_transfer][chan][start_counter: %d][dir: %d][cyclic: %d]\n",start_counter,chan->direction,chan->hw_cyclic);
 	//printk("[DBG][drivers][dma-axi-dmac][axi_dmac_start_transfer][chan][hw_partial_xfer: %d][hw_2d: %d]\n",chan->hw_partial_xfer,chan->hw_2d);
 
@@ -378,7 +413,6 @@ static void axi_dmac_start_transfer(struct axi_dmac_chan *chan)
 
 	desc = chan->next_desc;
 
-	//ECL debug 2
 	//printk("[DBG][drivers][dma-axi-dmac][axi_dmac_start_transfer][desc][num_submitted: %d][num_completed: %d][num_sgs: %d]\n",&desc->num_submitted,&desc->num_completed,&desc->num_sgs);
 
 	if (!desc) {
@@ -444,214 +478,156 @@ static void axi_dmac_start_transfer(struct axi_dmac_chan *chan)
 	//printk("[DBG][drivers][dma-axi-dmac][axi_dmac_start_transfer][sg->x_len: %d][sg->y_len: %d]\n",sg->x_len-1,sg->y_len-1);
 	//printk("[DBG][drivers][dma-axi-dmac] TX buffer before transmit timestamp:%llu, size:%d \n", dac_inter_timestamp, (int)sg->x_len);
 
-	// If the device is not HDMI and it is TX: TIMING 1) latch low timing controller enable signal, so everything waits
+
+	// If the device is not HDMI and it is TX:
         if(chan->direction == 1 && (dev_id == 0 || dev_id == 1))
         {
-		// Find the number of remaining transactions
-		transfer_id_eot = axi_dmac_read(dmac,AXI_DMAC_REG_ACTIVE_TRANSFER_ID);
-		rem_trs = sg->id - transfer_id_eot;
-		if(rem_trs < 0)
-			rem_trs += 4;
-
-		if(rem_trs > 0)
-			rem_trs = rem_trs - 1;
-
-		// Find the number of samples = (size/4 -6-1500)
-		samples_num = (sg->x_len >> 2)-6-1500;
-
-		// Number of clock cycles for one block is the number of samples*4
-		block_clk_num = samples_num << 2;
-
-		// In the case that the clock is 100MHz
-		// block_clk_num = 100000;
-
-		// Get the current timestamp
-		timenow = axi_dmac_axitimer_read();
-		do_gettimeofday(&tv);
-		ts_micro = 1000000 * tv.tv_sec + tv.tv_usec;
-
-		if(sg->id == 0)
-		{
-			txid = (uint16_t) txid_inter_timestamp0;
-                        txsize = txid_inter_timestamp0 >> 16;
-
-			// Set LATE flag to drop the block
-			if(dac_inter_timestamp0 < timenow+(block_clk_num*rem_trs))
-			{
-				strncpy(stat,"LATE",5);
-				tx_late = true;
-				dif_tx_late0 = true;
-				acclates++;
-			}
-			
-			// Set EARLY flag to drop the block. 4 blocks can be tolerated otherwise iio_push will be blocked
-			if(dac_inter_timestamp0 > timenow+(block_clk_num*4))
-			{
-				strncpy(stat,"EARL",5);
-				tx_early = true;
-				dif_tx_early0 = true;
-				accearlies++;
-			}
-				
-			// GPIO_0_DATA_0 = 0, set enable: 11111110 = 254
-			if((!tx_late) && (!tx_early))
-			{
-				strncpy(stat,"GOOD",5);
-				regVal = ioread8(pGPIO0_DATA0);
-				regVal = regVal & 254;
-				iowrite8(regVal,pGPIO0_DATA0);
-			}
-				
-			printk("Start tx %s, id: 0, force tx timestamp: %llu, transfer_id_eot: %d, txId: %d, hardware time:%llu, fr - hwt: %lld, time: %lu, txsize: %d, rem_trs: %d, hw_dif: %llu\n", stat, dac_inter_timestamp0,transfer_id_eot,txid,timenow,(int64_t)(dac_inter_timestamp0-timenow),ts_micro,txsize,rem_trs, timenow-timehwPrev);
-		}
-		else if(sg->id == 1)
-		{
-			txid = (uint16_t) txid_inter_timestamp1;
-                        txsize = txid_inter_timestamp1 >> 16;
-			
-			// Set LATE flag to drop the block. 
-			if(dac_inter_timestamp1 < timenow+(block_clk_num*rem_trs))
-			{
-				strncpy(stat,"LATE",5);
-				regVal = ioread8(pGPIO0_DATA0);
-				tx_late = true;
-				dif_tx_late1 = true;
-				acclates++;
-			}
-			
-			// Set EARLY flag to drop the block. 4 blocks can be tolerated otherwise iio_push will be blocked
-			if(dac_inter_timestamp1 > timenow+(block_clk_num*4))
-			{
-				strncpy(stat,"EARL",5);
-				regVal = ioread8(pGPIO0_DATA0);
-				tx_early = true;
-				dif_tx_early1 = true;
-				accearlies++;
-			}
-			
-			// GPIO_0_DATA_0 = 0, set enable: 11111101 = 253
-			if((!tx_late) && (!tx_early))
-			{
-				strncpy(stat,"GOOD",5);
-				regVal = ioread8(pGPIO0_DATA0);
-				regVal = ioread8(pGPIO0_DATA0);
-				regVal = regVal & 253;
-				iowrite8(regVal,pGPIO0_DATA0);
-			}
-
-			printk("Start tx %s, id: 1, force tx timestamp: %llu, transfer_id_eot: %d, txId: %d, hardware time:%llu, fr - hwt: %lld, time: %lu, txsize: %d, rem_trs: %d, hw_dif: %llu\n",stat,dac_inter_timestamp1,transfer_id_eot,txid,timenow,(int64_t)(dac_inter_timestamp1-timenow),ts_micro,txsize,rem_trs, timenow-timehwPrev);
-		}
-		else if(sg->id == 2)
-		{
-			txid = (uint16_t) txid_inter_timestamp2;
-                        txsize = txid_inter_timestamp2 >> 16;
-			
-			// Set LATE flag to drop the block
-			if(dac_inter_timestamp2 < timenow+(block_clk_num*rem_trs))
-			{
-				strncpy(stat,"LATE",5);
-				tx_late = true;
-				dif_tx_late2 = true;
-				acclates++;
-			}
-			
-			// Set EARLY flag to drop the block. 4 blocks can be tolerated otherwise iio_push will be blocked
-			if(dac_inter_timestamp2 > timenow+(block_clk_num*4))
-			{
-				strncpy(stat,"EARL",5);
-				tx_early = true;
-				dif_tx_early2 = true;
-				accearlies++;
-			}
-			
-			// GPIO_0_DATA_0 = 0, set enable: 11111011 = 251
-			if((!tx_late) && (!tx_early))
-			{
-				strncpy(stat,"GOOD",5);
-				regVal = ioread8(pGPIO0_DATA0);
-				regVal = regVal & 251;
-				iowrite8(regVal,pGPIO0_DATA0);
-			}
-			
-			printk("Start tx %s, id: 2, force tx timestamp: %llu, transfer_id_eot: %d, txId: %d, hardware time:%llu, fr - hwt: %lld, time: %lu, txsize: %d, rem_trs: %d, hw_dif: %llu\n",stat,dac_inter_timestamp2,transfer_id_eot,txid,timenow,(int64_t)(dac_inter_timestamp2-timenow),ts_micro,txsize,rem_trs, timenow-timehwPrev);
-		}
-		else if(sg->id == 3)
-		{
-			txid = (uint16_t) txid_inter_timestamp3;
-                        txsize = txid_inter_timestamp3 >> 16;
-			
-			// Set LATE flag to drop the block
-			if(dac_inter_timestamp3 < timenow+(block_clk_num*rem_trs))
-			{
-				strncpy(stat,"LATE",5);
-				tx_late = true;
-				dif_tx_late3 = true;
-				acclates++;
-			}
-			
-			// Set EARLY flag to drop the block. 4 blocks can be tolerated otherwise iio_push will be blocked
-			if(dac_inter_timestamp3 > timenow+(block_clk_num*4))
-			{
-				strncpy(stat,"EARL",5);
-				tx_early = true;
-				dif_tx_early3 = true;
-				accearlies++;
-			}
-			
-			// GPIO_0_DATA_0 = 0, set enable: 11110111 = 247
-			if((!tx_late) && (!tx_early))
-			{
-				strncpy(stat,"GOOD",5);
-				regVal = ioread8(pGPIO0_DATA0);
-				regVal = regVal & 247;
-				iowrite8(regVal,pGPIO0_DATA0);
-			}
-			
-			printk("Start tx %s, id: 3, force tx timestamp: %llu, transfer_id_eot: %d, txId: %d, hardware time:%llu, fr - hwt: %lld, time: %lu, txsize: %d, rem_trs: %d, hw_dif: %llu\n",stat,dac_inter_timestamp3,transfer_id_eot,txid,timenow,(int64_t)(dac_inter_timestamp3-timenow),ts_micro,txsize,rem_trs, timenow-timehwPrev);
-		}
+		txtimestamp = tx_cmds[sg->id].timestamp;
+		txid = tx_cmds[sg->id].driver_id;
+        	txsize = tx_cmds[sg->id].size_less;
+		txduration = tx_cmds[sg->id].duration;
 		
-
-		// Check IDs for driver drop
-		if(txid - idcounter > 1)
+		// Check packet drops by block ID
+		if(txid > txidcounter + 1)
 		{
-			accdrops += txid-idcounter-1;
-			printk("Dropped packet in driver: %d - %d = %d, total drops: %d\n",txid,idcounter,txid-idcounter-1,accdrops);
+			accdrops += txid-txidcounter-1;
+			//printk("Dropped packet in driver: %d - %d = %d, total drops: %d\n",txid,txidcounter,txid-txidcounter-1,accdrops);
 		}
 
-		if(txid < idcounter)
+		// if variable has reached the end
+		if(txid < txidcounter)
 		{
 			accdrops = 0;
 			acclates = 0;
 			accearlies = 0;
 		}
+		txidcounter = txid;
+		
+		// Check timing TX
+		transfer_id_eot = axi_dmac_read(dmac,AXI_DMAC_REG_ACTIVE_TRANSFER_ID); 	// active block id
+		blck_front_id = ((((int)sg->id)-1>=0))?(((int)sg->id)-1):(3); // id of the block in front
+		// Get the current timestamp
+		timenow = axi_dmac_axitimer_read();
+		if(txtimestamp == 0) // Set NOTS flag to send the block immediately
+		{
+			// No Timestamp
+			strncpy(stat,"NOTS_NOTS",10);
+			tx_ress[sg->id].type = notimestamp;
+		}
+		else
+		{
+			// Check LATE, EARLY or GOOD
+			// In the case that the clock is 100MHz
+			if(txtimestamp > timenow+(400000)) // Set EARLY flag to drop the block. 4 blocks can be tolerated otherwise iio_push will be blocked (4 ms)
+			{
+				// Check early TX
+				strncpy(stat,"EARL_EARL",10);
+				accearlies++;
+				tx_ress[sg->id].type = early;
+			}
+			else
+			{
+				// Check late TX
+				if(sg->id == transfer_id_eot) // There is no blocks in front of us
+				{
+					if(txtimestamp < timenow + TRNSF_DURATION_TS) // According to tests, TRNSF_DURATION_TS 500 us = 50000 ts is needed
+					{
+						strncpy(stat,"LATE_NOFR",10);
+						acclates++;
+						tx_ress[sg->id].type = late;
+						
+					}
+					else
+					{
+						strncpy(stat,"GOOD_NOFR",10);
+						tx_ress[sg->id].type = good;
+			 		
+						// Appropriate Timed TX Transfer
+						// Prepare timing block signals
+						// TIMING 1) latch low timing controller enable signal, so everything waits
+						regVal = ioread32(pGPIO0_DATA0);
+						if(sg->id == 0)
+						{
+							// GPIO_0_DATA_0 = 0, set enable: 11111110 = 254
+							regVal = regVal & 254;
+						}
+						else if(sg->id == 1)
+						{
+							// GPIO_0_DATA_0 = 0, set enable: 11111101 = 253
+							regVal = regVal & 253;
+						}
+						else if(sg->id == 2)
+						{
+							// GPIO_0_DATA_0 = 0, set enable: 11111011 = 251
+							regVal = regVal & 251;
+						}
+						else if(sg->id == 3)
+						{
+							// GPIO_0_DATA_0 = 0, set enable: 11110111 = 247
+							regVal = regVal & 247;
+						}
+						iowrite32(regVal,pGPIO0_DATA0);
+					}
+				}
+				else  // There is a block in front of us
+				{
 
-		idcounter = txid;
-		timehwPrev = timenow;
+					// We send the block as if it has no timestamp
+					strncpy(stat,"NOTS_NOTS",10);
+					tx_ress[sg->id].type = notimestamp;
+				}
+			}
+		}
+
+		// print info
+		//if(tx_ress[sg->id].type == late)
+		//{
+		//	do_gettimeofday(&tv);
+		//	ts_micro = 1000000 * tv.tv_sec + tv.tv_usec;
+			//printk("Start tx %s, id: %d, txtimestamp: %llu, active_id: %d, front_id: %d, txId: %d, timenow:%llu, ts-timenow: %lld, time: %lu, repsize: %d, hw_dif: %llu, est_fin: %llu, dur: %llu, frame_size_samples: %d, no_overlapping_samples: %d, one_sample_ts: %lld, acc_overlapping_samples: %d, sub_front_cur_ts: %d\n",stat,sg->id,txtimestamp,transfer_id_eot,blck_front_id,txid,timenow,(int64_t)(txtimestamp-timenow),ts_micro,repsize, timenow-timehwPrev,tx_ress[sg->id].est_finish_time,txduration,frame_size_samples, no_overlapping_samples,one_sample_ts, acc_overlapping_samples, sub_front_cur_ts);
+		//	printk("Start tx %s, id: %d, txtimestamp: %llu, active_id: %d, front_id: %d, txId: %d, timenow:%llu, ts-timenow: %lld, time: %lu, hw_dif: %llu, dur: %llu, txsize: %d\n",stat,sg->id,txtimestamp,transfer_id_eot,blck_front_id,txid,timenow,(int64_t)(txtimestamp-timenow),ts_micro,timenow-timehwPrev,txduration, sg->x_len/4 -6 -txsize);
+		//}
+		//}
+		//timehwPrev = timenow;
+
+		// Save drops,lates, earlies, and txidcounter numbers into the global struct
+		tx_stat.drops = accdrops;
+		tx_stat.lates = acclates;
+		tx_stat.earlies = accearlies;
+		tx_stat.idcounter = txidcounter;
         }
 	
-		
-        /*if(chan->direction == 2 && (dev_id == 0 || dev_id == 1)) // RX debug
+	// If it is not HDMI and it is RX	
+        /*if(chan->direction == 2 && (dev_id == 0 || dev_id == 1))
         {
-		//getnstimeofday(&ts);
-		//transfer_id_eot = axi_dmac_read(dmac,AXI_DMAC_REG_ACTIVE_TRANSFER_ID);
-		//printk("rx transfer start, sg-id: %d, transfer_id_eot: %d, time: %ld\n",sg->id,transfer_id_eot,ts.tv_nsec);
+		getnstimeofday(&ts);
+		transfer_id_eot = axi_dmac_read(dmac,AXI_DMAC_REG_ACTIVE_TRANSFER_ID);
+		printk("rx transfer start, sg-id: %d, transfer_id_eot: %d, time: %ld\n",sg->id,transfer_id_eot,ts.tv_nsec);
 
         }*/
 	
-	// If the device is not HDMI, for both RX and TX, request a transfer with 24 bytes less size. Because we already used them for timestamps
+	// If the device is not HDMI, and it is TX
+	// request a transfer with 24 bytes less size. Because we already used them for metadata
 	// But for TX, request txsize times smaller
-	if(chan->direction == 1 && (dev_id == 0 || dev_id == 1))
+	if(chan->direction == 1 && (dev_id == 0 || dev_id == 1)) // if the device is TX
 	{
 		//printk("[DBG][drivers][dma-axi-dmac][axi_dmac_start_transfer][dma_dev_id: %d][dir: %d][partial_report: %d][cyclic: %d]\n -----[sg->x_len: %d][sg->dst_addr: %d][sg->src_addr: %d]\n",dmac->dma_dev.dev_id,chan->direction,chan->hw_partial_xfer,is_cyclic,sg->x_len,sg->dest_addr,sg->src_addr);
-		if(tx_late || tx_early)
-			axi_dmac_write(dmac, AXI_DMAC_REG_X_LENGTH, 0); // LATE or EARLY block, drop it
+		if(tx_ress[sg->id].type == late)
+		{
+			// artificially finish this transfer
+			//artificial_transfer_done(chan);
+			// start another transfer and return
+			//axi_dmac_start_transfer(chan);
+			//return;
+			axi_dmac_write(dmac, AXI_DMAC_REG_X_LENGTH, 8);
+		}
 		else
-			axi_dmac_write(dmac, AXI_DMAC_REG_X_LENGTH, sg->x_len -1 -(6*4) -(txsize*4) ); // (6 additional items + txsize)*4
+			axi_dmac_write(dmac, AXI_DMAC_REG_X_LENGTH, sg->x_len -1 -(6*4) -(txsize*4)); // (6 additional items + txsize)*4
 
 	}
-	else if(chan->direction == 2 && (dev_id == 0 || dev_id == 1)) // for RX
+	else if(chan->direction == 2 && (dev_id == 0 || dev_id == 1)) // if the device is RX
 	{
-		axi_dmac_write(dmac, AXI_DMAC_REG_X_LENGTH, sg->x_len -1 -(6*4)); // (6 additional items)*4
+		axi_dmac_write(dmac, AXI_DMAC_REG_X_LENGTH, sg->x_len -1 -(6*4) ); // (6 additional items)*4
 	}
 	else // for hdmi and others
 	{
@@ -659,85 +635,74 @@ static void axi_dmac_start_transfer(struct axi_dmac_chan *chan)
 	}
 	axi_dmac_write(dmac, AXI_DMAC_REG_Y_LENGTH, sg->y_len - 1);
 	axi_dmac_write(dmac, AXI_DMAC_REG_FLAGS, flags);
-	axi_dmac_write(dmac, AXI_DMAC_REG_START_TRANSFER, 1);
 
-	// If the device is not HDMI and it is TX: TIMING 2) after the descriptor is sent, write the tx counter to the timing controller block and set the valid signal
-	if(chan->direction == 1 && (dev_id == 0 || dev_id == 1))
+	// If the device is not HDMI and it is TX: 
+	// TIMING 2) after the descriptor is sent, write the tx counter to the timing controller block and set the valid signal
+	if(chan->direction == 1 && (dev_id == 0 || dev_id == 1) && tx_ress[sg->id].type == good)
         {
-		if(tx_late || tx_early)
-			return;
+
+		// Write the timestamp and free enable
+		read_timestamp_lsb = (uint32_t) txtimestamp;
+		read_timestamp_msb = txtimestamp >> 32;
 
 		if(sg->id == 0)
 		{
-			// Write the timestamp and free enable
-			read_timestamp_lsb = (uint32_t) dac_inter_timestamp0;
-			read_timestamp_msb = dac_inter_timestamp0 >> 32;
-
 			// GPIO_1_DATA_0 = read_timestamp_lsb; 
 			// GPIO_1_DATA_1 = read_timestamp_msb;
 			iowrite32(read_timestamp_lsb,pGPIO1_DATA0);
 			iowrite32(read_timestamp_msb,pGPIO1_DATA1);
 			
 			// GPIO_0_DATA_1 = 1; set the valid: 00000001
-			regVal = ioread8(pGPIO0_DATA1);
+			regVal = ioread32(pGPIO0_DATA1);
 			regVal = regVal | 1;
-			iowrite8(regVal,pGPIO0_DATA1);
+			iowrite32(regVal,pGPIO0_DATA1);
 		}
                 else if(sg->id ==1)
 		{
-			// Write the timestamp and free enable
-			read_timestamp_lsb = (uint32_t) dac_inter_timestamp1;
-			read_timestamp_msb = dac_inter_timestamp1 >> 32;
-
 			// GPIO_2_DATA_0 = read_timestamp_lsb; 
 			// GPIO_2_DATA_1 = read_timestamp_msb;
 			iowrite32(read_timestamp_lsb,pGPIO2_DATA0);
 			iowrite32(read_timestamp_msb,pGPIO2_DATA1);
 			
 			// GPIO_0_DATA_1 = 1; set the valid: 00000010
-			regVal = ioread8(pGPIO0_DATA1);
+			regVal = ioread32(pGPIO0_DATA1);
 			regVal = regVal | 2;
-			iowrite8(regVal,pGPIO0_DATA1);
+			iowrite32(regVal,pGPIO0_DATA1);
 		}
                 else if(sg->id == 2)
 		{
-			// Write the timestamp and free enable
-			read_timestamp_lsb = (uint32_t) dac_inter_timestamp2;
-			read_timestamp_msb = dac_inter_timestamp2 >> 32;
-
 			// GPIO_3_DATA_0 = read_timestamp_lsb; 
 			// GPIO_3_DATA_1 = read_timestamp_msb;
 			iowrite32(read_timestamp_lsb,pGPIO3_DATA0);
 			iowrite32(read_timestamp_msb,pGPIO3_DATA1);
 			
 			// GPIO_0_DATA_1 = 1; set the valid: 00000100
-			regVal = ioread8(pGPIO0_DATA1);
+			regVal = ioread32(pGPIO0_DATA1);
 			regVal = regVal | 4;
-			iowrite8(regVal,pGPIO0_DATA1);
+			iowrite32(regVal,pGPIO0_DATA1);
 		}
                 else if(sg->id == 3)
 		{
-			// Write the timestamp and free enable
-			read_timestamp_lsb = (uint32_t) dac_inter_timestamp3;
-			read_timestamp_msb = dac_inter_timestamp3 >> 32;
-
 			// GPIO_4_DATA_0 = read_timestamp_lsb; 
 			// GPIO_4_DATA_1 = read_timestamp_msb;
 			iowrite32(read_timestamp_lsb,pGPIO4_DATA0);
 			iowrite32(read_timestamp_msb,pGPIO4_DATA1);
 			
 			// GPIO_0_DATA_1 = 1; set the valid: 00001000
-			regVal = ioread8(pGPIO0_DATA1);
+			regVal = ioread32(pGPIO0_DATA1);
 			regVal = regVal | 8;
-			iowrite8(regVal,pGPIO0_DATA1);
+			iowrite32(regVal,pGPIO0_DATA1);
 		}
+		
+		// Now start the good TX transfer
+		axi_dmac_write(dmac, AXI_DMAC_REG_START_TRANSFER, 1);
         }
-}
+	else
+	{
+		// Start if it is not a good TX transfer
+		axi_dmac_write(dmac, AXI_DMAC_REG_START_TRANSFER, 1);
 
-static struct axi_dmac_desc *axi_dmac_active_desc(struct axi_dmac_chan *chan)
-{
-	return list_first_entry_or_null(&chan->active_descs,
-		struct axi_dmac_desc, vdesc.node);
+	}
 }
 
 static inline unsigned int axi_dmac_total_sg_bytes(struct axi_dmac_chan *chan,
@@ -817,6 +782,43 @@ static void axi_dmac_compute_residue(struct axi_dmac_chan *chan,
 	}
 }
 
+static uint64_t axi_dmac_read_timestamp(int id,struct axi_dmac *dmac,bool is_tx_eot)
+{
+	uint32_t timestamp_lsb;
+	uint32_t timestamp_msb;
+	uint64_t timestamp;
+		
+	switch(id)
+	{
+		case 0:
+               		timestamp_lsb = axi_dmac_read(dmac, (is_tx_eot)?(AXI_DMAC_REG_TIMESTAMPB0_LSB):(AXI_DMAC_REG_TIMESTAMPA0_LSB));
+	                timestamp_msb = axi_dmac_read(dmac, (is_tx_eot)?(AXI_DMAC_REG_TIMESTAMPB0_MSB):(AXI_DMAC_REG_TIMESTAMPA0_MSB));
+               		timestamp = (uint64_t) timestamp_msb << 32 | timestamp_lsb;
+			break;
+		case 1:
+               		timestamp_lsb = axi_dmac_read(dmac, (is_tx_eot)?(AXI_DMAC_REG_TIMESTAMPB1_LSB):(AXI_DMAC_REG_TIMESTAMPA1_LSB));
+	                timestamp_msb = axi_dmac_read(dmac, (is_tx_eot)?(AXI_DMAC_REG_TIMESTAMPB1_MSB):(AXI_DMAC_REG_TIMESTAMPA1_MSB));
+               		timestamp = (uint64_t) timestamp_msb << 32 | timestamp_lsb;
+			break;
+		case 2:
+               		timestamp_lsb = axi_dmac_read(dmac, (is_tx_eot)?(AXI_DMAC_REG_TIMESTAMPB2_LSB):(AXI_DMAC_REG_TIMESTAMPA2_LSB));
+	                timestamp_msb = axi_dmac_read(dmac, (is_tx_eot)?(AXI_DMAC_REG_TIMESTAMPB2_MSB):(AXI_DMAC_REG_TIMESTAMPA2_MSB));
+               		timestamp = (uint64_t) timestamp_msb << 32 | timestamp_lsb;
+			break;
+		case 3:
+               		timestamp_lsb = axi_dmac_read(dmac, (is_tx_eot)?(AXI_DMAC_REG_TIMESTAMPB3_LSB):(AXI_DMAC_REG_TIMESTAMPA3_LSB));
+	                timestamp_msb = axi_dmac_read(dmac, (is_tx_eot)?(AXI_DMAC_REG_TIMESTAMPB3_MSB):(AXI_DMAC_REG_TIMESTAMPA3_MSB));
+               		timestamp = (uint64_t) timestamp_msb << 32 | timestamp_lsb;
+			break;
+		default:
+			timestamp = 0;
+			break;
+	}
+	return timestamp;
+}
+
+static uint64_t rxtimestamp_tmp = 0;
+static uint64_t timenow_tmp = 0;
 
 static bool axi_dmac_transfer_done(struct axi_dmac_chan *chan,
 	unsigned int completed_transfers)
@@ -826,20 +828,22 @@ static bool axi_dmac_transfer_done(struct axi_dmac_chan *chan,
 	struct axi_dmac_sg *sg;
 	bool start_next = false;
 	
-	uint32_t read_rxtimestamp_lsb;
-	uint32_t read_rxtimestamp_msb;
-	uint64_t read_rxtimestamp;
+	uint64_t rxtimestamp_eot;
+	uint64_t txtimestamp_sot;
+	uint64_t txtimestamp_eot;
 	
-	uint32_t read_txtimestamp_lsb;
-	uint32_t read_txtimestamp_msb;
-	uint64_t read_txtimestamp;
 	int dev_id;
 	uint8_t regVal = 0;
+	bool itstheone = false;
+	
 	int transfer_id_eot = 0;
 	uint64_t timenow = 0;
 	char stat[5];	
 	struct timeval tv;
 	unsigned long ts_micro=0;
+
+	int32_t sot_minus_cmd = 0;
+	int32_t eot_minus_est = 0;
 
         dev_id = dmac->dma_dev.dev_id;
 	
@@ -853,51 +857,62 @@ static bool axi_dmac_transfer_done(struct axi_dmac_chan *chan,
 		axi_dmac_dequeue_partial_xfers(chan);
 	}
 
+	
+	// Check if this is the right packet to handle
+        sg = &active->sg[active->num_completed];
+	if ( (sg->id != AXI_DMAC_SG_UNUSED) && (BIT(sg->id) & completed_transfers) )
+        	itstheone = true;
 
-        // if it is not hdmi and it is RX: read the rx counter from DMAC and write it to the global variable
-        if(chan->direction == 2 && (dev_id == 0 || dev_id == 1))
+        // if it is not hdmi and it is RX: 
+	// read the rx counter from DMAC and write it to the global variable
+        if(chan->direction == 2 && (dev_id == 0 || dev_id == 1) && itstheone)
         {
-                sg = &active->sg[active->num_completed];
+		// Increase the rx packets counter id
+		rxidcounter++;
+		
+		// read rx timestamp
+		rxtimestamp_eot = axi_dmac_read_timestamp(sg->id,dmac,false);
 
-                read_rxtimestamp_lsb = axi_dmac_read(dmac, AXI_DMAC_REG_RTIMESTAMP_LSB);
-                read_rxtimestamp_msb = axi_dmac_read(dmac, AXI_DMAC_REG_RTIMESTAMP_MSB);
-                read_rxtimestamp = (uint64_t) read_rxtimestamp_msb << 32 | read_rxtimestamp_lsb;      // Combine 2
+		// print debug
+		/*timenow = axi_dmac_axitimer_read();
+		transfer_id_eot = axi_dmac_read(dmac,AXI_DMAC_REG_ACTIVE_TRANSFER_ID);
+                //printk("[DBG][drivers][dma-axi-dmac-done] RX timestamp: %llu, sg->id: %d, transfer_id_eot: %d, time: %ld\n", rxtimestamp_eot,sg->id,transfer_id_eot, ts.tv_nsec);
+		if(rxtimestamp_tmp != 0)
+		{
+			if(rxtimestamp_eot - rxtimestamp_tmp > 120000 )
+			{
+                		printk("RX timestamp: %llu, RX diff: %llu, rxidcounter: %d, sg->id: %d, transfer_id_eot: %d, hw_time: %llu, hw_time_diff: %llu\n", rxtimestamp_eot,rxtimestamp_eot - rxtimestamp_tmp,rxidcounter,sg->id,transfer_id_eot, timenow, timenow-timenow_tmp);
+			}
+		}
+		rxtimestamp_tmp = rxtimestamp_eot;
+		timenow_tmp = timenow;*/
 
-		//timenow = axi_dmac_axitimer_read();
-		//transfer_id_eot = axi_dmac_read(dmac,AXI_DMAC_REG_ACTIVE_TRANSFER_ID);
-                //printk("[DBG][drivers][dma-axi-dmac-done] RX timestamp: %llu, sg->id: %d, transfer_id_eot: %d, time: %ld\n", read_rxtimestamp,sg->id,transfer_id_eot, ts.tv_nsec);
-
-		if(sg->id == 0)
-		{
-			adc_inter_timestamp0 = read_rxtimestamp;
-			//adc_inter_timestamp0 = timenow;
-		}
-		else if(sg->id ==1)
-		{
-			adc_inter_timestamp1 = read_rxtimestamp;
-			//adc_inter_timestamp1 = timenow;
-		}
-		else if(sg->id == 2)
-		{
-			adc_inter_timestamp2 = read_rxtimestamp;
-			//adc_inter_timestamp2 = timenow;
-		}
-		else if(sg->id == 3)
-		{
-			adc_inter_timestamp3 = read_rxtimestamp;
-			//adc_inter_timestamp3 = timenow;
-		}
-
+		rx_timestamps[sg->id] = rxtimestamp_eot;
+		rxidcounters[sg->id] = rxidcounter;
         }
 
-        // if it is not hdmi and it is TX: read diff counter from DMAC and write it to the global variable
-        if(chan->direction == 1 && (dev_id == 0 || dev_id == 1))
+        // if it is not hdmi and it is TX: read diff counter from DMAC and print it
+        if(chan->direction == 1 && (dev_id == 0 || dev_id == 1) && itstheone)
         {
-                sg = &active->sg[active->num_completed];
+		// print info
+		sg = &active->sg[active->num_completed];
 
-                read_txtimestamp_lsb = axi_dmac_read(dmac, AXI_DMAC_REG_RTIMESTAMP_LSB);
-                read_txtimestamp_msb = axi_dmac_read(dmac, AXI_DMAC_REG_RTIMESTAMP_MSB);
-                read_txtimestamp = (uint64_t) read_txtimestamp_msb << 32 | read_txtimestamp_lsb;      // Combine 2
+		// only if the TX transaction was good
+		// read tx sot timestamp, update global variable for stat report
+		if(tx_ress[sg->id].type == good)
+		{
+			txtimestamp_sot = axi_dmac_read_timestamp(sg->id,dmac,false);
+			sot_minus_cmd = (int64_t)txtimestamp_sot-(int64_t)tx_cmds[sg->id].timestamp;
+			tx_stat.sot_cmd = sot_minus_cmd; 
+		}
+
+		/*
+
+		// read tx timestamps
+		txtimestamp_sot = axi_dmac_read_timestamp(sg->id,dmac,false);
+		sot_minus_cmd = (int64_t)txtimestamp_sot-(int64_t)tx_cmds[sg->id].timestamp;
+        	txtimestamp_eot = axi_dmac_read_timestamp(sg->id,dmac,true);
+		eot_minus_est = (int64_t)txtimestamp_eot-(int64_t)tx_ress[sg->id].est_finish_time;
 
 		timenow = axi_dmac_axitimer_read();
 		transfer_id_eot = axi_dmac_read(dmac,AXI_DMAC_REG_ACTIVE_TRANSFER_ID);
@@ -905,160 +920,84 @@ static bool axi_dmac_transfer_done(struct axi_dmac_chan *chan,
 		do_gettimeofday(&tv);
                 ts_micro = 1000000 * tv.tv_sec + tv.tv_usec;
 
-		if(sg->id == 0)
-		{
-			if(dif_tx_late0)
-			{
-				strncpy(stat,"LATE",5);
-	                	dif_inter_timestamp0 = 0;
-				dif_tx_late0 = false;
-			}
-			else if(dif_tx_early0)
-			{
-				strncpy(stat,"EARL",5);
-	                	dif_inter_timestamp0 = 1;
-				dif_tx_early0 = false;
-			}
-			else
-			{
-				strncpy(stat,"GOOD",5);
-				dif_inter_timestamp0 = read_txtimestamp;
-				//dif_inter_timestamp0 = timenow;
-			}
-			printk("Done tx %s, id: %d, size: %d, TX timestamp: %llu, tx timestamp - fr timestamp: %lld, transfer_id_eot: %d, hardware time: %llu, time: %lu\n",stat, sg->id, sg->x_len,read_txtimestamp,(int64_t)(dif_inter_timestamp0 - dac_inter_timestamp0),transfer_id_eot,timenow,ts_micro);
-			dif_inter_num = 0;
-		}
-		else if(sg->id ==1)
-		{
-			if(dif_tx_late1)
-			{
-				strncpy(stat,"LATE",5);
-	                	dif_inter_timestamp1 = 0;
-				dif_tx_late1 = false;
-			}
-			else if(dif_tx_early1)
-			{
-				strncpy(stat,"EARL",5);
-	                	dif_inter_timestamp1 = 1;
-				dif_tx_early1 = false;
-			}
-			else
-			{
-				strncpy(stat,"GOOD",5);
-	                	dif_inter_timestamp1 = read_txtimestamp;
-				//dif_inter_timestamp1 = timenow;
-			}
-			printk("Done tx %s, id: %d, size: %d, TX timestamp: %llu, tx timestamp - fr timestamp: %lld, transfer_id_eot: %d, hardware time: %llu, time: %lu\n", stat, sg->id, sg->x_len,read_txtimestamp,(int64_t)(dif_inter_timestamp1 - dac_inter_timestamp1),transfer_id_eot,timenow,ts_micro);
-			dif_inter_num = 1;
-		}
-		else if(sg->id == 2)
-		{
-			if(dif_tx_late2)
-			{
-				strncpy(stat,"LATE",5);
-	                	dif_inter_timestamp2 = 0;
-				dif_tx_late2 = false;
-			}
-			else if(dif_tx_early2)
-			{
-				strncpy(stat,"EARL",5);
-	                	dif_inter_timestamp2 = 1;
-				dif_tx_early2 = false;
-			}
-			else
-			{
-				strncpy(stat,"GOOD",5);
-				dif_inter_timestamp2 = read_txtimestamp;
-				//dif_inter_timestamp2 = timenow;
-			}
-			printk("Done tx %s, id: %d, size: %d, TX timestamp: %llu, tx timestamp - fr timestamp: %lld, transfer_id_eot: %d, hardware time: %llu, time: %lu\n", stat, sg->id, sg->x_len,read_txtimestamp,(int64_t)(dif_inter_timestamp2 - dac_inter_timestamp2),transfer_id_eot,timenow, ts_micro);
-			dif_inter_num = 2;
-		}
-		else if(sg->id == 3)
-		{
-			if(dif_tx_late3)
-			{
-				strncpy(stat,"LATE",5);
-	                	dif_inter_timestamp3 = 0;
-				dif_tx_late3 = false;
-			}
-			else if(dif_tx_early3)
-			{
-				strncpy(stat,"EARL",5);
-	                	dif_inter_timestamp3 = 1;
-				dif_tx_early3 = false;
-			}
-			else
-			{
-				strncpy(stat,"GOOD",5);
-				dif_inter_timestamp3 = read_txtimestamp;
-				//dif_inter_timestamp3 = timenow;
-			}
-			printk("Done tx %s, id: %d, size: %d, TX timestamp: %llu, tx timestamp - fr timestamp: %lld, transfer_id_eot: %d, hardware time: %llu, time: %lu\n",stat, sg->id, sg->x_len,read_txtimestamp,(int64_t)(dif_inter_timestamp3 - dac_inter_timestamp3),transfer_id_eot,timenow, ts_micro);
-			dif_inter_num = 3;
-        	}
+		if(tx_ress[sg->id].type == late)
+			strncpy(stat,"LATE",5);
+		else if(tx_ress[sg->id].type == early)
+			strncpy(stat,"EARL",5);
+		else if(tx_ress[sg->id].type == notimestamp)
+			strncpy(stat,"NOTS",5);
+		else		
+			strncpy(stat,"GOOD",5);
+
+		printk("Done tx %s, id: %d, size: %d, tx sot: %llu, sot-cmd: %lld, tx eot: %llu, eot-est: %lld ,transfer_id_eot: %d, hardware time: %llu, time: %lu, sot-eot: %lld\n",stat, sg->id, sg->x_len,txtimestamp_sot,(int64_t)txtimestamp_sot-(int64_t)tx_cmds[sg->id].timestamp,txtimestamp_eot,(int64_t)txtimestamp_eot-(int64_t)tx_ress[sg->id].est_finish_time,transfer_id_eot,timenow,ts_micro,(int64_t)txtimestamp_eot-(int64_t)txtimestamp_sot);
+		
+		*/
+
 	}
 
         //printk("[DBG][drivers][dma-axi-dmac][axi_dmac_transfer_done][end_counter: %d][dir: %d]\n -----[read_timestamp: %llu]\n",start_counter,chan->direction,read_timestamp);
 
-        // if it is not hdmi and it is TX: TIMING 3) revert enable and valid signals for the next transfer
-        if(chan->direction == 1 && (dev_id == 0 || dev_id == 1))
+        // if it is not hdmi and it is TX: 
+	// TIMING 3) revert enable and valid signals for the next transfer
+        if(chan->direction == 1 && (dev_id == 0 || dev_id == 1) && itstheone)
         {
+                sg = &active->sg[active->num_completed];
+
 		if(sg->id == 0)
                 {
 			// puts fifo_en on the output level 1
                         // GPIO_0_DATA_0 = 1, set enable: 00000001
-                        regVal = ioread8(pGPIO0_DATA0);
+                        regVal = ioread32(pGPIO0_DATA0);
                         regVal = regVal | 1;
-                        iowrite8(regVal,pGPIO0_DATA0);
+                        iowrite32(regVal,pGPIO0_DATA0);
 
 			// puts fifo_en on the end
                 	// GPIO_0_DATA_1 = 0, set valid: 11111110 : 254
-			regVal = ioread8(pGPIO0_DATA1);
+			regVal = ioread32(pGPIO0_DATA1);
 			regVal = regVal & 254;
-			iowrite8(regVal,pGPIO0_DATA1);
+			iowrite32(regVal,pGPIO0_DATA1);
                 }
                 else if(sg->id == 1)
                 {
 			// puts fifo_en on the output level 1
                         // GPIO_0_DATA_0 = 1, set enable: 00000010
-                        regVal = ioread8(pGPIO0_DATA0);
+                        regVal = ioread32(pGPIO0_DATA0);
                         regVal = regVal | 2;
-                        iowrite8(regVal,pGPIO0_DATA0);
+                        iowrite32(regVal,pGPIO0_DATA0);
 
 			// puts fifo_en on the end
                 	// GPIO_0_DATA_1 = 0, set valid: 11111101 : 253
-			regVal = ioread8(pGPIO0_DATA1);
+			regVal = ioread32(pGPIO0_DATA1);
 			regVal = regVal & 253;
-			iowrite8(regVal,pGPIO0_DATA1);
+			iowrite32(regVal,pGPIO0_DATA1);
                 }
                 else if(sg->id == 2)
                 {
 			// puts fifo_en on the output level 1
                         // GPIO_0_DATA_0 = 1, set enable: 00000100
-                        regVal = ioread8(pGPIO0_DATA0);
+                        regVal = ioread32(pGPIO0_DATA0);
                         regVal = regVal | 4;
-                        iowrite8(regVal,pGPIO0_DATA0);
+                        iowrite32(regVal,pGPIO0_DATA0);
 
 			// puts fifo_en on the end
                 	// GPIO_0_DATA_1 = 0, set valid: 11111011 : 251
-			regVal = ioread8(pGPIO0_DATA1);
+			regVal = ioread32(pGPIO0_DATA1);
 			regVal = regVal & 251;
-			iowrite8(regVal,pGPIO0_DATA1);
+			iowrite32(regVal,pGPIO0_DATA1);
                 }
                 else if(sg->id == 3)
                 {
 			// puts fifo_en on the output level 1
                         // GPIO_0_DATA_0 = 1, set enable: 00001000
-                        regVal = ioread8(pGPIO0_DATA0);
+                        regVal = ioread32(pGPIO0_DATA0);
                         regVal = regVal | 8;
-                        iowrite8(regVal,pGPIO0_DATA0);
+                        iowrite32(regVal,pGPIO0_DATA0);
 
 			// puts fifo_en on the end
                 	// GPIO_0_DATA_1 = 0, set valid: 11110111 : 247
-			regVal = ioread8(pGPIO0_DATA1);
+			regVal = ioread32(pGPIO0_DATA1);
 			regVal = regVal & 247;
-			iowrite8(regVal,pGPIO0_DATA1);
+			iowrite32(regVal,pGPIO0_DATA1);
                 }
                 
 		// announce that the transfer is finished
@@ -1447,6 +1386,22 @@ static bool axi_dmac_regmap_rdwr(struct device *dev, unsigned int reg)
 	case AXI_DMAC_REG_DBG0:
 	case AXI_DMAC_REG_DBG1:
 	case AXI_DMAC_REG_DBG2:
+	case AXI_DMAC_REG_TIMESTAMPA0_LSB:
+	case AXI_DMAC_REG_TIMESTAMPA0_MSB:
+	case AXI_DMAC_REG_TIMESTAMPA1_LSB:
+	case AXI_DMAC_REG_TIMESTAMPA1_MSB:
+	case AXI_DMAC_REG_TIMESTAMPA2_LSB:
+	case AXI_DMAC_REG_TIMESTAMPA2_MSB:
+	case AXI_DMAC_REG_TIMESTAMPA3_LSB:
+	case AXI_DMAC_REG_TIMESTAMPA3_MSB:
+	case AXI_DMAC_REG_TIMESTAMPB0_LSB:
+	case AXI_DMAC_REG_TIMESTAMPB0_MSB:
+	case AXI_DMAC_REG_TIMESTAMPB1_LSB:
+	case AXI_DMAC_REG_TIMESTAMPB1_MSB:
+	case AXI_DMAC_REG_TIMESTAMPB2_LSB:
+	case AXI_DMAC_REG_TIMESTAMPB2_MSB:
+	case AXI_DMAC_REG_TIMESTAMPB3_LSB:
+	case AXI_DMAC_REG_TIMESTAMPB3_MSB:
 		return true;
 	default:
 		return false;
@@ -1457,7 +1412,7 @@ static const struct regmap_config axi_dmac_regmap_config = {
 	.reg_bits = 32,
 	.val_bits = 32,
 	.reg_stride = 4,
-	.max_register = AXI_DMAC_REG_DBG2,
+	.max_register = AXI_DMAC_REG_TIMESTAMPB3_MSB,
 	.readable_reg = axi_dmac_regmap_rdwr,
 	.writeable_reg = axi_dmac_regmap_rdwr,
 };
@@ -1722,12 +1677,14 @@ static int axi_dmac_probe(struct platform_device *pdev)
 	platform_set_drvdata(pdev, dmac);
 
 	devm_regmap_init_mmio(&pdev->dev, dmac->base, &axi_dmac_regmap_config);
-	
+
+
 	//ECL
 	printk("[DBG][drivers][dma-axi-dmac][axi_dmac_probe]\n");
+
 	// Timing IP GPIO AXI signals
-	pGPIO0_DATA0 = ioremap_nocache(GPIO0_DATA0,0x1); // Enable signal
-	pGPIO0_DATA1 = ioremap_nocache(GPIO0_DATA1,0x1); // Valid signal
+	pGPIO0_DATA0 = ioremap_nocache(GPIO0_DATA0,0x4); // Enable signal
+	pGPIO0_DATA1 = ioremap_nocache(GPIO0_DATA1,0x4); // Valid signal
 
 	pGPIO1_DATA0 = ioremap_nocache(GPIO1_DATA0,0x4); // timestamp lsb
 	pGPIO1_DATA1 = ioremap_nocache(GPIO1_DATA1,0x4); // timestamp msb

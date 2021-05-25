@@ -1,0 +1,518 @@
+/*
+
+Xilinx Vivado v2018.2 (64-bit) [Major: 2018, Minor: 2]
+SW Build: 2258646 on Thu Jun 14 20:02:38 MDT 2018
+IP Build: 2256618 on Thu Jun 14 22:10:49 MDT 2018
+
+Process ID: 25820
+License: Customer
+
+Current time: 	Mon Aug 03 14:40:11 CEST 2020
+Time zone: 	Central European Time (Europe/Stockholm)
+
+OS: Ubuntu
+OS Version: 5.3.0-62-generic
+OS Architecture: amd64
+Available processors (cores): 4
+
+Display: :0
+Screen size: 1920x1080
+Screen resolution (DPI): 96
+Available screens: 1
+Available disk space: 89 GB
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+
+Java version: 	1.8.0_112 64-bit
+Java home: 	/opt/Xilinx/Vivado/2018.2/tps/lnx64/jre
+Java executable location: 	/opt/Xilinx/Vivado/2018.2/tps/lnx64/jre/bin/java
+Java initial memory (-Xms): 	128 MB
+Java maximum memory (-Xmx):	 2 GB
+
+
+User name: 	warpadmin
+User home directory: /home/warpadmin
+User working directory: /home/warpadmin/BoardSetup/adrv9361-linux/drivers/iio/buffer
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI_BASEROOT: /opt/Xilinx/Vivado
+HDI_APPROOT: /opt/Xilinx/Vivado/2018.2
+RDI_DATADIR: /opt/Xilinx/Vivado/2018.2/data
+RDI_BINDIR: /opt/Xilinx/Vivado/2018.2/bin
+
+Vivado preferences file location: /home/warpadmin/.Xilinx/Vivado/2018.2/vivado.xml
+Vivado preferences directory: /home/warpadmin/.Xilinx/Vivado/2018.2/
+Vivado layouts directory: /home/warpadmin/.Xilinx/Vivado/2018.2/layouts
+PlanAhead jar file location: 	/opt/Xilinx/Vivado/2018.2/lib/classes/planAhead.jar
+Vivado log file location: 	/home/warpadmin/BoardSetup/adrv9361-linux/drivers/iio/buffer/vivado.log
+Vivado journal file location: 	/home/warpadmin/BoardSetup/adrv9361-linux/drivers/iio/buffer/vivado.jou
+Engine tmp dir: 	./.Xil/Vivado-25820-warpadmin-NUC8
+
+Xilinx Environment Variables
+----------------------------
+XILINX: /opt/Xilinx/Vivado/2018.2/ids_lite/ISE
+XILINX_DSP: /opt/Xilinx/Vivado/2018.2/ids_lite/ISE
+XILINX_PLANAHEAD: /opt/Xilinx/Vivado/2018.2
+XILINX_SDK: /opt/Xilinx/SDK/2018.2
+XILINX_VIVADO: /opt/Xilinx/Vivado/2018.2
+XILINX_VIVADO_HLS: /opt/Xilinx/Vivado/2018.2
+
+
+GUI allocated memory:	153 MB
+GUI max memory:		3,052 MB
+Engine allocated memory: 806 MB
+
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// [GUI Memory]: 66 MB (+66892kb) [00:00:05]
+// [Engine Memory]: 804 MB (+691296kb) [00:00:05]
+selectList(PAResourceQtoS.SyntheticaGettingStartedView_RECENT_PROJECTS, "/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.xpr", 1); // q (O, ck)
+// [GUI Memory]: 74 MB (+5165kb) [00:00:06]
+// bx (ck):  Open Project : addNotify
+// Opening Vivado Project: /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.xpr. Version: Vivado v2018.2 
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// Tcl Message: open_project /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.xpr 
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_CURRENT
+// TclEventType: MSGMGR_REFRESH_MSG
+// HMemoryUtils.trashcanNow. Engine heap size: 885 MB. GUI used memory: 36 MB. Current time: 8/3/20 2:40:13 PM CEST
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// [Engine Memory]: 936 MB (+96853kb) [00:00:11]
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_NEW
+// [Engine Memory]: 1,005 MB (+23354kb) [00:00:11]
+// Tcl Message: open_project /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.xpr 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/tx_timing_1.0'. 
+// Tcl Message: INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/library'. INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2018.2/data/ip'. 
+// Tcl Message: open_project: Time (s): cpu = 00:00:12 ; elapsed = 00:00:08 . Memory (MB): peak = 6212.836 ; gain = 221.207 ; free physical = 21497 ; free virtual = 30490 
+// Project name: adrv9361z7035_ccfmc_lvds; location: /home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds; part: xc7z035ifbg676-2L
+dismissDialog("Open Project"); // bx (ck)
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// [Engine Memory]: 1,069 MB (+14013kb) [00:00:15]
+// [GUI Memory]: 81 MB (+3026kb) [00:00:16]
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, IP Integrator, Open Block Design]", 7, false); // u (O, ck)
+// Run Command: PAResourceCommand.PACommandNames_OPEN_BLOCK_DESIGN
+// bx (ck):  Open Block Design : addNotify
+// TclEventType: LOAD_FEATURE
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: RSB_CHANGE_CURRENT_DIAGRAM
+// TclEventType: RSB_PROPERTY_CHANGE
+// TclEventType: LOAD_FEATURE
+// TclEventType: RSB_PROPERTY_CHANGE
+// TclEventType: RSB_OPEN_DIAGRAM
+// Tcl Message: open_bd_design {/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd} 
+// Tcl Message: INFO: [xilinx.com:ip:ila:6.2-6] /ila_0: Xilinx recommends using the System ILA IP in IP Integrator. The System ILA IP is functionally equivalent to an ILA and offers additional benefits in debugging interfaces both within IP Integrator and the Hardware Manager. Consult the Programming and Debug User Guide UG908 for further details. 
+// Tcl Message: Adding cell -- user.org:user:tx_timing:1.0 - tx_timing_0 
+// Tcl Message: Adding cell -- xilinx.com:ip:axi_crossbar:2.1 - xbar Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc Successfully read diagram <system> from BD file </home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd> 
+// TclEventType: RSB_OPEN_DIAGRAM
+// TclEventType: RSB_CONNECTION_CHANGE
+// TclEventType: RSB_LOCK_CHANGE
+dismissDialog("Open Block Design"); // bx (ck)
+// [GUI Memory]: 87 MB (+2013kb) [00:00:19]
+// Tcl Message: update_compile_order -fileset sources_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gp_in_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gp_in_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gp_in_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gp_in_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,117 MB. GUI used memory: 54 MB. Current time: 8/3/20 2:40:28 PM CEST
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_dout_data_0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_dout_data_0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_dout_data_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_dac_fifo_dout_data_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// Elapsed time: 18 seconds
+selectMenu(PAResourceItoN.MainMenuMgr_TOOLS, "Tools"); // V (q, ck)
+dismissMenu(PAResourceItoN.MainMenuMgr_TOOLS, "Tools"); // V (q, ck)
+selectMenu(PAResourceItoN.MainMenuMgr_FLOW, "Flow"); // V (q, ck)
+dismissMenu(PAResourceItoN.MainMenuMgr_FLOW, "Flow"); // V (q, ck)
+selectMenu(PAResourceItoN.MainMenuMgr_EDIT, "Edit"); // V (q, ck)
+dismissMenu(PAResourceItoN.MainMenuMgr_EDIT, "Edit"); // V (q, ck)
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /clk_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /clk_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /clk_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /clk_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gp_in_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gp_in_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gp_in_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gp_in_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gp_in_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gp_in_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gp_in_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gp_in_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /clk_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /clk_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_1_1 
+// Elapsed time: 50 seconds
+selectButton(PAResourceOtoP.PlanAheadTab_REFRESH_IP_CATALOG, "Refresh IP Catalog"); // h (cM, ck)
+// TclEventType: CREATE_IP_CATALOG
+// TclEventType: IP_LOCK_CHANGE
+// Tcl Message: update_ip_catalog -rebuild -scan_changes 
+// TclEventType: IP_LOCK_CHANGE
+// bx (ck):  Refresh IP Catalog : addNotify
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: BDCELL_LOCK_CHANGE
+// TclEventType: RSB_LOCK_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: BDCELL_LOCK_CHANGE
+// TclEventType: RSB_LOCK_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: BDCELL_LOCK_CHANGE
+// TclEventType: RSB_LOCK_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: BDCELL_LOCK_CHANGE
+// TclEventType: CREATE_IP_CATALOG
+// [GUI Memory]: 96 MB (+4939kb) [00:01:31]
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ip_repo/tx_timing_1.0'. 
+// Tcl Message: INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/warpadmin/BoardSetup/adi-hw/hdl/library'. 
+// TclEventType: IP_SUMMARY_RESULTS
+// Tcl Message: report_ip_status -name ip_status 
+dismissDialog("Refresh IP Catalog"); // bx (ck)
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_rx_n_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_rx_n_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_l_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_l_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_l_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_clk_out 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_l_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_l_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /axi_ad9361_l_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_rx_p_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_rx_p_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_rx_p_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_rx_p_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_rx_p_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_rx_p_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_rx_p_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_rx_p_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_rx_p_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_rx_p_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_rx_p_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_rx_p_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_rx_p_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_rx_p_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_rx_p_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_rx_p_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_rx_p_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_rx_p_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /up_txnrx_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /up_txnrx_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /up_txnrx_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /up_txnrx_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /up_txnrx_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /up_txnrx_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /up_txnrx_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /up_txnrx_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /up_txnrx_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /up_txnrx_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /up_txnrx_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /up_txnrx_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /up_txnrx_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /up_txnrx_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /up_txnrx_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /up_txnrx_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /up_txnrx_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /up_txnrx_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_rx_p_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_sel_Res 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_sel_Res 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_sel_Res 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /util_ad9361_divclk_sel_Res 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gt_ref_clk_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /clk_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /clk_0_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /clk_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /clk_1_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_ps7_FCLK_RESET0_N 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /sys_cpu_clk 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /gpio_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_00_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_00_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_00_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_00_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_01_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_01_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_03_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_03_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_05_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_05_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_07_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_07_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /spi0_clk_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /spi0_clk_i_1 
+selectButton(PAResourceItoN.IPStatusSectionPanel_UPGRADE_SELECTED, "Upgrade Selected"); // a (g, ck)
+// Run Command: PAResourceCommand.PACommandNames_UPGRADE_IP
+// ah (ck): Upgrade IP: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (ah)
+// TclEventType: RSB_OPEN_DIAGRAM
+dismissDialog("Upgrade IP"); // ah (ck)
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: FILE_SET_CHANGE
+// bx (ck):  Upgrade IP : addNotify
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// Tcl Message: upgrade_ip [get_ips  {system_axi_ad9361_adc_dma_0 system_axi_ad9361_dac_dma_0 system_axi_hdmi_dma_0}] -log ip_upgrade.log 
+// Tcl Message: Upgrading '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd' 
+// Tcl Message: INFO: [IP_Flow 19-1972] Upgraded system_axi_ad9361_adc_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0 INFO: [IP_Flow 19-1972] Upgraded system_axi_ad9361_dac_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0 INFO: [IP_Flow 19-1972] Upgraded system_axi_hdmi_dma_0 from ADI AXI DMA Controller 1.0 to ADI AXI DMA Controller 1.0 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SAVE_DIAGRAM
+// CommandFailedException: ERROR: [BD 41-45] Cell path not found: /system 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SAVE_DIAGRAM
+// TclEventType: FILESET_UPDATE_IP
+// TclEventType: IP_UPGRADE_COMPLETE
+// Tcl Message: Wrote  : </home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/adrv9361z7035_ccfmc_lvds.srcs/sources_1/bd/system/system.bd>  
+// Tcl Message: INFO: [Coretcl 2-1525] Wrote upgrade log to '/home/warpadmin/BoardSetup/adi-hw/hdl/projects/adrv9361z7035/ccfmc_lvds/ip_upgrade.log'. 
+// Tcl Message: export_ip_user_files -of_objects [get_ips {system_axi_ad9361_adc_dma_0 system_axi_ad9361_dac_dma_0 system_axi_hdmi_dma_0}] -no_script -sync -force -quiet 
+// [Engine Memory]: 1,132 MB (+9905kb) [00:01:47]
+// aI (ck): Generate Output Products: addNotify
+selectButton("PAResourceTtoZ.UpgradeIP_IP_UPGRADE_COMPLETED_OK", "OK"); // JButton (A, G)
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// [Engine Memory]: 1,197 MB (+8453kb) [00:01:47]
+// HMemoryUtils.trashcanNow. Engine heap size: 1,202 MB. GUI used memory: 60 MB. Current time: 8/3/20 2:41:53 PM CEST
+// TclEventType: DG_GRAPH_GENERATED
+selectButton(PAResourceQtoS.SimpleOutputProductDialog_CLOSE_DIALOG_UNSAVED_CHANGES_WILL, "Skip"); // a (aI)
+dismissDialog("Generate Output Products"); // aI (ck)
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_00_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_00_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_04_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_06_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_07_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_08_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_09_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_09_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_09_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /ps_intr_10_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /spi0_clk_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /spi0_clk_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /spi0_clk_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /spi0_clk_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /spi0_clk_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /spi0_clk_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /spi0_csn_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /spi0_csn_i_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /eth1_intn_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /eth1_intn_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /eth1_intn_1 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /eth1_intn_1 
+selectButton(RDIResource.BaseReportTab_RERUN, "Rerun"); // h (cM, ck)
+// Tcl Command: 'report_ip_status -name ip_status '
+// TclEventType: IP_SUMMARY_RESULTS
+// Tcl Message: report_ip_status -name ip_status  
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Generate Bitstream]", 20, false); // u (O, ck)
+// Run Command: PAResourceCommand.PACommandNames_RUN_BITGEN
+// A (ck): Synthesis is Out-of-date: addNotify
+selectButton(RDIResource.BaseDialog_YES, "Yes"); // a (A)
+// bx (ck):  Resetting Runs : addNotify
+// TclEventType: RUN_MODIFY
+dismissDialog("Synthesis is Out-of-date"); // A (ck)
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// f (ck): Launch Runs: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (f)
+// 'cv' command handler elapsed time: 4 seconds
+// TclEventType: RSB_SCRIPT_TASK
+dismissDialog("Launch Runs"); // f (ck)
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: REPORT_IP_STATUS_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// Tcl Message: launch_runs impl_2 -to_step write_bitstream -jobs 4 
+// bx (ck):  Generate Bitstream : addNotify
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: FILE_SET_CHANGE
