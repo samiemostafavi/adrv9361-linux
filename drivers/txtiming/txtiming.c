@@ -51,6 +51,11 @@
 #define TIMER_TCR0     0x43c00028      // address of timer 0's counter register
 #define TIMER_TCR1     0x43c0002c      // address of timer 1's counter register
 
+#define TIMER_OFFSET_TS0     0x43c00030      // timer offset load address lsb
+#define TIMER_OFFSET_TS1     0x43c00034      // timer offset load address msb
+#define TIMER_OFFSET_EN      0x43c00038      // timer offset load enable
+#define TIMER_OFFSET_AUTO    0x43c0003c      // timer offset load enable
+
 
 // Round division
 #define ROUND_DIV(a, b)		((a + (b / 2)) / b)
@@ -82,15 +87,100 @@ unsigned long* paGPIO4_DATA1; // tx timestamp msb
 unsigned long *pTIMER_TCR0;             // pointer to timer 0 counter register
 unsigned long *pTIMER_TCR1;             // pointer to timer 1 counter register
 
+unsigned long *pTIMER_OFFSET_TS0;	// pointer to timer offset load address lsb
+unsigned long *pTIMER_OFFSET_TS1;	// pointer to timer offset load address msb
+unsigned long *pTIMER_OFFSET_EN;	// pointer to timer offset load enable
+unsigned long *pTIMER_OFFSET_AUTO;	// pointer to timer offset load enable
+
 int majorNum;
 int mret = 0;
 dev_t devNo;  // Major and Minor device numbers combined into 32 bits
 struct class *pClass;  // class_create will set this
 
 // write routine (called when write() is used in user-space)
-ssize_t txtiming_write(struct file *flip, const char *buf, size_t length, loff_t *offset)
+// add offset to the counter in PL
+ssize_t txtiming_write(struct file *flip, const char *buf, size_t count, loff_t *offset)
 {
-	return 0;
+	size_t maxdatalen = BUF_LEN, ncopied;
+    	char databuf[maxdatalen];
+	int64_t offset_ts = 0;
+	uint32_t upper_val;
+	uint32_t lower_val;
+	uint32_t OFFSET_LOAD_EN = 1;
+	uint32_t MODE_AUTO_OFFSET = 2;
+	uint32_t MODE_MANUAL_OFFSET = 4;
+	// Auto mode
+	char subbuff[5];
+	uint32_t auto_duration = 0; // Only 29 bits are available
+	int32_t auto_offset_ts = 0;
+	uint32_t auto_en_val = 0; // en_signal can be 3 bits only
+    	
+	// Read the value to offset_ts
+	if (count < maxdatalen) 
+	{
+        	maxdatalen = count;
+    	}
+
+    	ncopied = copy_from_user(databuf, buf, maxdatalen);
+	if (ncopied != 0)
+	{	
+    		printk("[DBG][drivers][txtiming][txtiming_write][count: %d][error copy from user]\n",count);
+		return -EFAULT;
+	}
+    	databuf[maxdatalen] = 0;
+
+	// Checking for auto command
+	memcpy( subbuff, &databuf[0], 4 );
+	subbuff[4] = '\0';
+
+	if(strcmp(subbuff,"auto") == 0)
+	{
+		sscanf(databuf, "%s %u %d", subbuff, &auto_duration , &auto_offset_ts);
+			
+		// insert the duration and offset to the hardware
+		iowrite32(auto_offset_ts,pTIMER_OFFSET_AUTO);
+
+		// check the written values
+                if(auto_offset_ts != ioread32(pTIMER_OFFSET_AUTO))
+                {
+                        printk("[DBG][drivers][txtiming][txtiming_write_auto][nums: %u, %d][error writing auto offset value to the hardware]\n", auto_duration, auto_offset_ts);
+                        return -EFAULT;
+                }
+		
+		// load it with {auto_duration[28:0],load_en[2:0] which is 2}
+		auto_en_val = (auto_duration<<3) + MODE_AUTO_OFFSET;
+		iowrite32(auto_en_val,pTIMER_OFFSET_EN);
+		
+                printk("[DBG][drivers][txtiming][txtiming_write_auto][count: %d][nums: %u, %d][auto_en_val: %u]\n", count, auto_duration, auto_offset_ts, auto_en_val);
+	}
+	else
+	{
+		sscanf(databuf, "%lld", &offset_ts);
+
+		// insert the offset to the hardware
+		// split the timestamp
+	        lower_val = (uint32_t) offset_ts;
+        	upper_val = (uint32_t) (offset_ts >> 32);
+		iowrite32(lower_val,pTIMER_OFFSET_TS0);
+		iowrite32(upper_val,pTIMER_OFFSET_TS1);
+
+		// check the written values
+		if((lower_val != ioread32(pTIMER_OFFSET_TS0)) || (upper_val != ioread32(pTIMER_OFFSET_TS1)))
+		{
+    			printk("[DBG][drivers][txtiming][txtiming_write][num: %lld][error writing offset value to the hardware]\n", offset_ts);
+			return -EFAULT;
+		}
+		
+		// change the mode to manual
+		iowrite32(MODE_MANUAL_OFFSET,pTIMER_OFFSET_EN);
+
+		// load the new counter value
+		iowrite32(OFFSET_LOAD_EN,pTIMER_OFFSET_EN);
+    	
+		printk("[DBG][drivers][txtiming][txtiming_write][count: %d][num: %lld]\n", count, offset_ts);
+	}
+
+    	return count;
 }
 
 // read routine (called when read() is used in user-space)
@@ -123,15 +213,15 @@ ssize_t txtiming_read(struct file *flip, char *buf, size_t size, loff_t *offset)
 	/* read data from my_data->buffer to user buffer */
 	if (copy_to_user(buf, &msg, len))
         	return -EFAULT;
-
-    	return len;
+	
+    	return size;
 }
 
 // open routine (called when a device opens /dev/txtiming)
 static int txtiming_open(struct inode *inode, struct file *filp)
 {
 
-	//printk("[DBG][drivers][timer][txtiming][txtiming_open]");
+	printk("[DBG][drivers][timer][txtiming][txtiming_open]");
 	if (Device_Open)
 	{
 		printk("[ERR][drivers][timer][txtiming][txtiming_open][One device is already created]");
@@ -146,6 +236,7 @@ static int txtiming_open(struct inode *inode, struct file *filp)
 // close routine (called whne a device closes /dev/txtiming)
 static int txtiming_close(struct inode *inode, struct file *file)
 {
+	printk("[DBG][drivers][timer][txtiming][txtiming_close]");
 	Device_Open--;						// 'close' device	
 	mret = 0;
 	module_put(THIS_MODULE);
@@ -187,6 +278,11 @@ static int __init mod_init(void)
 
         pTIMER_TCR0 = ioremap_nocache(TIMER_TCR0,0x4); // map timer 0 count register
         pTIMER_TCR1 = ioremap_nocache(TIMER_TCR1,0x4); // map timer 1 count register
+        
+	pTIMER_OFFSET_TS0 = ioremap_nocache(TIMER_OFFSET_TS0,0x4); // timer offset load address lsb
+        pTIMER_OFFSET_TS1 = ioremap_nocache(TIMER_OFFSET_TS1,0x4); // timer offset load address msb
+        pTIMER_OFFSET_EN = ioremap_nocache(TIMER_OFFSET_EN,0x4); // timer offset enable
+        pTIMER_OFFSET_AUTO = ioremap_nocache(TIMER_OFFSET_AUTO,0x4); // timer offset enable
 
 
 	// Register character device
@@ -242,6 +338,11 @@ static void __exit mod_exit(void)
 
 	iounmap(pTIMER_TCR0);
 	iounmap(pTIMER_TCR1);
+
+	iounmap(pTIMER_OFFSET_TS0);
+	iounmap(pTIMER_OFFSET_TS1);
+	iounmap(pTIMER_OFFSET_EN);
+	iounmap(pTIMER_OFFSET_AUTO);
 
 	device_destroy(pClass, devNo);  		// Remove the /dev/txtiming
   	class_destroy(pClass);  			// Remove class /sys/class/txtiming

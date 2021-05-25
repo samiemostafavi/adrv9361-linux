@@ -212,13 +212,9 @@ struct axi_dmac {
 #endif
 };
 
-#define SAFETY_GUARD_NOFR_TS 5000  // 50 us
-#define EARL_FRAME_DURATION_TS 417  // 4167 ns - 8 samples
-#define LATE_FRAME_DURATION_TS 417  // 4167 ns - 8 samples
-#define NOWORRIES_WIFR_TS 10	    // 100 ns
-#define EARL_FRAME_NOFR_TS 1000	    // 10 us
-#define LATE_FRAME_NOFR_TS 1000	    // 10 us
-#define NOTS_FRAME_NOFR_TS 1000      // 10 us
+#define TRANSFER_DELAY_TS 500 	// 5 us
+#define LATE_DURATION_TS 3000 	// 30 us
+#define TRNSF_DURATION_TS 50000 // 500 us
 
 enum tx_transfer_type {
 	notimestamp, 
@@ -238,7 +234,6 @@ EXPORT_SYMBOL_GPL(tx_cmds);
 struct tx_transfer_res {
 	enum tx_transfer_type type;
 	uint64_t est_finish_time;
-	uint64_t txtimestamp;
 } tx_ress[4];
 
 struct tx_transfer_stat {
@@ -339,9 +334,6 @@ static uint64_t axi_dmac_axitimer_read(void)
 }
 
 static int acc_overlapping_samples = 0;
-static int64_t txts_prev = 0;
-static int id_prev = 0;
-static int txid_prev = 0;
 
 static void axi_dmac_start_transfer(struct axi_dmac_chan *chan)
 {
@@ -461,10 +453,10 @@ static void axi_dmac_start_transfer(struct axi_dmac_chan *chan)
 		txtimestamp = tx_cmds[sg->id].timestamp;
 		txid = tx_cmds[sg->id].driver_id;
         	txsize = tx_cmds[sg->id].size_less;
-		//txduration = tx_cmds[sg->id].duration;
-		//repsize = sg->x_len -1 -(6*4) -(txsize*4);
-		//frame_size_samples = (repsize+1)>>2;
-		//one_sample_ts = (int)txduration/(int)frame_size_samples;
+		txduration = tx_cmds[sg->id].duration;
+		repsize = sg->x_len -1 -(6*4) -(txsize*4);
+		frame_size_samples = (repsize+1)>>2;
+		one_sample_ts = (int)txduration/(int)frame_size_samples;
 		
 		// Check packet drops by block ID
 		if(txid - txidcounter > 1)
@@ -493,10 +485,10 @@ static void axi_dmac_start_transfer(struct axi_dmac_chan *chan)
 			strncpy(stat,"NOTS_NOTS",10);
 			tx_ress[sg->id].type = notimestamp;
 			// Calculate finish time
-		//	if(sg->id == transfer_id_eot) // There is no blocks in front of us
-		//		tx_ress[sg->id].est_finish_time = timenow + NOTS_FRAME_NOFR_TS + txduration;
-		//	else // There is a block in front of us
-		//		tx_ress[sg->id].est_finish_time = tx_ress[blck_front_id].est_finish_time + txduration;
+			if(sg->id == transfer_id_eot) // There is no blocks in front of us
+				tx_ress[sg->id].est_finish_time = timenow + TRANSFER_DELAY_TS + txduration;
+			else // There is a block in front of us
+				tx_ress[sg->id].est_finish_time = tx_ress[blck_front_id].est_finish_time + TRANSFER_DELAY_TS + txduration;
 		}
 		else
 		{
@@ -508,64 +500,70 @@ static void axi_dmac_start_transfer(struct axi_dmac_chan *chan)
 				strncpy(stat,"EARL_EARL",10);
 				accearlies++;
 				tx_ress[sg->id].type = early;
-		//		if(sg->id == transfer_id_eot) // There is no blocks in front of us
-		//			tx_ress[sg->id].est_finish_time = timenow + EARL_FRAME_DURATION_TS + EARL_FRAME_NOFR_TS;
-		//		else // There is a block in front of us
-		//			tx_ress[sg->id].est_finish_time = tx_ress[blck_front_id].est_finish_time + EARL_FRAME_DURATION_TS;
+				if(sg->id == transfer_id_eot) // There is no blocks in front of us
+					tx_ress[sg->id].est_finish_time = timenow + TRANSFER_DELAY_TS;
+				else // There is a block in front of us
+					tx_ress[sg->id].est_finish_time = tx_ress[blck_front_id].est_finish_time + TRANSFER_DELAY_TS;
 			}
 			else
 			{
 				// Check late TX
 				if(sg->id == transfer_id_eot) // There is no blocks in front of us
 				{
-					if(txtimestamp < timenow + SAFETY_GUARD_NOFR_TS)
+					if(txtimestamp < timenow + TRNSF_DURATION_TS) // According to tests, TRNSF_DURATION_TS 500 us = 50000 ts is needed
 					{
 						strncpy(stat,"LATE_NOFR",10);
 						acclates++;
 						tx_ress[sg->id].type = late;
-		//				tx_ress[sg->id].est_finish_time = timenow + LATE_FRAME_DURATION_TS + LATE_FRAME_NOFR_TS;
+						tx_ress[sg->id].est_finish_time = timenow + LATE_DURATION_TS;
 					}
 					else
 					{
 						strncpy(stat,"GOOD_NOFR",10);
 						tx_ress[sg->id].type = good;
-		//				tx_ress[sg->id].est_finish_time = txduration + txtimestamp;
+						tx_ress[sg->id].est_finish_time = txduration + txtimestamp;
 					}
 				}
 				else // There is a block in front of us
 				{
-					/* OLD
-					if(txtimestamp >= tx_ress[blck_front_id].est_finish_time - NOWORRIES_WIFR_TS)
+					// We allow less than one sample overlapping
+					// These lates accumulate overtime and it has to be handled when it gets larger than one sample
+					if(txtimestamp < timenow + TRNSF_DURATION_TS) // According to tests, TRNSF_DURATION_TS 500 us = 50000 ts is needed
+					{
+						strncpy(stat,"LATE_WIFR",10);
+                                                acclates++;
+                                                tx_ress[sg->id].type = late;
+                                                tx_ress[sg->id].est_finish_time = tx_ress[blck_front_id].est_finish_time + LATE_DURATION_TS;
+					}
+					else if(txtimestamp < tx_ress[blck_front_id].est_finish_time + TRANSFER_DELAY_TS)
+					{
+						// Calculating overlapping samples
+						sub_front_cur_ts = (int64_t)tx_ress[blck_front_id].est_finish_time+TRANSFER_DELAY_TS-(int64_t)txtimestamp;
+						no_overlapping_samples = (int)sub_front_cur_ts/(int)one_sample_ts;
+
+						if(no_overlapping_samples >= frame_size_samples) // More than one frame, drop the frame
+						{
+							strncpy(stat,"LATE_WFOL",10);
+							acclates++;
+							tx_ress[sg->id].type = late;
+							tx_ress[sg->id].est_finish_time = tx_ress[blck_front_id].est_finish_time + LATE_DURATION_TS;
+							no_overlapping_samples = 0;
+						}
+						else // less than one frame, drop the samples from the beginning
+						{
+							strncpy(stat,"GOOD_WFOL",10);
+							tx_ress[sg->id].type = good;
+							txduration -= no_overlapping_samples*one_sample_ts; // new duration
+							tx_ress[sg->id].est_finish_time = txduration + tx_ress[blck_front_id].est_finish_time;
+							acc_overlapping_samples += no_overlapping_samples;
+						}
+					}
+					else
 					{
 						strncpy(stat,"GOOD_WIFR",10);
 						tx_ress[sg->id].type = good;
 						tx_ress[sg->id].est_finish_time = txduration + txtimestamp;
 					}
-					else
-					{
-						strncpy(stat,"LATE_WIFR",10);
-						acclates++;
-						tx_ress[sg->id].type = late;
-						tx_ress[sg->id].est_finish_time = tx_ress[blck_front_id].est_finish_time + LATE_FRAME_DURATION_TS;
-						no_overlapping_samples = 0;
-					}*/
-
-					// New
-
-					if(txtimestamp >= tx_cmds[blck_front_id].timestamp + NOWORRIES_WIFR_TS)
-                                        {
-                                                strncpy(stat,"GOOD_WIFR",10);
-                                                tx_ress[sg->id].type = good;
-                  //                              tx_ress[sg->id].est_finish_time = txduration + txtimestamp;
-                                        }
-                                        else
-                                        {
-                                                strncpy(stat,"LATE_WIFR",10);
-                                                acclates++;
-                                                tx_ress[sg->id].type = late;
-                  //                              tx_ress[sg->id].est_finish_time = tx_ress[blck_front_id].est_finish_time + LATE_FRAME_DURATION_TS;
-                  //                              no_overlapping_samples = 0;
-                                        }
 				}
 				
 				if(tx_ress[sg->id].type == good)
@@ -601,17 +599,13 @@ static void axi_dmac_start_transfer(struct axi_dmac_chan *chan)
 		}
 
 		// print info
-		//if(tx_ress[sg->id].type == late || tx_ress[sg->id].type == early)
-		//{
-		//	do_gettimeofday(&tv);
-		//	ts_micro = 1000000 * tv.tv_sec + tv.tv_usec;
-			//printk("Start tx %s, id: %d, txtimestamp: %llu, active_id: %d, front_id: %d, txId: %d, timenow:%llu, ts-timenow: %lld, time: %lu, repsize: %d, hw_dif: %llu, est_fin: %llu, dur: %llu, frame_size_samples: %d, no_overlapping_samples: %d, one_sample_ts: %lld, acc_overlapping_samples: %d, sub_front_cur_ts: %d\n",stat,sg->id,txtimestamp,transfer_id_eot,blck_front_id,txid,timenow,(int64_t)(txtimestamp-timenow),ts_micro,repsize, timenow-timehwPrev,tx_ress[sg->id].est_finish_time,txduration,frame_size_samples, no_overlapping_samples,one_sample_ts, acc_overlapping_samples, sub_front_cur_ts);
-		//	printk("Start tx %s, id: %d, id_prev: %d, txts: %llu, txts(prev):%llu, active_id: %d, front_id: %d, txId: %d, txId(prev):%d, timenow:%llu, txts-timenow: %lld, txts-txts_front: %lld, time: %lu, repsize: %d, hw_dif: %llu, est_fin: %llu, dur: %llu, nsamples: %d\n",stat,sg->id,id_prev,txtimestamp,txts_prev,transfer_id_eot,blck_front_id,txid,txid_prev,timenow,(int64_t)(txtimestamp-timenow),(int64_t)(txtimestamp-tx_cmds[blck_front_id].timestamp),ts_micro,repsize, timenow-timehwPrev,tx_ress[sg->id].est_finish_time,txduration,frame_size_samples);
-		//}
-		//txts_prev = txtimestamp;
-		//id_prev = sg->id;
-		//txid_prev = txid;
-		//timehwPrev = timenow;
+		/*if(tx_ress[sg->id].type == late)
+		{
+			do_gettimeofday(&tv);
+			ts_micro = 1000000 * tv.tv_sec + tv.tv_usec;
+			printk("Start tx %s, id: %d, txtimestamp: %llu, active_id: %d, front_id: %d, txId: %d, timenow:%llu, ts-timenow: %lld, time: %lu, repsize: %d, hw_dif: %llu, est_fin: %llu, dur: %llu, frame_size_samples: %d, no_overlapping_samples: %d, one_sample_ts: %lld, acc_overlapping_samples: %d, sub_front_cur_ts: %d\n",stat,sg->id,txtimestamp,transfer_id_eot,blck_front_id,txid,timenow,(int64_t)(txtimestamp-timenow),ts_micro,repsize, timenow-timehwPrev,tx_ress[sg->id].est_finish_time,txduration,frame_size_samples, no_overlapping_samples,one_sample_ts, acc_overlapping_samples, sub_front_cur_ts);
+		}
+		timehwPrev = timenow;*/
 
 		// Save drops,lates, earlies, and txidcounter numbers into the global struct
 		tx_stat.drops = accdrops;
@@ -636,9 +630,10 @@ static void axi_dmac_start_transfer(struct axi_dmac_chan *chan)
 	{
 		//printk("[DBG][drivers][dma-axi-dmac][axi_dmac_start_transfer][dma_dev_id: %d][dir: %d][partial_report: %d][cyclic: %d]\n -----[sg->x_len: %d][sg->dst_addr: %d][sg->src_addr: %d]\n",dmac->dma_dev.dev_id,chan->direction,chan->hw_partial_xfer,is_cyclic,sg->x_len,sg->dest_addr,sg->src_addr);
 		if(tx_ress[sg->id].type == late || tx_ress[sg->id].type == early)
-			axi_dmac_write(dmac, AXI_DMAC_REG_X_LENGTH, 8); // LATE or EARLY block, drop it
+			axi_dmac_write(dmac, AXI_DMAC_REG_X_LENGTH, 5); // LATE or EARLY block, drop it
 		else
-			axi_dmac_write(dmac, AXI_DMAC_REG_X_LENGTH, sg->x_len -1 -(6*4) -(txsize*4)); // (6 additional items + txsize)*4
+			axi_dmac_write(dmac, AXI_DMAC_REG_X_LENGTH, sg->x_len -1 -(6*4) -(txsize*4) -(no_overlapping_samples*4)); // (6 additional items + txsize + overlapping_samples)*4
+
 	}
 	else if(chan->direction == 2 && (dev_id == 0 || dev_id == 1)) // if the device is RX
 	{
@@ -895,18 +890,18 @@ static bool axi_dmac_transfer_done(struct axi_dmac_chan *chan,
 		rxtimestamp_eot = axi_dmac_read_timestamp(sg->id,dmac,false);
 
 		// print debug
-		//timenow = axi_dmac_axitimer_read();
-		//transfer_id_eot = axi_dmac_read(dmac,AXI_DMAC_REG_ACTIVE_TRANSFER_ID);
+		/*timenow = axi_dmac_axitimer_read();
+		transfer_id_eot = axi_dmac_read(dmac,AXI_DMAC_REG_ACTIVE_TRANSFER_ID);
                 //printk("[DBG][drivers][dma-axi-dmac-done] RX timestamp: %llu, sg->id: %d, transfer_id_eot: %d, time: %ld\n", rxtimestamp_eot,sg->id,transfer_id_eot, ts.tv_nsec);
-		//if(rxtimestamp_tmp != 0)
-		//{
-		//	if(rxtimestamp_eot - rxtimestamp_tmp > 120000 )
-		//	{
-                //		printk("RX timestamp: %llu, RX diff: %llu, rxidcounter: %d, sg->id: %d, transfer_id_eot: %d, hw_time: %llu, hw_time_diff: %llu\n", rxtimestamp_eot,rxtimestamp_eot - rxtimestamp_tmp,rxidcounter,sg->id,transfer_id_eot, timenow, timenow-timenow_tmp);
-		//	}
-		//}
-		//rxtimestamp_tmp = rxtimestamp_eot;
-		//timenow_tmp = timenow;
+		if(rxtimestamp_tmp != 0)
+		{
+			if(rxtimestamp_eot - rxtimestamp_tmp > 120000 )
+			{
+                		printk("RX timestamp: %llu, RX diff: %llu, rxidcounter: %d, sg->id: %d, transfer_id_eot: %d, hw_time: %llu, hw_time_diff: %llu\n", rxtimestamp_eot,rxtimestamp_eot - rxtimestamp_tmp,rxidcounter,sg->id,transfer_id_eot, timenow, timenow-timenow_tmp);
+			}
+		}
+		rxtimestamp_tmp = rxtimestamp_eot;
+		timenow_tmp = timenow;*/
 
 		rx_timestamps[sg->id] = rxtimestamp_eot;
 		rxidcounters[sg->id] = rxidcounter;
